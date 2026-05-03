@@ -94,9 +94,12 @@ function populateTopics() {
     const topics = Object.keys(topicCounts)
         .filter(t => topicCounts[t] >= 9) // Only show topics with at least 9 words
         .sort((a, b) => {
-            const numA = parseInt(a.match(/\d+/) || 0);
-            const numB = parseInt(b.match(/\d+/) || 0);
-            return (numA - numB) || a.localeCompare(b);
+            const numA = parseInt(a.match(/^\d+/) || 0);
+            const numB = parseInt(b.match(/^\d+/) || 0);
+            if (numA !== numB) {
+                return numA - numB;
+            }
+            return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
         });
 
     window.allTopics = topics; // Store for URL mapping
@@ -118,15 +121,31 @@ function populateTopics() {
     });
 }
 
+function createSlug(t) {
+    if (t === "Khác") return "khac";
+    if (t === "Tất cả") return "tatca";
+    const numMatch = t.match(/^(\d+)/);
+    const partMatch = t.match(/\(Phần (\d+)\)/);
+    
+    let slug = "";
+    if (numMatch) {
+        slug = "chude" + numMatch[1];
+        if (partMatch) {
+            slug += "_phan" + partMatch[1];
+        }
+    }
+    return slug;
+}
+
 function selectTopic(topic, updateUrl = true) {
     startIntro();
     window.tempSelectedTopic = topic;
     
     // Update URL if requested
     if (updateUrl) {
-        const topicIndex = window.allTopics.indexOf(topic) + 1;
-        if (topicIndex > 0) {
-            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?chude' + topicIndex;
+        const slug = createSlug(topic);
+        if (slug) {
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + slug;
             window.history.pushState({path:newUrl},'',newUrl);
         }
     }
@@ -136,14 +155,13 @@ function selectTopic(topic, updateUrl = true) {
 }
 
 function checkUrlParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const param = window.location.search.substring(1); // Get chude1 etc
+    const param = window.location.search.substring(1);
     
-    if (param.startsWith('chude')) {
-        const index = parseInt(param.replace('chude', '')) - 1;
-        if (window.allTopics && window.allTopics[index]) {
+    if (param) {
+        const targetTopic = window.allTopics.find(t => createSlug(t) === param);
+        if (targetTopic) {
             // Select topic without updating URL again
-            selectTopic(window.allTopics[index], false);
+            selectTopic(targetTopic, false);
         }
     }
 }
@@ -683,3 +701,8 @@ function updateStatus() {
 
 // Start
 init();
+
+// Handle browser back button
+window.addEventListener('popstate', () => {
+    window.location.reload();
+});

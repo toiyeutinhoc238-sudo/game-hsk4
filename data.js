@@ -5,7 +5,7 @@ const VOCAB_DATA = [
     "meaning": "à",
     "type": "",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "爱情",
@@ -13,7 +13,7 @@ const VOCAB_DATA = [
     "meaning": "yêu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "爱心",
@@ -21,7 +21,7 @@ const VOCAB_DATA = [
     "meaning": "Yêu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "按",
@@ -29,7 +29,7 @@ const VOCAB_DATA = [
     "meaning": "dựa vào",
     "type": "Động từ, Giới từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "安检",
@@ -37,7 +37,7 @@ const VOCAB_DATA = [
     "meaning": "Kiểm tra an ninh",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 4. Tư duy & Nhận thức"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1), 4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "安排",
@@ -45,7 +45,7 @@ const VOCAB_DATA = [
     "meaning": "sắp xếp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "按时",
@@ -53,7 +53,7 @@ const VOCAB_DATA = [
     "meaning": "đúng giờ",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "按照",
@@ -61,7 +61,7 @@ const VOCAB_DATA = [
     "meaning": "theo",
     "type": "Giới từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "白酒",
@@ -69,7 +69,7 @@ const VOCAB_DATA = [
     "meaning": "Rượu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 6. Đồ vật & Công cụ"
+    "topic": "5. Đời sống sinh hoạt (Phần 1), 6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "棒",
@@ -77,7 +77,7 @@ const VOCAB_DATA = [
     "meaning": "Tuyệt",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "办公",
@@ -85,7 +85,7 @@ const VOCAB_DATA = [
     "meaning": "Văn phòng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "办理",
@@ -93,7 +93,7 @@ const VOCAB_DATA = [
     "meaning": "Xử lý",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "办事",
@@ -101,7 +101,7 @@ const VOCAB_DATA = [
     "meaning": "công việc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "抱",
@@ -109,7 +109,7 @@ const VOCAB_DATA = [
     "meaning": "ôm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "保护",
@@ -117,7 +117,7 @@ const VOCAB_DATA = [
     "meaning": "Bảo vệ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "报考",
@@ -125,7 +125,7 @@ const VOCAB_DATA = [
     "meaning": "Đăng kí nộp hồ sơ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "报名",
@@ -133,7 +133,7 @@ const VOCAB_DATA = [
     "meaning": "báo danh",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 1), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "抱歉",
@@ -141,7 +141,7 @@ const VOCAB_DATA = [
     "meaning": "xin lỗi",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "保证",
@@ -149,7 +149,7 @@ const VOCAB_DATA = [
     "meaning": "Đảm bảo/ sự đảm bảo",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 1), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "倍",
@@ -157,7 +157,7 @@ const VOCAB_DATA = [
     "meaning": "lần",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "背",
@@ -173,7 +173,7 @@ const VOCAB_DATA = [
     "meaning": "Balo",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "北部",
@@ -181,7 +181,7 @@ const VOCAB_DATA = [
     "meaning": "Phía bắc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "9. Không gian & Vị trí, 15. Tự nhiên"
+    "topic": "9. Không gian & Vị trí, 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "笨",
@@ -189,7 +189,7 @@ const VOCAB_DATA = [
     "meaning": "ngu xuẩn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp, 4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "本科",
@@ -197,7 +197,7 @@ const VOCAB_DATA = [
     "meaning": "bậc cử nhân",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "本来",
@@ -205,7 +205,7 @@ const VOCAB_DATA = [
     "meaning": "ban đầu",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "便于",
@@ -213,7 +213,7 @@ const VOCAB_DATA = [
     "meaning": "dễ dàng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "表",
@@ -221,7 +221,7 @@ const VOCAB_DATA = [
     "meaning": "bề mặt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "表格",
@@ -229,7 +229,7 @@ const VOCAB_DATA = [
     "meaning": "mẫu đơn, bảng biểu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 1), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "表示",
@@ -237,7 +237,7 @@ const VOCAB_DATA = [
     "meaning": "thể hiện",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "表现",
@@ -245,7 +245,7 @@ const VOCAB_DATA = [
     "meaning": "biểu hiện",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "表扬",
@@ -253,7 +253,7 @@ const VOCAB_DATA = [
     "meaning": "khen",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ, 5. Đời sống sinh hoạt"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "标准",
@@ -261,7 +261,7 @@ const VOCAB_DATA = [
     "meaning": "tiêu chuẩn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "并",
@@ -269,7 +269,7 @@ const VOCAB_DATA = [
     "meaning": "đồng thời",
     "type": "Động từ, Phó từ, Liên từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "饼干",
@@ -277,7 +277,7 @@ const VOCAB_DATA = [
     "meaning": "bánh quy",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "并且",
@@ -285,7 +285,7 @@ const VOCAB_DATA = [
     "meaning": "Và",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "笔试",
@@ -293,7 +293,7 @@ const VOCAB_DATA = [
     "meaning": "kỳ thi viết",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "毕业",
@@ -301,7 +301,7 @@ const VOCAB_DATA = [
     "meaning": "tốt nghiệp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "毕业生",
@@ -309,7 +309,7 @@ const VOCAB_DATA = [
     "meaning": "sinh viên mới tốt nghiệp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "鼻子",
@@ -317,7 +317,7 @@ const VOCAB_DATA = [
     "meaning": "mũi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "播放",
@@ -325,7 +325,7 @@ const VOCAB_DATA = [
     "meaning": "phát sóng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "博士",
@@ -333,7 +333,7 @@ const VOCAB_DATA = [
     "meaning": "Tiến sĩ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "步",
@@ -341,7 +341,7 @@ const VOCAB_DATA = [
     "meaning": "bước chân",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "部",
@@ -349,7 +349,7 @@ const VOCAB_DATA = [
     "meaning": "phòng ban/ bộ",
     "type": "Danh từ, Lượng từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn, 13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1), 7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "不必",
@@ -357,7 +357,7 @@ const VOCAB_DATA = [
     "meaning": "Không cần",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "不便",
@@ -365,7 +365,7 @@ const VOCAB_DATA = [
     "meaning": "bất tiện",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "不得不",
@@ -381,7 +381,7 @@ const VOCAB_DATA = [
     "meaning": "liên tục",
     "type": "Động từ, Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 1)"
   },
   {
     "vocab": "部分",
@@ -389,7 +389,7 @@ const VOCAB_DATA = [
     "meaning": "phần",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "不够",
@@ -397,7 +397,7 @@ const VOCAB_DATA = [
     "meaning": "không đủ",
     "type": "Động từ, Phó từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "不管",
@@ -405,7 +405,7 @@ const VOCAB_DATA = [
     "meaning": "mặc dù",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "不光",
@@ -413,7 +413,7 @@ const VOCAB_DATA = [
     "meaning": "không chỉ",
     "type": "Phó từ, Liên từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "不过",
@@ -421,7 +421,7 @@ const VOCAB_DATA = [
     "meaning": "Nhưng",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "不仅",
@@ -429,7 +429,7 @@ const VOCAB_DATA = [
     "meaning": "không chỉ",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "不论",
@@ -437,7 +437,7 @@ const VOCAB_DATA = [
     "meaning": "cho dù",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "不满",
@@ -445,7 +445,7 @@ const VOCAB_DATA = [
     "meaning": "không hài lòng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "部门",
@@ -453,7 +453,7 @@ const VOCAB_DATA = [
     "meaning": "phòng ban/ bộ phận",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "不如",
@@ -461,7 +461,7 @@ const VOCAB_DATA = [
     "meaning": "chi bằng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "擦",
@@ -469,7 +469,7 @@ const VOCAB_DATA = [
     "meaning": "lau đi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "猜",
@@ -477,7 +477,7 @@ const VOCAB_DATA = [
     "meaning": "Đoán",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp, 4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "材料",
@@ -485,7 +485,7 @@ const VOCAB_DATA = [
     "meaning": "Vật liệu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "参观",
@@ -493,7 +493,7 @@ const VOCAB_DATA = [
     "meaning": "thăm quan",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "参赛",
@@ -501,7 +501,7 @@ const VOCAB_DATA = [
     "meaning": "Tham gia thi đấu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "餐厅",
@@ -509,7 +509,7 @@ const VOCAB_DATA = [
     "meaning": "Phòng ăn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "操场",
@@ -517,7 +517,7 @@ const VOCAB_DATA = [
     "meaning": "sân tập",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "厕所",
@@ -525,7 +525,7 @@ const VOCAB_DATA = [
     "meaning": "nhà vệ sinh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "查看",
@@ -533,7 +533,7 @@ const VOCAB_DATA = [
     "meaning": "Kiểm tra",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ, 12. Miêu tả & Đánh giá, 4. Tư duy & Nhận thức"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 4. Tư duy & Nhận thức (Phần 1), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "厂",
@@ -541,7 +541,7 @@ const VOCAB_DATA = [
     "meaning": "nhà máy",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "场",
@@ -549,7 +549,7 @@ const VOCAB_DATA = [
     "meaning": "sân, bãi",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "产生",
@@ -557,7 +557,7 @@ const VOCAB_DATA = [
     "meaning": "sản xuất",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "超过",
@@ -565,7 +565,7 @@ const VOCAB_DATA = [
     "meaning": "Quá",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "茶叶",
@@ -573,7 +573,7 @@ const VOCAB_DATA = [
     "meaning": "lá trà",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ, 15. Tự nhiên"
+    "topic": "6. Đồ vật & Công cụ (Phần 1), 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "差(一)点儿",
@@ -581,7 +581,7 @@ const VOCAB_DATA = [
     "meaning": "thiếu chút nữa",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "查找",
@@ -589,7 +589,7 @@ const VOCAB_DATA = [
     "meaning": "Tìm kiếm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 2), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "城",
@@ -597,7 +597,7 @@ const VOCAB_DATA = [
     "meaning": "thành phố",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "乘",
@@ -605,7 +605,7 @@ const VOCAB_DATA = [
     "meaning": "ngồi (phương tiện giao thông)",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "成功",
@@ -613,7 +613,7 @@ const VOCAB_DATA = [
     "meaning": "thành công",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "乘客",
@@ -621,7 +621,7 @@ const VOCAB_DATA = [
     "meaning": "hành khách",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "诚实",
@@ -629,7 +629,7 @@ const VOCAB_DATA = [
     "meaning": "trung thực",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "成为",
@@ -637,7 +637,7 @@ const VOCAB_DATA = [
     "meaning": "trở nên",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "乘坐",
@@ -645,7 +645,7 @@ const VOCAB_DATA = [
     "meaning": "ngồi (phương tiện giao thông)",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "车速",
@@ -653,7 +653,7 @@ const VOCAB_DATA = [
     "meaning": "Tốc độ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "车位",
@@ -661,7 +661,7 @@ const VOCAB_DATA = [
     "meaning": "chỗ đậu xe",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "迟",
@@ -669,7 +669,7 @@ const VOCAB_DATA = [
     "meaning": "Muộn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "吃惊",
@@ -677,7 +677,7 @@ const VOCAB_DATA = [
     "meaning": "Ngạc nhiên",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "重",
@@ -685,7 +685,7 @@ const VOCAB_DATA = [
     "meaning": "Nặng",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 5. Đời sống sinh hoạt, 6. Đồ vật & Công cụ"
+    "topic": "5. Đời sống sinh hoạt (Phần 2), 6. Đồ vật & Công cụ (Phần 1), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "重新",
@@ -693,7 +693,7 @@ const VOCAB_DATA = [
     "meaning": "lại",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "窗",
@@ -701,7 +701,7 @@ const VOCAB_DATA = [
     "meaning": "cửa sổ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "窗户",
@@ -709,7 +709,7 @@ const VOCAB_DATA = [
     "meaning": "cửa sổ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "出差",
@@ -717,7 +717,7 @@ const VOCAB_DATA = [
     "meaning": "đi công tác",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "厨房",
@@ -725,7 +725,7 @@ const VOCAB_DATA = [
     "meaning": "phòng bếp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "吹",
@@ -733,7 +733,7 @@ const VOCAB_DATA = [
     "meaning": "thổi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 6. Đồ vật & Công cụ, 12. Miêu tả & Đánh giá"
+    "topic": "5. Đời sống sinh hoạt (Phần 2), 6. Đồ vật & Công cụ (Phần 1), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "出口",
@@ -741,7 +741,7 @@ const VOCAB_DATA = [
     "meaning": "ra",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "厨师",
@@ -749,7 +749,7 @@ const VOCAB_DATA = [
     "meaning": "đầu bếp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "出现",
@@ -757,7 +757,7 @@ const VOCAB_DATA = [
     "meaning": "Xuất hiện",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "出行",
@@ -765,7 +765,7 @@ const VOCAB_DATA = [
     "meaning": "du lịch",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 8. Giao thông & Di chuyển"
+    "topic": "5. Đời sống sinh hoạt (Phần 2), 8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "出租",
@@ -773,7 +773,7 @@ const VOCAB_DATA = [
     "meaning": "thuê",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển, 5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2), 8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "此",
@@ -781,7 +781,7 @@ const VOCAB_DATA = [
     "meaning": "cái này",
     "type": "Đại từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 2)"
   },
   {
     "vocab": "此次",
@@ -789,7 +789,7 @@ const VOCAB_DATA = [
     "meaning": "Lần này",
     "type": "",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 12. Miêu tả & Đánh giá"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "此外",
@@ -797,7 +797,7 @@ const VOCAB_DATA = [
     "meaning": "Ngoài ra",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "词语",
@@ -805,7 +805,7 @@ const VOCAB_DATA = [
     "meaning": "từ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "从此",
@@ -813,7 +813,7 @@ const VOCAB_DATA = [
     "meaning": "Từ đó trở đi",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "从来",
@@ -821,7 +821,7 @@ const VOCAB_DATA = [
     "meaning": "trước giờ",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "从中",
@@ -829,7 +829,7 @@ const VOCAB_DATA = [
     "meaning": "từ đó",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "粗",
@@ -837,7 +837,7 @@ const VOCAB_DATA = [
     "meaning": "dày/ thô",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 6. Đồ vật & Công cụ, 15. Tự nhiên"
+    "topic": "6. Đồ vật & Công cụ (Phần 1), 15. Tự nhiên (Phần 1), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "存",
@@ -845,7 +845,7 @@ const VOCAB_DATA = [
     "meaning": "tích lũy",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "村",
@@ -853,7 +853,7 @@ const VOCAB_DATA = [
     "meaning": "làng bản",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 7. Địa điểm & Nơi chốn"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "错过",
@@ -861,7 +861,7 @@ const VOCAB_DATA = [
     "meaning": "bỏ lỡ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "错误",
@@ -869,7 +869,7 @@ const VOCAB_DATA = [
     "meaning": "sai lầm",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "粗心",
@@ -877,7 +877,7 @@ const VOCAB_DATA = [
     "meaning": "bất cẩn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 12. Miêu tả & Đánh giá, 3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 5. Đời sống sinh hoạt (Phần 3), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "答",
@@ -885,7 +885,7 @@ const VOCAB_DATA = [
     "meaning": "trả lời",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "打招呼",
@@ -893,7 +893,7 @@ const VOCAB_DATA = [
     "meaning": "chào hỏi",
     "type": "",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp, 1. Con người & Các mối quan hệ"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 1. Con người & Các mối quan hệ (Phần 1), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "答案",
@@ -901,7 +901,7 @@ const VOCAB_DATA = [
     "meaning": "Trả lời",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "大巴",
@@ -909,7 +909,7 @@ const VOCAB_DATA = [
     "meaning": "xe buýt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "打败",
@@ -917,7 +917,7 @@ const VOCAB_DATA = [
     "meaning": "đánh bại",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "大大",
@@ -925,7 +925,7 @@ const VOCAB_DATA = [
     "meaning": "to",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "达到",
@@ -933,7 +933,7 @@ const VOCAB_DATA = [
     "meaning": "đạt được",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "打工",
@@ -941,7 +941,7 @@ const VOCAB_DATA = [
     "meaning": "làm việc để kiếm sống",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "戴",
@@ -949,7 +949,7 @@ const VOCAB_DATA = [
     "meaning": "mặc, đội",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 12. Miêu tả & Đánh giá"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "待",
@@ -957,7 +957,7 @@ const VOCAB_DATA = [
     "meaning": "đối xử",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "大夫",
@@ -965,7 +965,7 @@ const VOCAB_DATA = [
     "meaning": "bác sĩ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe, 11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1), 2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "袋子",
@@ -973,7 +973,7 @@ const VOCAB_DATA = [
     "meaning": "cái túi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "大量",
@@ -981,7 +981,7 @@ const VOCAB_DATA = [
     "meaning": "số lượng lớn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "当",
@@ -989,7 +989,7 @@ const VOCAB_DATA = [
     "meaning": "khi",
     "type": "Động từ, Giới từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "当时",
@@ -997,7 +997,7 @@ const VOCAB_DATA = [
     "meaning": "khi đó",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "9. Không gian & Vị trí, 10. Thời gian"
+    "topic": "10. Thời gian (Phần 1), 9. Không gian & Vị trí"
   },
   {
     "vocab": "单位",
@@ -1005,7 +1005,7 @@ const VOCAB_DATA = [
     "meaning": "đơn vị",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 11. Công việc & Nghề nghiệp (Phần 1)"
   },
   {
     "vocab": "倒",
@@ -1013,7 +1013,7 @@ const VOCAB_DATA = [
     "meaning": "ngã",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 8. Giao thông & Di chuyển"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "道",
@@ -1021,7 +1021,7 @@ const VOCAB_DATA = [
     "meaning": "lượng từ cho con đường/ đường",
     "type": "Danh từ, Lượng từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "刀",
@@ -1029,7 +1029,7 @@ const VOCAB_DATA = [
     "meaning": "dao",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 6. Đồ vật & Công cụ"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "到底",
@@ -1037,7 +1037,7 @@ const VOCAB_DATA = [
     "meaning": "cuối cùng",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "到来",
@@ -1045,7 +1045,7 @@ const VOCAB_DATA = [
     "meaning": "đến",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "道路",
@@ -1053,7 +1053,7 @@ const VOCAB_DATA = [
     "meaning": "cách",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "道歉",
@@ -1061,7 +1061,7 @@ const VOCAB_DATA = [
     "meaning": "Xin lỗi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "导游",
@@ -1069,7 +1069,7 @@ const VOCAB_DATA = [
     "meaning": "hướng dẫn viên du lịch",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển, 11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 1), 8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "打扰",
@@ -1077,7 +1077,7 @@ const VOCAB_DATA = [
     "meaning": "quấy rầy",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 3)"
   },
   {
     "vocab": "大赛",
@@ -1085,7 +1085,7 @@ const VOCAB_DATA = [
     "meaning": "Cuộc thi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "大厅",
@@ -1093,7 +1093,7 @@ const VOCAB_DATA = [
     "meaning": "sảnh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn, 11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 2), 7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "打印",
@@ -1101,7 +1101,7 @@ const VOCAB_DATA = [
     "meaning": "In",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 3), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "答应",
@@ -1109,7 +1109,7 @@ const VOCAB_DATA = [
     "meaning": "đáp ứng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "打印机",
@@ -1117,7 +1117,7 @@ const VOCAB_DATA = [
     "meaning": "máy in",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ, 11. Công việc & Nghề nghiệp"
+    "topic": "6. Đồ vật & Công cụ (Phần 1), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "大约",
@@ -1125,7 +1125,7 @@ const VOCAB_DATA = [
     "meaning": "khoảng",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 13. Số lượng & Đo lường"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "打折",
@@ -1133,7 +1133,7 @@ const VOCAB_DATA = [
     "meaning": "Giảm giá",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 13. Số lượng & Đo lường, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 11. Công việc & Nghề nghiệp (Phần 2), 13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "打针",
@@ -1141,7 +1141,7 @@ const VOCAB_DATA = [
     "meaning": "tiêm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 2. Cơ thể & Sức khỏe"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "大自然",
@@ -1149,7 +1149,7 @@ const VOCAB_DATA = [
     "meaning": "Thiên nhiên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "等",
@@ -1157,7 +1157,7 @@ const VOCAB_DATA = [
     "meaning": "vân vân",
     "type": "Trợ từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 12. Miêu tả & Đánh giá"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "等到",
@@ -1165,7 +1165,7 @@ const VOCAB_DATA = [
     "meaning": "đợi đến khi",
     "type": "Giới từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "登机",
@@ -1173,7 +1173,7 @@ const VOCAB_DATA = [
     "meaning": "Lên tàu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "得意",
@@ -1181,7 +1181,7 @@ const VOCAB_DATA = [
     "meaning": "đắc ý",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "底",
@@ -1189,7 +1189,7 @@ const VOCAB_DATA = [
     "meaning": "đáy",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 15. Tự nhiên"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "低",
@@ -1197,7 +1197,7 @@ const VOCAB_DATA = [
     "meaning": "thấp/ làm giảm",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "电动车",
@@ -1205,7 +1205,7 @@ const VOCAB_DATA = [
     "meaning": "xe điện",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "点名",
@@ -1213,7 +1213,7 @@ const VOCAB_DATA = [
     "meaning": "Điểm danh",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "电视剧",
@@ -1221,7 +1221,7 @@ const VOCAB_DATA = [
     "meaning": "phim truyền hình",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 6. Đồ vật & Công cụ"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "点头",
@@ -1229,7 +1229,7 @@ const VOCAB_DATA = [
     "meaning": "gật đầu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe, 3. Cảm xúc & Thái độ, 12. Miêu tả & Đánh giá"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 12. Miêu tả & Đánh giá (Phần 1), 2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "掉",
@@ -1237,7 +1237,7 @@ const VOCAB_DATA = [
     "meaning": "Thua",
     "type": "Động từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "调查",
@@ -1245,7 +1245,7 @@ const VOCAB_DATA = [
     "meaning": "cuộc điều tra",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "低价",
@@ -1253,7 +1253,7 @@ const VOCAB_DATA = [
     "meaning": "giá thấp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "订",
@@ -1261,7 +1261,7 @@ const VOCAB_DATA = [
     "meaning": "đặt hàng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "定",
@@ -1269,7 +1269,7 @@ const VOCAB_DATA = [
     "meaning": "Chắc chắn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "地球",
@@ -1277,7 +1277,7 @@ const VOCAB_DATA = [
     "meaning": "Trái đất",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên, 9. Không gian & Vị trí"
+    "topic": "9. Không gian & Vị trí, 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "低温",
@@ -1285,7 +1285,7 @@ const VOCAB_DATA = [
     "meaning": "nhiệt độ thấp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "底下",
@@ -1309,7 +1309,7 @@ const VOCAB_DATA = [
     "meaning": "Địa chỉ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "东部",
@@ -1317,7 +1317,7 @@ const VOCAB_DATA = [
     "meaning": "phía đông",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "9. Không gian & Vị trí, 15. Tự nhiên"
+    "topic": "9. Không gian & Vị trí, 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "动车",
@@ -1325,7 +1325,7 @@ const VOCAB_DATA = [
     "meaning": "tàu cao tốc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "动作",
@@ -1333,7 +1333,7 @@ const VOCAB_DATA = [
     "meaning": "hoạt động",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 8. Giao thông & Di chuyển"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "短信",
@@ -1341,7 +1341,7 @@ const VOCAB_DATA = [
     "meaning": "Tin nhắn ngắn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp, 5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "堵车",
@@ -1349,7 +1349,7 @@ const VOCAB_DATA = [
     "meaning": "Tắc đường",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "队",
@@ -1357,7 +1357,7 @@ const VOCAB_DATA = [
     "meaning": "Đội",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "对方",
@@ -1373,7 +1373,7 @@ const VOCAB_DATA = [
     "meaning": "đối diện",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "对于",
@@ -1381,7 +1381,7 @@ const VOCAB_DATA = [
     "meaning": "đối với",
     "type": "Giới từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "队员",
@@ -1389,7 +1389,7 @@ const VOCAB_DATA = [
     "meaning": "Thành viên nhóm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "队长",
@@ -1397,7 +1397,7 @@ const VOCAB_DATA = [
     "meaning": "trưởng nhóm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "度假",
@@ -1405,7 +1405,7 @@ const VOCAB_DATA = [
     "meaning": "kì nghỉ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "顿",
@@ -1413,7 +1413,7 @@ const VOCAB_DATA = [
     "meaning": "bữa ăn",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 13. Số lượng & Đo lường"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "多么",
@@ -1421,7 +1421,7 @@ const VOCAB_DATA = [
     "meaning": "Làm sao",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "多数",
@@ -1429,7 +1429,7 @@ const VOCAB_DATA = [
     "meaning": "hầu hết",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "多样",
@@ -1437,7 +1437,7 @@ const VOCAB_DATA = [
     "meaning": "đa dạng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "读者",
@@ -1445,7 +1445,7 @@ const VOCAB_DATA = [
     "meaning": "độc giả",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "肚子",
@@ -1453,7 +1453,7 @@ const VOCAB_DATA = [
     "meaning": "bụng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 2. Cơ thể & Sức khỏe"
+    "topic": "5. Đời sống sinh hoạt (Phần 4), 2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "而",
@@ -1461,7 +1461,7 @@ const VOCAB_DATA = [
     "meaning": "và/ mà",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "儿童",
@@ -1469,7 +1469,7 @@ const VOCAB_DATA = [
     "meaning": "đứa trẻ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "法",
@@ -1477,7 +1477,7 @@ const VOCAB_DATA = [
     "meaning": "phép tắc/ phương pháp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "发出",
@@ -1485,7 +1485,7 @@ const VOCAB_DATA = [
     "meaning": "công bố/ xuất ra",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "法律",
@@ -1493,7 +1493,7 @@ const VOCAB_DATA = [
     "meaning": "pháp luật",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 4)"
   },
   {
     "vocab": "烦",
@@ -1501,7 +1501,7 @@ const VOCAB_DATA = [
     "meaning": "làm phiền",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 12. Miêu tả & Đánh giá"
+    "topic": "5. Đời sống sinh hoạt (Phần 5), 12. Miêu tả & Đánh giá (Phần 1)"
   },
   {
     "vocab": "反对",
@@ -1509,7 +1509,7 @@ const VOCAB_DATA = [
     "meaning": "phản đối",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "房东",
@@ -1517,7 +1517,7 @@ const VOCAB_DATA = [
     "meaning": "chủ nhà",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "方面",
@@ -1525,7 +1525,7 @@ const VOCAB_DATA = [
     "meaning": "diện mạo",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "放弃",
@@ -1533,7 +1533,7 @@ const VOCAB_DATA = [
     "meaning": "bỏ cuộc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp, 3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "方式",
@@ -1541,7 +1541,7 @@ const VOCAB_DATA = [
     "meaning": "cách thức",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "放松",
@@ -1549,7 +1549,7 @@ const VOCAB_DATA = [
     "meaning": "Thư giãn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "房租",
@@ -1557,7 +1557,7 @@ const VOCAB_DATA = [
     "meaning": "thuê nhà",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "烦恼",
@@ -1565,7 +1565,7 @@ const VOCAB_DATA = [
     "meaning": "phiền não",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "翻译",
@@ -1573,7 +1573,7 @@ const VOCAB_DATA = [
     "meaning": "dịch",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "发送",
@@ -1581,7 +1581,7 @@ const VOCAB_DATA = [
     "meaning": "gửi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "费",
@@ -1589,7 +1589,7 @@ const VOCAB_DATA = [
     "meaning": "phí/ tiêu hao",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "费用",
@@ -1597,7 +1597,7 @@ const VOCAB_DATA = [
     "meaning": "trị giá",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "份",
@@ -1605,7 +1605,7 @@ const VOCAB_DATA = [
     "meaning": "phần",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "丰富",
@@ -1613,7 +1613,7 @@ const VOCAB_DATA = [
     "meaning": "phong phú",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "风景",
@@ -1621,7 +1621,7 @@ const VOCAB_DATA = [
     "meaning": "phong cảnh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "分数",
@@ -1629,7 +1629,7 @@ const VOCAB_DATA = [
     "meaning": "Phân số",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "分为",
@@ -1637,7 +1637,7 @@ const VOCAB_DATA = [
     "meaning": "Chia thành",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 2), 12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "否则",
@@ -1645,7 +1645,7 @@ const VOCAB_DATA = [
     "meaning": "nếu không thì",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "幅",
@@ -1653,7 +1653,7 @@ const VOCAB_DATA = [
     "meaning": "khung",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "付",
@@ -1661,7 +1661,7 @@ const VOCAB_DATA = [
     "meaning": "chi trả",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "符合",
@@ -1669,7 +1669,7 @@ const VOCAB_DATA = [
     "meaning": "phù hợp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "父母",
@@ -1677,7 +1677,7 @@ const VOCAB_DATA = [
     "meaning": "cha mẹ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "父女",
@@ -1685,7 +1685,7 @@ const VOCAB_DATA = [
     "meaning": "Cha và con gái",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "父亲",
@@ -1693,7 +1693,7 @@ const VOCAB_DATA = [
     "meaning": "Bố",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 1)"
   },
   {
     "vocab": "复印",
@@ -1701,7 +1701,7 @@ const VOCAB_DATA = [
     "meaning": "bản sao",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 5), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "复杂",
@@ -1709,7 +1709,7 @@ const VOCAB_DATA = [
     "meaning": "tổ hợp",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "负责",
@@ -1717,7 +1717,7 @@ const VOCAB_DATA = [
     "meaning": "Chịu trách nhiệm",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "负责人",
@@ -1725,7 +1725,7 @@ const VOCAB_DATA = [
     "meaning": "người phụ trách",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "父子",
@@ -1733,7 +1733,7 @@ const VOCAB_DATA = [
     "meaning": "Cha và con trai",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "改",
@@ -1741,7 +1741,7 @@ const VOCAB_DATA = [
     "meaning": "thay đổi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "改变",
@@ -1749,7 +1749,7 @@ const VOCAB_DATA = [
     "meaning": "Thay đổi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "赶",
@@ -1757,7 +1757,7 @@ const VOCAB_DATA = [
     "meaning": "mau",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "敢",
@@ -1765,7 +1765,7 @@ const VOCAB_DATA = [
     "meaning": "dám",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "感 (hậu tố)",
@@ -1773,7 +1773,7 @@ const VOCAB_DATA = [
     "meaning": "được thêm vào sau động từ hoặc tính từ để tạo thành danh từ",
     "type": "",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "干",
@@ -1781,7 +1781,7 @@ const VOCAB_DATA = [
     "meaning": "Khô",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1), 12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "干杯",
@@ -1789,7 +1789,7 @@ const VOCAB_DATA = [
     "meaning": "Cạn ly",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "感动",
@@ -1797,7 +1797,7 @@ const VOCAB_DATA = [
     "meaning": "cảm động",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 5)"
   },
   {
     "vocab": "钢琴",
@@ -1805,7 +1805,7 @@ const VOCAB_DATA = [
     "meaning": "đàn piano",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "干活儿",
@@ -1813,7 +1813,7 @@ const VOCAB_DATA = [
     "meaning": "làm việc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "赶紧",
@@ -1821,7 +1821,7 @@ const VOCAB_DATA = [
     "meaning": "khẩn trương làm việc gì",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "感觉",
@@ -1829,7 +1829,7 @@ const VOCAB_DATA = [
     "meaning": "cảm thấy/ cảm giác",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe, 3. Cảm xúc & Thái độ, 12. Miêu tả & Đánh giá"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 12. Miêu tả & Đánh giá (Phần 2), 2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "赶快",
@@ -1837,7 +1837,7 @@ const VOCAB_DATA = [
     "meaning": "nhanh chóng",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "感情",
@@ -1845,7 +1845,7 @@ const VOCAB_DATA = [
     "meaning": "cảm xúc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "感人",
@@ -1853,7 +1853,7 @@ const VOCAB_DATA = [
     "meaning": "Cảm động",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "赶上",
@@ -1861,7 +1861,7 @@ const VOCAB_DATA = [
     "meaning": "bắt kịp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "感受",
@@ -1869,7 +1869,7 @@ const VOCAB_DATA = [
     "meaning": "cảm nhận",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "感谢",
@@ -1877,7 +1877,7 @@ const VOCAB_DATA = [
     "meaning": "tri ân",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "高价",
@@ -1885,7 +1885,7 @@ const VOCAB_DATA = [
     "meaning": "Giá cao",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6), 12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "高考",
@@ -1893,7 +1893,7 @@ const VOCAB_DATA = [
     "meaning": "Kỳ thi tuyển sinh đại học",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "高速",
@@ -1901,7 +1901,7 @@ const VOCAB_DATA = [
     "meaning": "tốc độ cao",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 8. Giao thông & Di chuyển"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2), 8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "高温",
@@ -1909,7 +1909,7 @@ const VOCAB_DATA = [
     "meaning": "nhiệt độ cao",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1), 12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "高于",
@@ -1917,7 +1917,7 @@ const VOCAB_DATA = [
     "meaning": "Cao hơn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "各",
@@ -1925,7 +1925,7 @@ const VOCAB_DATA = [
     "meaning": "mỗi",
     "type": "Đại từ, Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "胳膊",
@@ -1933,7 +1933,7 @@ const VOCAB_DATA = [
     "meaning": "cánh tay",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "各地",
@@ -1941,7 +1941,7 @@ const VOCAB_DATA = [
     "meaning": "nhiều nơi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "各个",
@@ -1949,7 +1949,7 @@ const VOCAB_DATA = [
     "meaning": "mỗi",
     "type": "Đại từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "5. Đời sống sinh hoạt (Phần 6), 14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "更加",
@@ -1957,7 +1957,7 @@ const VOCAB_DATA = [
     "meaning": "hơn",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "歌声",
@@ -1965,7 +1965,7 @@ const VOCAB_DATA = [
     "meaning": "giọng hát",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "歌手",
@@ -1973,7 +1973,7 @@ const VOCAB_DATA = [
     "meaning": "ca sĩ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "各位",
@@ -1981,7 +1981,7 @@ const VOCAB_DATA = [
     "meaning": "Các bạn thân mến",
     "type": "Đại từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "各种",
@@ -1989,7 +1989,7 @@ const VOCAB_DATA = [
     "meaning": "Nhiều",
     "type": "Đại từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "共",
@@ -1997,7 +1997,7 @@ const VOCAB_DATA = [
     "meaning": "chung",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "工厂",
@@ -2005,7 +2005,7 @@ const VOCAB_DATA = [
     "meaning": "nhà máy",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp, 7. Địa điểm & Nơi chốn"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 2), 7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "功夫",
@@ -2013,7 +2013,7 @@ const VOCAB_DATA = [
     "meaning": "cố gắng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "公共",
@@ -2021,7 +2021,7 @@ const VOCAB_DATA = [
     "meaning": "công cộng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 7. Địa điểm & Nơi chốn"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2), 7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "功课",
@@ -2029,7 +2029,7 @@ const VOCAB_DATA = [
     "meaning": "bài tập, bài học",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "公里",
@@ -2037,7 +2037,7 @@ const VOCAB_DATA = [
     "meaning": "ki-lô-mét",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "公路",
@@ -2045,7 +2045,7 @@ const VOCAB_DATA = [
     "meaning": "đường cao tốc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 1)"
   },
   {
     "vocab": "工人",
@@ -2053,7 +2053,7 @@ const VOCAB_DATA = [
     "meaning": "Công nhân",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "共同",
@@ -2061,7 +2061,7 @@ const VOCAB_DATA = [
     "meaning": "chung",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "工资",
@@ -2069,7 +2069,7 @@ const VOCAB_DATA = [
     "meaning": "lương",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "够",
@@ -2077,7 +2077,7 @@ const VOCAB_DATA = [
     "meaning": "đủ",
     "type": "Động từ, Phó từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "购买",
@@ -2085,7 +2085,7 @@ const VOCAB_DATA = [
     "meaning": "Mua",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "购物",
@@ -2093,7 +2093,7 @@ const VOCAB_DATA = [
     "meaning": "Mua sắm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "挂",
@@ -2101,7 +2101,7 @@ const VOCAB_DATA = [
     "meaning": "treo",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "管",
@@ -2109,7 +2109,7 @@ const VOCAB_DATA = [
     "meaning": "quản",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "逛",
@@ -2117,7 +2117,7 @@ const VOCAB_DATA = [
     "meaning": "đi dạo",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "光",
@@ -2125,7 +2125,7 @@ const VOCAB_DATA = [
     "meaning": "Ánh sáng",
     "type": "Danh từ, Động từ, Tính từ, Phó từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "广播",
@@ -2133,7 +2133,7 @@ const VOCAB_DATA = [
     "meaning": "phát tin",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp, 5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "广告",
@@ -2141,7 +2141,7 @@ const VOCAB_DATA = [
     "meaning": "quảng cáo",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "关键",
@@ -2149,7 +2149,7 @@ const VOCAB_DATA = [
     "meaning": "trọng tâm, then chốt",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "观看",
@@ -2157,7 +2157,7 @@ const VOCAB_DATA = [
     "meaning": "theo dõi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "管理",
@@ -2165,7 +2165,7 @@ const VOCAB_DATA = [
     "meaning": "quản lý",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "观众",
@@ -2173,7 +2173,7 @@ const VOCAB_DATA = [
     "meaning": "khán giả",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2), 11. Công việc & Nghề nghiệp (Phần 2)"
   },
   {
     "vocab": "规定",
@@ -2181,7 +2181,7 @@ const VOCAB_DATA = [
     "meaning": "Quy định",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "估计",
@@ -2189,7 +2189,7 @@ const VOCAB_DATA = [
     "meaning": "ước lượng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "顾客",
@@ -2197,7 +2197,7 @@ const VOCAB_DATA = [
     "meaning": "khách hàng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "鼓励",
@@ -2205,7 +2205,7 @@ const VOCAB_DATA = [
     "meaning": "khuyến khích",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "姑娘",
@@ -2213,7 +2213,7 @@ const VOCAB_DATA = [
     "meaning": "cô gái",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "过程",
@@ -2221,7 +2221,7 @@ const VOCAB_DATA = [
     "meaning": "quá trình",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 6), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "国籍",
@@ -2229,7 +2229,7 @@ const VOCAB_DATA = [
     "meaning": "Quốc tịch",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "国际",
@@ -2237,7 +2237,7 @@ const VOCAB_DATA = [
     "meaning": "tính quốc tế",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 6)"
   },
   {
     "vocab": "果汁",
@@ -2245,7 +2245,7 @@ const VOCAB_DATA = [
     "meaning": "nước ép",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "故意",
@@ -2253,7 +2253,7 @@ const VOCAB_DATA = [
     "meaning": "cố ý",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "害羞",
@@ -2261,7 +2261,7 @@ const VOCAB_DATA = [
     "meaning": "xấu hổ",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "海洋",
@@ -2269,7 +2269,7 @@ const VOCAB_DATA = [
     "meaning": "đại dương",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "汗",
@@ -2277,7 +2277,7 @@ const VOCAB_DATA = [
     "meaning": "mồ hôi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "喊",
@@ -2285,7 +2285,7 @@ const VOCAB_DATA = [
     "meaning": "kêu/ gọi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "航班",
@@ -2293,7 +2293,7 @@ const VOCAB_DATA = [
     "meaning": "chuyến bay",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "寒假",
@@ -2301,7 +2301,7 @@ const VOCAB_DATA = [
     "meaning": "kỳ nghỉ đông",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "寒冷",
@@ -2309,7 +2309,7 @@ const VOCAB_DATA = [
     "meaning": "lạnh lẽo",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "好处",
@@ -2317,7 +2317,7 @@ const VOCAB_DATA = [
     "meaning": "lợi ích",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "好好",
@@ -2325,7 +2325,7 @@ const VOCAB_DATA = [
     "meaning": "Tốt",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "好笑",
@@ -2333,7 +2333,7 @@ const VOCAB_DATA = [
     "meaning": "buồn cười",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "合格",
@@ -2341,7 +2341,7 @@ const VOCAB_DATA = [
     "meaning": "đạt tiêu chuẩn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "盒子",
@@ -2349,7 +2349,7 @@ const VOCAB_DATA = [
     "meaning": "Hộp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "红包",
@@ -2357,7 +2357,7 @@ const VOCAB_DATA = [
     "meaning": "Phong bì đỏ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "厚",
@@ -2365,7 +2365,7 @@ const VOCAB_DATA = [
     "meaning": "dày",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "后悔",
@@ -2373,7 +2373,7 @@ const VOCAB_DATA = [
     "meaning": "hối tiếc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "坏处",
@@ -2381,7 +2381,7 @@ const VOCAB_DATA = [
     "meaning": "làm hại",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "怀疑",
@@ -2389,7 +2389,7 @@ const VOCAB_DATA = [
     "meaning": "Nghi ngờ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "话剧",
@@ -2397,7 +2397,7 @@ const VOCAB_DATA = [
     "meaning": "vở kịch sân khấu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "环保",
@@ -2405,7 +2405,7 @@ const VOCAB_DATA = [
     "meaning": "Thân thiện với môi trường",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "换乘",
@@ -2413,7 +2413,7 @@ const VOCAB_DATA = [
     "meaning": "Chuyển khoản",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "回复",
@@ -2421,7 +2421,7 @@ const VOCAB_DATA = [
     "meaning": "trả lời, phản hồi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "回信",
@@ -2429,7 +2429,7 @@ const VOCAB_DATA = [
     "meaning": "viết thư hồi âm",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "回忆",
@@ -2437,7 +2437,7 @@ const VOCAB_DATA = [
     "meaning": "nhớ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "会员",
@@ -2445,7 +2445,7 @@ const VOCAB_DATA = [
     "meaning": "thành viên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "互联网",
@@ -2453,7 +2453,7 @@ const VOCAB_DATA = [
     "meaning": "internet",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "活",
@@ -2461,7 +2461,7 @@ const VOCAB_DATA = [
     "meaning": "sống",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 15. Tự nhiên"
+    "topic": "5. Đời sống sinh hoạt (Phần 7), 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "货",
@@ -2469,7 +2469,7 @@ const VOCAB_DATA = [
     "meaning": "hàng hóa",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "火",
@@ -2477,7 +2477,7 @@ const VOCAB_DATA = [
     "meaning": "ngọn lửa",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "15. Tự nhiên, 5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7), 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "获得",
@@ -2485,7 +2485,7 @@ const VOCAB_DATA = [
     "meaning": "lấy",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "活动",
@@ -2493,7 +2493,7 @@ const VOCAB_DATA = [
     "meaning": "Hoạt động",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "获奖",
@@ -2501,7 +2501,7 @@ const VOCAB_DATA = [
     "meaning": "nhận giải thưởng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "活泼",
@@ -2509,7 +2509,7 @@ const VOCAB_DATA = [
     "meaning": "sống động",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "获取",
@@ -2517,7 +2517,7 @@ const VOCAB_DATA = [
     "meaning": "đạt được",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 7), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "忽然",
@@ -2525,7 +2525,7 @@ const VOCAB_DATA = [
     "meaning": "đột nhiên",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 7)"
   },
   {
     "vocab": "护士",
@@ -2533,7 +2533,7 @@ const VOCAB_DATA = [
     "meaning": "Y tá",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "互相",
@@ -2541,7 +2541,7 @@ const VOCAB_DATA = [
     "meaning": "nhau",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 15. Tự nhiên"
+    "topic": "5. Đời sống sinh hoạt (Phần 8), 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "既",
@@ -2549,7 +2549,7 @@ const VOCAB_DATA = [
     "meaning": "đã...(thì)",
     "type": "Phó từ, Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "寄",
@@ -2557,7 +2557,7 @@ const VOCAB_DATA = [
     "meaning": "gửi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "假",
@@ -2565,7 +2565,7 @@ const VOCAB_DATA = [
     "meaning": "Giả mạo",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "加班",
@@ -2573,7 +2573,7 @@ const VOCAB_DATA = [
     "meaning": "làm thêm giờ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "10. Thời gian, 11. Công việc & Nghề nghiệp"
+    "topic": "10. Thời gian (Phần 1), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "价格",
@@ -2581,7 +2581,7 @@ const VOCAB_DATA = [
     "meaning": "giá",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "家具",
@@ -2589,7 +2589,7 @@ const VOCAB_DATA = [
     "meaning": "nội thất",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "加快",
@@ -2597,7 +2597,7 @@ const VOCAB_DATA = [
     "meaning": "tăng tốc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển, 5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8), 8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "减",
@@ -2605,7 +2605,7 @@ const VOCAB_DATA = [
     "meaning": "giảm bớt",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "降",
@@ -2613,7 +2613,7 @@ const VOCAB_DATA = [
     "meaning": "làm rơi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "奖",
@@ -2621,7 +2621,7 @@ const VOCAB_DATA = [
     "meaning": "phần thưởng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 8), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "江",
@@ -2629,7 +2629,7 @@ const VOCAB_DATA = [
     "meaning": "Dòng sông",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "将",
@@ -2637,7 +2637,7 @@ const VOCAB_DATA = [
     "meaning": "Sẽ",
     "type": "Giới từ, Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "降低",
@@ -2645,7 +2645,7 @@ const VOCAB_DATA = [
     "meaning": "giảm bớt",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "降价",
@@ -2653,7 +2653,7 @@ const VOCAB_DATA = [
     "meaning": "Giảm giá",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "奖金",
@@ -2661,7 +2661,7 @@ const VOCAB_DATA = [
     "meaning": "thưởng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "将来",
@@ -2669,7 +2669,7 @@ const VOCAB_DATA = [
     "meaning": "tương lai",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "降落",
@@ -2677,7 +2677,7 @@ const VOCAB_DATA = [
     "meaning": "hạ cánh",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "降温",
@@ -2685,7 +2685,7 @@ const VOCAB_DATA = [
     "meaning": "Làm mát",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 15. Tự nhiên"
+    "topic": "5. Đời sống sinh hoạt (Phần 8), 15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "奖学金",
@@ -2693,7 +2693,7 @@ const VOCAB_DATA = [
     "meaning": "học bổng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "将要",
@@ -2701,7 +2701,7 @@ const VOCAB_DATA = [
     "meaning": "Sắp sửa",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "减轻",
@@ -2709,7 +2709,7 @@ const VOCAB_DATA = [
     "meaning": "giảm nhẹ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "减少",
@@ -2717,7 +2717,7 @@ const VOCAB_DATA = [
     "meaning": "giảm bớt",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "健身",
@@ -2725,7 +2725,7 @@ const VOCAB_DATA = [
     "meaning": "rèn luyện sức khỏe",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "健身房",
@@ -2733,7 +2733,7 @@ const VOCAB_DATA = [
     "meaning": "Phòng tập thể dục",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn, 2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1), 7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "建议",
@@ -2741,7 +2741,7 @@ const VOCAB_DATA = [
     "meaning": "gợi ý",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "交",
@@ -2749,7 +2749,7 @@ const VOCAB_DATA = [
     "meaning": "nộp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "骄傲",
@@ -2757,7 +2757,7 @@ const VOCAB_DATA = [
     "meaning": "kiêu ngạo/ sự kiêu ngạo",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ, 12. Miêu tả & Đánh giá"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "交警",
@@ -2765,7 +2765,7 @@ const VOCAB_DATA = [
     "meaning": "cảnh sát giao thông",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "教练",
@@ -2773,7 +2773,7 @@ const VOCAB_DATA = [
     "meaning": "huấn luyện viên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 8)"
   },
   {
     "vocab": "交流",
@@ -2781,7 +2781,7 @@ const VOCAB_DATA = [
     "meaning": "giao tiếp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 11. Công việc & Nghề nghiệp"
+    "topic": "5. Đời sống sinh hoạt (Phần 8), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "郊区",
@@ -2789,7 +2789,7 @@ const VOCAB_DATA = [
     "meaning": "vùng ngoại ô",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "教师",
@@ -2797,7 +2797,7 @@ const VOCAB_DATA = [
     "meaning": "Giáo viên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "教授",
@@ -2805,7 +2805,7 @@ const VOCAB_DATA = [
     "meaning": "giáo sư",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "交通",
@@ -2813,7 +2813,7 @@ const VOCAB_DATA = [
     "meaning": "giao thông",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "教学",
@@ -2821,7 +2821,7 @@ const VOCAB_DATA = [
     "meaning": "giảng dạy",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "教育",
@@ -2829,7 +2829,7 @@ const VOCAB_DATA = [
     "meaning": "giáo dục",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "叫作",
@@ -2837,7 +2837,7 @@ const VOCAB_DATA = [
     "meaning": "Gọi điện",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "价钱",
@@ -2845,7 +2845,7 @@ const VOCAB_DATA = [
     "meaning": "Giá",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "加强",
@@ -2853,7 +2853,7 @@ const VOCAB_DATA = [
     "meaning": "tăng cường",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "假日",
@@ -2861,7 +2861,7 @@ const VOCAB_DATA = [
     "meaning": "ngày lễ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "加入",
@@ -2869,7 +2869,7 @@ const VOCAB_DATA = [
     "meaning": "tham gia",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "加上",
@@ -2877,7 +2877,7 @@ const VOCAB_DATA = [
     "meaning": "Thêm vào đó",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "家庭",
@@ -2885,7 +2885,7 @@ const VOCAB_DATA = [
     "meaning": "gia đình",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "家乡",
@@ -2893,7 +2893,7 @@ const VOCAB_DATA = [
     "meaning": "quê hương",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "加油",
@@ -2901,7 +2901,7 @@ const VOCAB_DATA = [
     "meaning": "Thôi nào",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "加油站",
@@ -2909,7 +2909,7 @@ const VOCAB_DATA = [
     "meaning": "Trạm xăng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "家长",
@@ -2917,7 +2917,7 @@ const VOCAB_DATA = [
     "meaning": "Cha mẹ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2)"
   },
   {
     "vocab": "基本",
@@ -2925,7 +2925,7 @@ const VOCAB_DATA = [
     "meaning": "Nền tảng",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "基本上",
@@ -2933,7 +2933,7 @@ const VOCAB_DATA = [
     "meaning": "về cơ bản",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "基础",
@@ -2941,7 +2941,7 @@ const VOCAB_DATA = [
     "meaning": "Căn cứ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "激动",
@@ -2949,7 +2949,7 @@ const VOCAB_DATA = [
     "meaning": "Hào hứng",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "街道",
@@ -2957,7 +2957,7 @@ const VOCAB_DATA = [
     "meaning": "đường phố",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "结果",
@@ -2965,7 +2965,7 @@ const VOCAB_DATA = [
     "meaning": "kết quả",
     "type": "Danh từ, Liên từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "节假日",
@@ -2973,7 +2973,7 @@ const VOCAB_DATA = [
     "meaning": "Ngày lễ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "解释",
@@ -2981,7 +2981,7 @@ const VOCAB_DATA = [
     "meaning": "giải thích",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "接受",
@@ -2989,7 +2989,7 @@ const VOCAB_DATA = [
     "meaning": "chấp nhận",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "节约",
@@ -2997,7 +2997,7 @@ const VOCAB_DATA = [
     "meaning": "cứu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "结账",
@@ -3005,7 +3005,7 @@ const VOCAB_DATA = [
     "meaning": "thanh toán",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "接着",
@@ -3013,7 +3013,7 @@ const VOCAB_DATA = [
     "meaning": "sau đó",
     "type": "Động từ, Liên từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "计划",
@@ -3021,7 +3021,7 @@ const VOCAB_DATA = [
     "meaning": "kế hoạch",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "积极",
@@ -3029,7 +3029,7 @@ const VOCAB_DATA = [
     "meaning": "tích cực",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "积累",
@@ -3037,7 +3037,7 @@ const VOCAB_DATA = [
     "meaning": "sự tích lũy",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "仅",
@@ -3045,7 +3045,7 @@ const VOCAB_DATA = [
     "meaning": "chỉ một",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "精彩",
@@ -3053,7 +3053,7 @@ const VOCAB_DATA = [
     "meaning": "Tuyệt vời",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "警察",
@@ -3061,7 +3061,7 @@ const VOCAB_DATA = [
     "meaning": "cảnh sát",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "景点",
@@ -3069,7 +3069,7 @@ const VOCAB_DATA = [
     "meaning": "điểm tham quan",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "经济",
@@ -3077,7 +3077,7 @@ const VOCAB_DATA = [
     "meaning": "kinh tế",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "京剧",
@@ -3085,7 +3085,7 @@ const VOCAB_DATA = [
     "meaning": "Kinh kịch Bắc Kinh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "经历",
@@ -3093,7 +3093,7 @@ const VOCAB_DATA = [
     "meaning": "kinh nghiệm",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "景区",
@@ -3101,7 +3101,7 @@ const VOCAB_DATA = [
     "meaning": "Khu vực danh lam thắng cảnh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn, 15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1), 7. Địa điểm & Nơi chốn (Phần 1)"
   },
   {
     "vocab": "竟然",
@@ -3109,7 +3109,7 @@ const VOCAB_DATA = [
     "meaning": "thế mà, vậy mà lại",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ, 14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1), 14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "景色",
@@ -3117,7 +3117,7 @@ const VOCAB_DATA = [
     "meaning": "xem",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "尽管",
@@ -3125,7 +3125,7 @@ const VOCAB_DATA = [
     "meaning": "mặc dù",
     "type": "Liên từ, Phó từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 1)"
   },
   {
     "vocab": "经验",
@@ -3133,7 +3133,7 @@ const VOCAB_DATA = [
     "meaning": "kinh nghiệm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "竞争",
@@ -3141,7 +3141,7 @@ const VOCAB_DATA = [
     "meaning": "cạnh tranh",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ, 11. Công việc & Nghề nghiệp"
+    "topic": "1. Con người & Các mối quan hệ (Phần 2), 11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "镜子",
@@ -3149,7 +3149,7 @@ const VOCAB_DATA = [
     "meaning": "Gương",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "今后",
@@ -3157,7 +3157,7 @@ const VOCAB_DATA = [
     "meaning": "từ bây giờ trở đi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "仅仅",
@@ -3165,7 +3165,7 @@ const VOCAB_DATA = [
     "meaning": "chỉ một",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "进入",
@@ -3173,7 +3173,7 @@ const VOCAB_DATA = [
     "meaning": "Đi vào",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "进行",
@@ -3181,7 +3181,7 @@ const VOCAB_DATA = [
     "meaning": "chỉ đạo",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "紧张",
@@ -3189,7 +3189,7 @@ const VOCAB_DATA = [
     "meaning": "lo lắng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "禁止",
@@ -3197,7 +3197,7 @@ const VOCAB_DATA = [
     "meaning": "cấm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "既然",
@@ -3205,7 +3205,7 @@ const VOCAB_DATA = [
     "meaning": "bây giờ thì",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "及时",
@@ -3213,7 +3213,7 @@ const VOCAB_DATA = [
     "meaning": "kịp thời",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "即使",
@@ -3221,7 +3221,7 @@ const VOCAB_DATA = [
     "meaning": "mặc dù",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "技术",
@@ -3229,7 +3229,7 @@ const VOCAB_DATA = [
     "meaning": "công nghệ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "究竟",
@@ -3237,7 +3237,7 @@ const VOCAB_DATA = [
     "meaning": "sau tất cả",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "就是",
@@ -3245,7 +3245,7 @@ const VOCAB_DATA = [
     "meaning": "tức là",
     "type": "Phó từ, Liên từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "继续",
@@ -3253,7 +3253,7 @@ const VOCAB_DATA = [
     "meaning": "Tiếp tục",
     "type": "Động từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "记者",
@@ -3261,7 +3261,7 @@ const VOCAB_DATA = [
     "meaning": "phóng viên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "聚",
@@ -3269,7 +3269,7 @@ const VOCAB_DATA = [
     "meaning": "Tập trung",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "举",
@@ -3277,7 +3277,7 @@ const VOCAB_DATA = [
     "meaning": "giơ lên",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "举办",
@@ -3285,7 +3285,7 @@ const VOCAB_DATA = [
     "meaning": "giữ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "聚餐",
@@ -3293,7 +3293,7 @@ const VOCAB_DATA = [
     "meaning": "bữa tiệc tối",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "聚会",
@@ -3301,7 +3301,7 @@ const VOCAB_DATA = [
     "meaning": "đoàn tụ",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "拒绝",
@@ -3309,7 +3309,7 @@ const VOCAB_DATA = [
     "meaning": "từ chối",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "距离",
@@ -3317,7 +3317,7 @@ const VOCAB_DATA = [
     "meaning": "khoảng cách",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "举例",
@@ -3325,7 +3325,7 @@ const VOCAB_DATA = [
     "meaning": "Ví dụ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "举行",
@@ -3333,7 +3333,7 @@ const VOCAB_DATA = [
     "meaning": "Giữ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "剧院",
@@ -3341,7 +3341,7 @@ const VOCAB_DATA = [
     "meaning": "nhà hát",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "开玩笑",
@@ -3349,7 +3349,7 @@ const VOCAB_DATA = [
     "meaning": "nói đùa",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "看法",
@@ -3357,7 +3357,7 @@ const VOCAB_DATA = [
     "meaning": "cách nhìn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "烤",
@@ -3365,7 +3365,7 @@ const VOCAB_DATA = [
     "meaning": "nướng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "考虑",
@@ -3373,7 +3373,7 @@ const VOCAB_DATA = [
     "meaning": "cân nhắc, suy nghĩ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "考生",
@@ -3381,7 +3381,7 @@ const VOCAB_DATA = [
     "meaning": "Ứng viên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "咳",
@@ -3389,7 +3389,7 @@ const VOCAB_DATA = [
     "meaning": "ho",
     "type": "Thán từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "克",
@@ -3397,7 +3397,7 @@ const VOCAB_DATA = [
     "meaning": "gram",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "棵",
@@ -3405,7 +3405,7 @@ const VOCAB_DATA = [
     "meaning": "cây",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "课程",
@@ -3413,7 +3413,7 @@ const VOCAB_DATA = [
     "meaning": "khóa học",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "科技",
@@ -3421,7 +3421,7 @@ const VOCAB_DATA = [
     "meaning": "khoa học và công nghệ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "肯定",
@@ -3429,7 +3429,7 @@ const VOCAB_DATA = [
     "meaning": "khẳng định",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "客气",
@@ -3437,7 +3437,7 @@ const VOCAB_DATA = [
     "meaning": "lịch sự",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 1)"
   },
   {
     "vocab": "咳嗽",
@@ -3445,7 +3445,7 @@ const VOCAB_DATA = [
     "meaning": "ho",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "课堂",
@@ -3453,7 +3453,7 @@ const VOCAB_DATA = [
     "meaning": "lớp học",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "客厅",
@@ -3461,7 +3461,7 @@ const VOCAB_DATA = [
     "meaning": "phòng khách",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "可惜",
@@ -3469,7 +3469,7 @@ const VOCAB_DATA = [
     "meaning": "đáng tiếc",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "科学",
@@ -3477,7 +3477,7 @@ const VOCAB_DATA = [
     "meaning": "khoa học",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "空",
@@ -3485,7 +3485,7 @@ const VOCAB_DATA = [
     "meaning": "vô giá trị",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "空",
@@ -3493,7 +3493,7 @@ const VOCAB_DATA = [
     "meaning": "vô giá trị",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "恐怕",
@@ -3501,7 +3501,7 @@ const VOCAB_DATA = [
     "meaning": "sợ rằng",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "空气",
@@ -3509,7 +3509,7 @@ const VOCAB_DATA = [
     "meaning": "Không khí",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "口语",
@@ -3517,7 +3517,7 @@ const VOCAB_DATA = [
     "meaning": "Ngôn ngữ nói",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "苦",
@@ -3525,7 +3525,7 @@ const VOCAB_DATA = [
     "meaning": "vị đắng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "快餐",
@@ -3533,7 +3533,7 @@ const VOCAB_DATA = [
     "meaning": "thức ăn nhanh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "快递",
@@ -3541,7 +3541,7 @@ const VOCAB_DATA = [
     "meaning": "giao hàng nhanh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "快速",
@@ -3549,7 +3549,7 @@ const VOCAB_DATA = [
     "meaning": "nhanh",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 8. Giao thông & Di chuyển"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2), 8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "困",
@@ -3557,7 +3557,7 @@ const VOCAB_DATA = [
     "meaning": "Buồn ngủ",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "困难",
@@ -3565,7 +3565,7 @@ const VOCAB_DATA = [
     "meaning": "khó khăn",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "辣",
@@ -3573,7 +3573,7 @@ const VOCAB_DATA = [
     "meaning": "cay",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "拉",
@@ -3581,7 +3581,7 @@ const VOCAB_DATA = [
     "meaning": "lôi kéo",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "来不及",
@@ -3589,7 +3589,7 @@ const VOCAB_DATA = [
     "meaning": "Đã quá muộn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "来得及",
@@ -3597,7 +3597,7 @@ const VOCAB_DATA = [
     "meaning": "Vẫn chưa quá muộn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "垃圾",
@@ -3605,7 +3605,7 @@ const VOCAB_DATA = [
     "meaning": "Rác",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "懒",
@@ -3613,7 +3613,7 @@ const VOCAB_DATA = [
     "meaning": "lười",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "浪费",
@@ -3621,7 +3621,7 @@ const VOCAB_DATA = [
     "meaning": "lãng phí",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "浪漫",
@@ -3629,7 +3629,7 @@ const VOCAB_DATA = [
     "meaning": "lãng mạn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "老虎",
@@ -3637,7 +3637,7 @@ const VOCAB_DATA = [
     "meaning": "con hổ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 1)"
   },
   {
     "vocab": "老家",
@@ -3645,7 +3645,7 @@ const VOCAB_DATA = [
     "meaning": "quê hương",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "老年",
@@ -3653,7 +3653,7 @@ const VOCAB_DATA = [
     "meaning": "người già",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "老是",
@@ -3661,7 +3661,7 @@ const VOCAB_DATA = [
     "meaning": "luôn luôn",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "冷静",
@@ -3669,7 +3669,7 @@ const VOCAB_DATA = [
     "meaning": "điềm tĩnh",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "俩",
@@ -3677,7 +3677,7 @@ const VOCAB_DATA = [
     "meaning": "cả hai",
     "type": "Số từ, Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "连",
@@ -3685,7 +3685,7 @@ const VOCAB_DATA = [
     "meaning": "thậm chí",
     "type": "Liên từ, Giới từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "凉",
@@ -3693,7 +3693,7 @@ const VOCAB_DATA = [
     "meaning": "lạnh lẽo",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 2)"
   },
   {
     "vocab": "量",
@@ -3701,7 +3701,7 @@ const VOCAB_DATA = [
     "meaning": "Số lượng",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 1)"
   },
   {
     "vocab": "亮",
@@ -3709,7 +3709,7 @@ const VOCAB_DATA = [
     "meaning": "Sáng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá, 15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2), 12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "两",
@@ -3717,7 +3717,7 @@ const VOCAB_DATA = [
     "meaning": "hai",
     "type": "Số từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "联系",
@@ -3725,7 +3725,7 @@ const VOCAB_DATA = [
     "meaning": "kết nối",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "列",
@@ -3733,7 +3733,7 @@ const VOCAB_DATA = [
     "meaning": "Danh sách",
     "type": "Lượng từ, Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "理发",
@@ -3741,7 +3741,7 @@ const VOCAB_DATA = [
     "meaning": "Cắt tóc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "厉害",
@@ -3749,7 +3749,7 @@ const VOCAB_DATA = [
     "meaning": "lợi hại",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "理解",
@@ -3757,7 +3757,7 @@ const VOCAB_DATA = [
     "meaning": "hiểu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "礼貌",
@@ -3765,7 +3765,7 @@ const VOCAB_DATA = [
     "meaning": "lịch sự",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "另",
@@ -3773,7 +3773,7 @@ const VOCAB_DATA = [
     "meaning": "Khác",
     "type": "Đại từ, Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "零下",
@@ -3781,7 +3781,7 @@ const VOCAB_DATA = [
     "meaning": "dưới không",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "零花钱",
@@ -3789,7 +3789,7 @@ const VOCAB_DATA = [
     "meaning": "Tiền tiêu vặt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 1)"
   },
   {
     "vocab": "零钱",
@@ -3797,7 +3797,7 @@ const VOCAB_DATA = [
     "meaning": "tiền lẻ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "零食",
@@ -3805,7 +3805,7 @@ const VOCAB_DATA = [
     "meaning": "đồ ăn vặt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "另外",
@@ -3813,7 +3813,7 @@ const VOCAB_DATA = [
     "meaning": "Ngoài ra",
     "type": "Phó từ, Tính từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "力气",
@@ -3821,7 +3821,7 @@ const VOCAB_DATA = [
     "meaning": "sức mạnh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "例如",
@@ -3829,7 +3829,7 @@ const VOCAB_DATA = [
     "meaning": "Ví dụ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "留",
@@ -3837,7 +3837,7 @@ const VOCAB_DATA = [
     "meaning": "Giữ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "流",
@@ -3845,7 +3845,7 @@ const VOCAB_DATA = [
     "meaning": "chảy",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "流利",
@@ -3853,7 +3853,7 @@ const VOCAB_DATA = [
     "meaning": "thông thạo",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "留下",
@@ -3861,7 +3861,7 @@ const VOCAB_DATA = [
     "meaning": "lưu lại, để lại",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "流行",
@@ -3869,7 +3869,7 @@ const VOCAB_DATA = [
     "meaning": "phổ biến/ sự phổ biến",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 9)"
   },
   {
     "vocab": "理想",
@@ -3877,7 +3877,7 @@ const VOCAB_DATA = [
     "meaning": "lý tưởng",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "例子",
@@ -3885,7 +3885,7 @@ const VOCAB_DATA = [
     "meaning": "ví dụ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "乱",
@@ -3893,7 +3893,7 @@ const VOCAB_DATA = [
     "meaning": "sự hỗn loạn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "旅馆",
@@ -3901,7 +3901,7 @@ const VOCAB_DATA = [
     "meaning": "nhà nghỉ, khách sạn bình dân",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "路过",
@@ -3909,7 +3909,7 @@ const VOCAB_DATA = [
     "meaning": "Đi ngang qua",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "旅客",
@@ -3917,7 +3917,7 @@ const VOCAB_DATA = [
     "meaning": "du khách",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "落",
@@ -3925,7 +3925,7 @@ const VOCAB_DATA = [
     "meaning": "rơi/ rụng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "律师",
@@ -3933,7 +3933,7 @@ const VOCAB_DATA = [
     "meaning": "luật sư",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "旅行",
@@ -3941,7 +3941,7 @@ const VOCAB_DATA = [
     "meaning": "du lịch",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "麻烦",
@@ -3949,7 +3949,7 @@ const VOCAB_DATA = [
     "meaning": "rắc rối",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "满",
@@ -3957,7 +3957,7 @@ const VOCAB_DATA = [
     "meaning": "Đầy",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "馒头",
@@ -3965,7 +3965,7 @@ const VOCAB_DATA = [
     "meaning": "Bánh bao hấp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "毛巾",
@@ -3973,7 +3973,7 @@ const VOCAB_DATA = [
     "meaning": "cái khăn lau",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "毛衣",
@@ -3981,7 +3981,7 @@ const VOCAB_DATA = [
     "meaning": "áo len",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "帽子",
@@ -3989,7 +3989,7 @@ const VOCAB_DATA = [
     "meaning": "mũ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "美",
@@ -3997,7 +3997,7 @@ const VOCAB_DATA = [
     "meaning": "đẹp",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "美好",
@@ -4005,7 +4005,7 @@ const VOCAB_DATA = [
     "meaning": "Tốt",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "美景",
@@ -4013,7 +4013,7 @@ const VOCAB_DATA = [
     "meaning": "Cảnh đẹp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "美丽",
@@ -4021,7 +4021,7 @@ const VOCAB_DATA = [
     "meaning": "sắc đẹp",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "美食",
@@ -4029,7 +4029,7 @@ const VOCAB_DATA = [
     "meaning": "thức ăn hảo hạng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "梦",
@@ -4037,7 +4037,7 @@ const VOCAB_DATA = [
     "meaning": "giấc mơ",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "梦想",
@@ -4045,7 +4045,7 @@ const VOCAB_DATA = [
     "meaning": "ước mơ",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "面对",
@@ -4053,7 +4053,7 @@ const VOCAB_DATA = [
     "meaning": "đối mặt",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "免费",
@@ -4061,7 +4061,7 @@ const VOCAB_DATA = [
     "meaning": "miễn phí",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "面试",
@@ -4069,7 +4069,7 @@ const VOCAB_DATA = [
     "meaning": "phỏng vấn",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "秒",
@@ -4077,7 +4077,7 @@ const VOCAB_DATA = [
     "meaning": "giây",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "密码",
@@ -4085,7 +4085,7 @@ const VOCAB_DATA = [
     "meaning": "mật khẩu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "民族",
@@ -4093,7 +4093,7 @@ const VOCAB_DATA = [
     "meaning": "dân tộc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "末",
@@ -4101,7 +4101,7 @@ const VOCAB_DATA = [
     "meaning": "kết thúc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 1)"
   },
   {
     "vocab": "目标",
@@ -4109,7 +4109,7 @@ const VOCAB_DATA = [
     "meaning": "Mục tiêu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "目的",
@@ -4117,7 +4117,7 @@ const VOCAB_DATA = [
     "meaning": "Mục đích",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "目的地",
@@ -4125,7 +4125,7 @@ const VOCAB_DATA = [
     "meaning": "điểm đến",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "母女",
@@ -4133,7 +4133,7 @@ const VOCAB_DATA = [
     "meaning": "Mẹ và con gái",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "目前",
@@ -4141,7 +4141,7 @@ const VOCAB_DATA = [
     "meaning": "hiện tại",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "母亲",
@@ -4149,7 +4149,7 @@ const VOCAB_DATA = [
     "meaning": "Mẹ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "母子",
@@ -4157,7 +4157,7 @@ const VOCAB_DATA = [
     "meaning": "Mẹ và con",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "耐心",
@@ -4165,7 +4165,7 @@ const VOCAB_DATA = [
     "meaning": "tính kiên nhẫn",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "南部",
@@ -4173,7 +4173,7 @@ const VOCAB_DATA = [
     "meaning": "Phía nam",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn, 9. Không gian & Vị trí"
+    "topic": "9. Không gian & Vị trí, 7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "难道",
@@ -4181,7 +4181,7 @@ const VOCAB_DATA = [
     "meaning": "chẳng lẽ là...?",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "男士",
@@ -4189,7 +4189,7 @@ const VOCAB_DATA = [
     "meaning": "Đàn ông",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "难受",
@@ -4197,7 +4197,7 @@ const VOCAB_DATA = [
     "meaning": "Thật khó chịu!",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "难忘",
@@ -4205,7 +4205,7 @@ const VOCAB_DATA = [
     "meaning": "khó quên",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "男性",
@@ -4213,7 +4213,7 @@ const VOCAB_DATA = [
     "meaning": "nam giới",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "内",
@@ -4229,7 +4229,7 @@ const VOCAB_DATA = [
     "meaning": "nội dung",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "内心",
@@ -4237,7 +4237,7 @@ const VOCAB_DATA = [
     "meaning": "trong lòng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "能否",
@@ -4245,7 +4245,7 @@ const VOCAB_DATA = [
     "meaning": "Có thể",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "能够",
@@ -4253,7 +4253,7 @@ const VOCAB_DATA = [
     "meaning": "Có thể",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "能力",
@@ -4261,7 +4261,7 @@ const VOCAB_DATA = [
     "meaning": "khả năng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "嗯",
@@ -4269,7 +4269,7 @@ const VOCAB_DATA = [
     "meaning": "Ừm",
     "type": "Thán từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "年底",
@@ -4277,7 +4277,7 @@ const VOCAB_DATA = [
     "meaning": "Cuối năm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "年龄",
@@ -4285,7 +4285,7 @@ const VOCAB_DATA = [
     "meaning": "tuổi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "弄",
@@ -4293,7 +4293,7 @@ const VOCAB_DATA = [
     "meaning": "thao tác/ làm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "农村",
@@ -4301,7 +4301,7 @@ const VOCAB_DATA = [
     "meaning": "khu vực nông thôn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "暖和",
@@ -4309,7 +4309,7 @@ const VOCAB_DATA = [
     "meaning": "ấm",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "女性",
@@ -4317,7 +4317,7 @@ const VOCAB_DATA = [
     "meaning": "nữ giới",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "偶尔",
@@ -4325,7 +4325,7 @@ const VOCAB_DATA = [
     "meaning": "Thỉnh thoảng",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "排",
@@ -4333,7 +4333,7 @@ const VOCAB_DATA = [
     "meaning": "xếp (hàng)",
     "type": "Động từ, Lượng từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "牌",
@@ -4341,7 +4341,7 @@ const VOCAB_DATA = [
     "meaning": "Thẻ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "拍",
@@ -4349,7 +4349,7 @@ const VOCAB_DATA = [
     "meaning": "chụp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "排队",
@@ -4357,7 +4357,7 @@ const VOCAB_DATA = [
     "meaning": "xếp hàng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "排球",
@@ -4365,7 +4365,7 @@ const VOCAB_DATA = [
     "meaning": "bóng chuyền",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "牌子",
@@ -4373,7 +4373,7 @@ const VOCAB_DATA = [
     "meaning": "thương hiệu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "判断",
@@ -4381,7 +4381,7 @@ const VOCAB_DATA = [
     "meaning": "phán đoán",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 2)"
   },
   {
     "vocab": "陪",
@@ -4389,7 +4389,7 @@ const VOCAB_DATA = [
     "meaning": "đi kèm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "片",
@@ -4397,7 +4397,7 @@ const VOCAB_DATA = [
     "meaning": "cái",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "篇",
@@ -4405,7 +4405,7 @@ const VOCAB_DATA = [
     "meaning": "Chương",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "皮肤",
@@ -4413,7 +4413,7 @@ const VOCAB_DATA = [
     "meaning": "da",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "平常",
@@ -4421,7 +4421,7 @@ const VOCAB_DATA = [
     "meaning": "thường xuyên",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "乒乓球",
@@ -4429,7 +4429,7 @@ const VOCAB_DATA = [
     "meaning": "bóng bàn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "批评",
@@ -4437,7 +4437,7 @@ const VOCAB_DATA = [
     "meaning": "phê bình, đánh giá",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "脾气",
@@ -4445,7 +4445,7 @@ const VOCAB_DATA = [
     "meaning": "tính khí",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "皮鞋",
@@ -4453,7 +4453,7 @@ const VOCAB_DATA = [
     "meaning": "giày da",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "破",
@@ -4461,7 +4461,7 @@ const VOCAB_DATA = [
     "meaning": "phá vỡ",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "普遍",
@@ -4469,7 +4469,7 @@ const VOCAB_DATA = [
     "meaning": "phổ biến",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "葡萄",
@@ -4477,7 +4477,7 @@ const VOCAB_DATA = [
     "meaning": "Quả nho",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "葡萄酒",
@@ -4485,7 +4485,7 @@ const VOCAB_DATA = [
     "meaning": "rượu nho",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "普通",
@@ -4493,7 +4493,7 @@ const VOCAB_DATA = [
     "meaning": "bình thường",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "普通话",
@@ -4501,7 +4501,7 @@ const VOCAB_DATA = [
     "meaning": "Tiếng phổ thông",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "气",
@@ -4509,7 +4509,7 @@ const VOCAB_DATA = [
     "meaning": "khí",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
   },
   {
     "vocab": "期",
@@ -4517,7 +4517,7 @@ const VOCAB_DATA = [
     "meaning": "kỳ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "前方",
@@ -4533,7 +4533,7 @@ const VOCAB_DATA = [
     "meaning": "mạnh mẽ",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "前后",
@@ -4549,7 +4549,7 @@ const VOCAB_DATA = [
     "meaning": "kilogam",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "千万",
@@ -4557,7 +4557,7 @@ const VOCAB_DATA = [
     "meaning": "Hàng chục triệu",
     "type": "Số từ, Giới từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "签证",
@@ -4565,7 +4565,7 @@ const VOCAB_DATA = [
     "meaning": "visa",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "桥",
@@ -4573,7 +4573,7 @@ const VOCAB_DATA = [
     "meaning": "cầu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "巧",
@@ -4581,7 +4581,7 @@ const VOCAB_DATA = [
     "meaning": "khéo léo",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "敲",
@@ -4589,7 +4589,7 @@ const VOCAB_DATA = [
     "meaning": "đánh, gõ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "巧克力",
@@ -4597,7 +4597,7 @@ const VOCAB_DATA = [
     "meaning": "sôcôla",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "其次",
@@ -4605,7 +4605,7 @@ const VOCAB_DATA = [
     "meaning": "Ngoài ra",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "起到",
@@ -4613,7 +4613,7 @@ const VOCAB_DATA = [
     "meaning": "Đóng một vai trò",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "气候",
@@ -4621,7 +4621,7 @@ const VOCAB_DATA = [
     "meaning": "khí hậu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "期末",
@@ -4629,7 +4629,7 @@ const VOCAB_DATA = [
     "meaning": "Bài kiểm tra cuối kỳ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "琴",
@@ -4637,7 +4637,7 @@ const VOCAB_DATA = [
     "meaning": "đàn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "轻",
@@ -4645,7 +4645,7 @@ const VOCAB_DATA = [
     "meaning": "nhẹ",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "情况",
@@ -4653,7 +4653,7 @@ const VOCAB_DATA = [
     "meaning": "Tình trạng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "青年",
@@ -4661,7 +4661,7 @@ const VOCAB_DATA = [
     "meaning": "thiếu niên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 3)"
   },
   {
     "vocab": "轻松",
@@ -4669,7 +4669,7 @@ const VOCAB_DATA = [
     "meaning": "nhẹ nhàng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "庆祝",
@@ -4677,7 +4677,7 @@ const VOCAB_DATA = [
     "meaning": "kính chúc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "亲戚",
@@ -4685,7 +4685,7 @@ const VOCAB_DATA = [
     "meaning": "họ hàng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "汽水",
@@ -4693,7 +4693,7 @@ const VOCAB_DATA = [
     "meaning": "nước ngọt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "球队",
@@ -4701,7 +4701,7 @@ const VOCAB_DATA = [
     "meaning": "đội bóng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "球迷",
@@ -4709,7 +4709,7 @@ const VOCAB_DATA = [
     "meaning": "người hâm mộ đấu bóng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "气温",
@@ -4717,7 +4717,7 @@ const VOCAB_DATA = [
     "meaning": "Nhiệt độ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "其中",
@@ -4733,7 +4733,7 @@ const VOCAB_DATA = [
     "meaning": "Giữa kỳ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "取",
@@ -4741,7 +4741,7 @@ const VOCAB_DATA = [
     "meaning": "lấy",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "区",
@@ -4749,7 +4749,7 @@ const VOCAB_DATA = [
     "meaning": "khu vưc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "全",
@@ -4757,7 +4757,7 @@ const VOCAB_DATA = [
     "meaning": "toàn bộ",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường, 12. Miêu tả & Đánh giá"
+    "topic": "13. Số lượng & Đo lường (Phần 2), 12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "全部",
@@ -4765,7 +4765,7 @@ const VOCAB_DATA = [
     "meaning": "tất cả",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "全都",
@@ -4773,7 +4773,7 @@ const VOCAB_DATA = [
     "meaning": "tất cả đều",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "全球",
@@ -4781,7 +4781,7 @@ const VOCAB_DATA = [
     "meaning": "trên toàn thế giới",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "全身",
@@ -4789,7 +4789,7 @@ const VOCAB_DATA = [
     "meaning": "toàn thân",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "区别",
@@ -4797,7 +4797,7 @@ const VOCAB_DATA = [
     "meaning": "sự khác biệt",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "取得",
@@ -4805,7 +4805,7 @@ const VOCAB_DATA = [
     "meaning": "Đạt được",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "却",
@@ -4813,7 +4813,7 @@ const VOCAB_DATA = [
     "meaning": "Nhưng",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "缺",
@@ -4821,7 +4821,7 @@ const VOCAB_DATA = [
     "meaning": "thiếu",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "缺点",
@@ -4829,7 +4829,7 @@ const VOCAB_DATA = [
     "meaning": "khuyết điểm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "缺少",
@@ -4837,7 +4837,7 @@ const VOCAB_DATA = [
     "meaning": "Thiếu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "确实",
@@ -4845,7 +4845,7 @@ const VOCAB_DATA = [
     "meaning": "Thực ra",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "取消",
@@ -4853,7 +4853,7 @@ const VOCAB_DATA = [
     "meaning": "Hủy bỏ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "然而",
@@ -4861,7 +4861,7 @@ const VOCAB_DATA = [
     "meaning": "Tuy nhiên",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "热闹",
@@ -4869,7 +4869,7 @@ const VOCAB_DATA = [
     "meaning": "sống động",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "仍",
@@ -4877,7 +4877,7 @@ const VOCAB_DATA = [
     "meaning": "vẫn",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "扔",
@@ -4885,7 +4885,7 @@ const VOCAB_DATA = [
     "meaning": "Ném",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "仍然",
@@ -4893,7 +4893,7 @@ const VOCAB_DATA = [
     "meaning": "vẫn",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "任何",
@@ -4901,7 +4901,7 @@ const VOCAB_DATA = [
     "meaning": "bất kì",
     "type": "Đại từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "人生",
@@ -4909,7 +4909,7 @@ const VOCAB_DATA = [
     "meaning": "Mạng sống",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "人数",
@@ -4917,7 +4917,7 @@ const VOCAB_DATA = [
     "meaning": "Số người",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "任务",
@@ -4925,7 +4925,7 @@ const VOCAB_DATA = [
     "meaning": "Nhiệm vụ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "人员",
@@ -4933,7 +4933,7 @@ const VOCAB_DATA = [
     "meaning": "nhân viên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "日常",
@@ -4941,7 +4941,7 @@ const VOCAB_DATA = [
     "meaning": "hằng ngày",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "日记",
@@ -4949,7 +4949,7 @@ const VOCAB_DATA = [
     "meaning": "nhật ký",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "日期",
@@ -4957,7 +4957,7 @@ const VOCAB_DATA = [
     "meaning": "ngày tháng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "日子",
@@ -4965,7 +4965,7 @@ const VOCAB_DATA = [
     "meaning": "ngày",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "入",
@@ -4973,7 +4973,7 @@ const VOCAB_DATA = [
     "meaning": "đi vào",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "入口",
@@ -4981,7 +4981,7 @@ const VOCAB_DATA = [
     "meaning": "Cổng vào",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "入学",
@@ -4989,7 +4989,7 @@ const VOCAB_DATA = [
     "meaning": "Nhập học",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "入住",
@@ -4997,7 +4997,7 @@ const VOCAB_DATA = [
     "meaning": "Đăng ký vào",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "散步",
@@ -5005,7 +5005,7 @@ const VOCAB_DATA = [
     "meaning": "đi bộ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "扫码",
@@ -5013,7 +5013,7 @@ const VOCAB_DATA = [
     "meaning": "Quét mã",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "森林",
@@ -5021,7 +5021,7 @@ const VOCAB_DATA = [
     "meaning": "rừng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "商量",
@@ -5029,7 +5029,7 @@ const VOCAB_DATA = [
     "meaning": "bàn luận",
     "type": "Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "上门",
@@ -5037,7 +5037,7 @@ const VOCAB_DATA = [
     "meaning": "Dịch vụ tận nhà",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "商品",
@@ -5045,7 +5045,7 @@ const VOCAB_DATA = [
     "meaning": "hàng hóa",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "伤心",
@@ -5053,7 +5053,7 @@ const VOCAB_DATA = [
     "meaning": "buồn",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "稍",
@@ -5061,7 +5061,7 @@ const VOCAB_DATA = [
     "meaning": "một chút",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "少见",
@@ -5069,7 +5069,7 @@ const VOCAB_DATA = [
     "meaning": "Hiếm",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "少量",
@@ -5077,7 +5077,7 @@ const VOCAB_DATA = [
     "meaning": "số lượng nhỏ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "少年",
@@ -5085,7 +5085,7 @@ const VOCAB_DATA = [
     "meaning": "thiếu niên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "少数",
@@ -5093,7 +5093,7 @@ const VOCAB_DATA = [
     "meaning": "thiểu số",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "稍微",
@@ -5101,7 +5101,7 @@ const VOCAB_DATA = [
     "meaning": "một chút",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "社会",
@@ -5109,7 +5109,7 @@ const VOCAB_DATA = [
     "meaning": "Xã hội",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "身",
@@ -5117,7 +5117,7 @@ const VOCAB_DATA = [
     "meaning": "Thân thể, thân",
     "type": "Danh từ, Lượng từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "深",
@@ -5133,7 +5133,7 @@ const VOCAB_DATA = [
     "meaning": "Chứng minh nhân dân/Căn cước công dân",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "剩",
@@ -5141,7 +5141,7 @@ const VOCAB_DATA = [
     "meaning": "Thừa, còn lại",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "省",
@@ -5149,7 +5149,7 @@ const VOCAB_DATA = [
     "meaning": "Tỉnh",
     "type": "Danh từ , Động từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "生",
@@ -5157,7 +5157,7 @@ const VOCAB_DATA = [
     "meaning": "Sinh, đẻ, sống",
     "type": "Động từ , Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "生",
@@ -5165,7 +5165,7 @@ const VOCAB_DATA = [
     "meaning": "Sống, tươi (chưa nấu chín)",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "生命",
@@ -5173,7 +5173,7 @@ const VOCAB_DATA = [
     "meaning": "Sinh mệnh, cuộc sống",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "生意",
@@ -5181,7 +5181,7 @@ const VOCAB_DATA = [
     "meaning": "Việc buôn bán, kinh doanh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "申请",
@@ -5189,7 +5189,7 @@ const VOCAB_DATA = [
     "meaning": "Đăng ký, xin, yêu cầu",
     "type": "Động từ , Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "甚至",
@@ -5197,7 +5197,7 @@ const VOCAB_DATA = [
     "meaning": "Thậm chí",
     "type": "Phó từ , Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "摄氏度",
@@ -5205,7 +5205,7 @@ const VOCAB_DATA = [
     "meaning": "Độ C",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 3)"
   },
   {
     "vocab": "使",
@@ -5213,7 +5213,7 @@ const VOCAB_DATA = [
     "meaning": "Khiến cho, sai khiến",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "失败",
@@ -5221,7 +5221,7 @@ const VOCAB_DATA = [
     "meaning": "Thất bại",
     "type": "Động từ , Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "市场",
@@ -5229,7 +5229,7 @@ const VOCAB_DATA = [
     "meaning": "Chợ, thị trường",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "十分",
@@ -5237,7 +5237,7 @@ const VOCAB_DATA = [
     "meaning": "Rất, vô cùng",
     "type": "Phó từ , Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "是否",
@@ -5245,7 +5245,7 @@ const VOCAB_DATA = [
     "meaning": "Có... hay không",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "师傅",
@@ -5253,7 +5253,7 @@ const VOCAB_DATA = [
     "meaning": "Sư phụ, bác thợ (cách gọi tôn trọng)",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "使馆",
@@ -5261,7 +5261,7 @@ const VOCAB_DATA = [
     "meaning": "Đại sứ quán",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "适合",
@@ -5269,7 +5269,7 @@ const VOCAB_DATA = [
     "meaning": "Phù hợp",
     "type": "Động từ , Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "实际",
@@ -5277,7 +5277,7 @@ const VOCAB_DATA = [
     "meaning": "Thực tế",
     "type": "Danh từ , Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "世纪",
@@ -5285,7 +5285,7 @@ const VOCAB_DATA = [
     "meaning": "Thế kỷ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "时间表",
@@ -5293,7 +5293,7 @@ const VOCAB_DATA = [
     "meaning": "Thời gian biểu, lịch trình",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "实际上",
@@ -5301,7 +5301,7 @@ const VOCAB_DATA = [
     "meaning": "Trên thực tế",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "食品",
@@ -5309,7 +5309,7 @@ const VOCAB_DATA = [
     "meaning": "Thực phẩm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "视频",
@@ -5317,7 +5317,7 @@ const VOCAB_DATA = [
     "meaning": "Video",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "市区",
@@ -5325,7 +5325,7 @@ const VOCAB_DATA = [
     "meaning": "Khu vực thành phố",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "失去",
@@ -5333,7 +5333,7 @@ const VOCAB_DATA = [
     "meaning": "Mất đi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "师生",
@@ -5341,7 +5341,7 @@ const VOCAB_DATA = [
     "meaning": "Thầy và trò",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "食堂",
@@ -5349,7 +5349,7 @@ const VOCAB_DATA = [
     "meaning": "Nhà ăn, căng tin",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "试题",
@@ -5357,7 +5357,7 @@ const VOCAB_DATA = [
     "meaning": "Đề thi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "失望",
@@ -5365,7 +5365,7 @@ const VOCAB_DATA = [
     "meaning": "Thất vọng",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "食物",
@@ -5373,7 +5373,7 @@ const VOCAB_DATA = [
     "meaning": "Đồ ăn, thức ăn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "适应",
@@ -5381,7 +5381,7 @@ const VOCAB_DATA = [
     "meaning": "Thích ứng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "使用",
@@ -5389,7 +5389,7 @@ const VOCAB_DATA = [
     "meaning": "Sử dụng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "实在",
@@ -5397,7 +5397,7 @@ const VOCAB_DATA = [
     "meaning": "Thật thà, thực sự",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "十字路口",
@@ -5405,7 +5405,7 @@ const VOCAB_DATA = [
     "meaning": "Ngã tư",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "首",
@@ -5413,7 +5413,7 @@ const VOCAB_DATA = [
     "meaning": "(Lượng từ cho bài hát, thơ)",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "受不了",
@@ -5421,7 +5421,7 @@ const VOCAB_DATA = [
     "meaning": "Không chịu nổi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "首都",
@@ -5429,7 +5429,7 @@ const VOCAB_DATA = [
     "meaning": "Thủ đô",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "收费",
@@ -5437,7 +5437,7 @@ const VOCAB_DATA = [
     "meaning": "Thu phí",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "售票员",
@@ -5445,7 +5445,7 @@ const VOCAB_DATA = [
     "meaning": "Nhân viên bán vé",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "收入",
@@ -5453,7 +5453,7 @@ const VOCAB_DATA = [
     "meaning": "Thu nhập",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 3)"
   },
   {
     "vocab": "受伤",
@@ -5461,7 +5461,7 @@ const VOCAB_DATA = [
     "meaning": "Bị thương",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "收拾",
@@ -5469,7 +5469,7 @@ const VOCAB_DATA = [
     "meaning": "Thu dọn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "收听",
@@ -5477,7 +5477,7 @@ const VOCAB_DATA = [
     "meaning": "Nghe (đài, chương trình)",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "首先",
@@ -5485,7 +5485,7 @@ const VOCAB_DATA = [
     "meaning": "Trước tiên",
     "type": "Phó từ, Đại từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "数",
@@ -5493,7 +5493,7 @@ const VOCAB_DATA = [
     "meaning": "Số, con số",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "输",
@@ -5501,7 +5501,7 @@ const VOCAB_DATA = [
     "meaning": "Thua",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "熟",
@@ -5509,7 +5509,7 @@ const VOCAB_DATA = [
     "meaning": "Chín, quen thuộc",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "帅",
@@ -5517,7 +5517,7 @@ const VOCAB_DATA = [
     "meaning": "Đẹp trai",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "暑假",
@@ -5525,7 +5525,7 @@ const VOCAB_DATA = [
     "meaning": "Nghỉ hè",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "数量",
@@ -5533,7 +5533,7 @@ const VOCAB_DATA = [
     "meaning": "Số lượng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 2)"
   },
   {
     "vocab": "树林",
@@ -5541,7 +5541,7 @@ const VOCAB_DATA = [
     "meaning": "Rừng cây",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "顺便",
@@ -5549,7 +5549,7 @@ const VOCAB_DATA = [
     "meaning": "Tiện thể",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "顺利",
@@ -5557,7 +5557,7 @@ const VOCAB_DATA = [
     "meaning": "Thuận lợi",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "顺序",
@@ -5565,7 +5565,7 @@ const VOCAB_DATA = [
     "meaning": "Trình tự",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "说法",
@@ -5573,7 +5573,7 @@ const VOCAB_DATA = [
     "meaning": "Cách nói, quan điểm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "说明",
@@ -5581,7 +5581,7 @@ const VOCAB_DATA = [
     "meaning": "Giải thích, minh chứng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "说明书",
@@ -5589,7 +5589,7 @@ const VOCAB_DATA = [
     "meaning": "Sách hướng dẫn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 2)"
   },
   {
     "vocab": "硕士",
@@ -5597,7 +5597,7 @@ const VOCAB_DATA = [
     "meaning": "Thạc sĩ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "熟悉",
@@ -5605,7 +5605,7 @@ const VOCAB_DATA = [
     "meaning": "Quen thuộc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "数字",
@@ -5613,7 +5613,7 @@ const VOCAB_DATA = [
     "meaning": "Con số",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "死",
@@ -5621,7 +5621,7 @@ const VOCAB_DATA = [
     "meaning": "Chết",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "算",
@@ -5629,7 +5629,7 @@ const VOCAB_DATA = [
     "meaning": "Tính toán",
     "type": "Động từ, Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "酸",
@@ -5637,7 +5637,7 @@ const VOCAB_DATA = [
     "meaning": "Chua",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "酸奶",
@@ -5645,7 +5645,7 @@ const VOCAB_DATA = [
     "meaning": "Sữa chua",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "速度",
@@ -5653,7 +5653,7 @@ const VOCAB_DATA = [
     "meaning": "Tốc độ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "随便",
@@ -5661,7 +5661,7 @@ const VOCAB_DATA = [
     "meaning": "Tùy ý",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "随着",
@@ -5669,7 +5669,7 @@ const VOCAB_DATA = [
     "meaning": "Cùng với, theo với",
     "type": "Giới từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "塑料",
@@ -5677,7 +5677,7 @@ const VOCAB_DATA = [
     "meaning": "Nhựa, chất dẻo",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "孙女",
@@ -5685,7 +5685,7 @@ const VOCAB_DATA = [
     "meaning": "Cháu gái (nội)",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "孙子",
@@ -5693,7 +5693,7 @@ const VOCAB_DATA = [
     "meaning": "Cháu trai (nội)",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "所有",
@@ -5701,7 +5701,7 @@ const VOCAB_DATA = [
     "meaning": "Tất cả, sở hữu",
     "type": "Tính từ, Động từ, Danh từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "台",
@@ -5709,7 +5709,7 @@ const VOCAB_DATA = [
     "meaning": "Cái (lượng từ cho máy móc...)",
     "type": "Lượng từ, Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "抬",
@@ -5717,7 +5717,7 @@ const VOCAB_DATA = [
     "meaning": "Nhấc lên, khiêng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "态度",
@@ -5725,7 +5725,7 @@ const VOCAB_DATA = [
     "meaning": "Thái độ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "抬头",
@@ -5733,7 +5733,7 @@ const VOCAB_DATA = [
     "meaning": "Ngẩng đầu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "弹",
@@ -5741,7 +5741,7 @@ const VOCAB_DATA = [
     "meaning": "Búng, đàn (nhạc cụ)",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "谈",
@@ -5749,7 +5749,7 @@ const VOCAB_DATA = [
     "meaning": "Nói chuyện, đàm luận",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "趟",
@@ -5757,7 +5757,7 @@ const VOCAB_DATA = [
     "meaning": "Chuyến, lần",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "躺",
@@ -5765,7 +5765,7 @@ const VOCAB_DATA = [
     "meaning": "Nằm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "汤",
@@ -5773,7 +5773,7 @@ const VOCAB_DATA = [
     "meaning": "Canh, nước súp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "讨论",
@@ -5781,7 +5781,7 @@ const VOCAB_DATA = [
     "meaning": "Thảo luận",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "讨厌",
@@ -5789,7 +5789,7 @@ const VOCAB_DATA = [
     "meaning": "Ghét, đáng ghét",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "特点",
@@ -5797,7 +5797,7 @@ const VOCAB_DATA = [
     "meaning": "Đặc điểm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "提",
@@ -5805,7 +5805,7 @@ const VOCAB_DATA = [
     "meaning": "Đề cập, nhắc tới, xách",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "填写",
@@ -5813,7 +5813,7 @@ const VOCAB_DATA = [
     "meaning": "Điền vào",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "条件",
@@ -5821,7 +5821,7 @@ const VOCAB_DATA = [
     "meaning": "Điều kiện",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "提出",
@@ -5829,7 +5829,7 @@ const VOCAB_DATA = [
     "meaning": "Đưa ra, đề xuất",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "提到",
@@ -5837,7 +5837,7 @@ const VOCAB_DATA = [
     "meaning": "Nhắc đến",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "提供",
@@ -5845,7 +5845,7 @@ const VOCAB_DATA = [
     "meaning": "Cung cấp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "体检",
@@ -5853,7 +5853,7 @@ const VOCAB_DATA = [
     "meaning": "Kiểm tra sức khỏe",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "停",
@@ -5861,7 +5861,7 @@ const VOCAB_DATA = [
     "meaning": "Dừng lại",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "停车",
@@ -5869,7 +5869,7 @@ const VOCAB_DATA = [
     "meaning": "Đỗ xe",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "停车场",
@@ -5877,7 +5877,7 @@ const VOCAB_DATA = [
     "meaning": "Bãi đỗ xe",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "听力",
@@ -5885,7 +5885,7 @@ const VOCAB_DATA = [
     "meaning": "Nghe hiểu (thính lực)",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "停止",
@@ -5893,7 +5893,7 @@ const VOCAB_DATA = [
     "meaning": "Ngừng, dừng lại",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "听众",
@@ -5909,7 +5909,7 @@ const VOCAB_DATA = [
     "meaning": "Làm trước thời hạn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "体温",
@@ -5917,7 +5917,7 @@ const VOCAB_DATA = [
     "meaning": "Thân nhiệt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "提醒",
@@ -5925,7 +5925,7 @@ const VOCAB_DATA = [
     "meaning": "Nhắc nhở",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "体重",
@@ -5933,7 +5933,7 @@ const VOCAB_DATA = [
     "meaning": "Cân nặng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "痛",
@@ -5941,7 +5941,7 @@ const VOCAB_DATA = [
     "meaning": "Đau",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "桶",
@@ -5949,7 +5949,7 @@ const VOCAB_DATA = [
     "meaning": "Cái thùng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "通",
@@ -5957,7 +5957,7 @@ const VOCAB_DATA = [
     "meaning": "Thông suốt, hiểu",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "通过",
@@ -5965,7 +5965,7 @@ const VOCAB_DATA = [
     "meaning": "Thông qua, đi qua",
     "type": "Động từ, Giới từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
   {
     "vocab": "童年",
@@ -5973,7 +5973,7 @@ const VOCAB_DATA = [
     "meaning": "Tuổi thơ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "同时",
@@ -5981,7 +5981,7 @@ const VOCAB_DATA = [
     "meaning": "Đồng thời",
     "type": "Danh từ, Liên từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "同样",
@@ -5989,7 +5989,7 @@ const VOCAB_DATA = [
     "meaning": "Giống nhau",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "通知",
@@ -5997,7 +5997,7 @@ const VOCAB_DATA = [
     "meaning": "Thông báo",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "头痛",
@@ -6005,7 +6005,7 @@ const VOCAB_DATA = [
     "meaning": "Đau đầu",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "图",
@@ -6013,7 +6013,7 @@ const VOCAB_DATA = [
     "meaning": "Bức tranh, hình vẽ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "土",
@@ -6021,7 +6021,7 @@ const VOCAB_DATA = [
     "meaning": "Đất, quê mùa",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "推",
@@ -6037,7 +6037,7 @@ const VOCAB_DATA = [
     "meaning": "Trì hoãn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "推出",
@@ -6045,7 +6045,7 @@ const VOCAB_DATA = [
     "meaning": "Đưa ra, tung ra",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "脱",
@@ -6053,7 +6053,7 @@ const VOCAB_DATA = [
     "meaning": "Cởi, thoát ra",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "图片",
@@ -6061,7 +6061,7 @@ const VOCAB_DATA = [
     "meaning": "Hình ảnh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "外出",
@@ -6069,7 +6069,7 @@ const VOCAB_DATA = [
     "meaning": "Đi ra ngoài",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "外套",
@@ -6077,7 +6077,7 @@ const VOCAB_DATA = [
     "meaning": "Áo khoác",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "晚安",
@@ -6085,7 +6085,7 @@ const VOCAB_DATA = [
     "meaning": "Chúc ngủ ngon",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 2)"
   },
   {
     "vocab": "晚餐",
@@ -6093,7 +6093,7 @@ const VOCAB_DATA = [
     "meaning": "Bữa tối",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "网购",
@@ -6109,7 +6109,7 @@ const VOCAB_DATA = [
     "meaning": "Thường, thường thường",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "网页",
@@ -6125,7 +6125,7 @@ const VOCAB_DATA = [
     "meaning": "Bạn qua mạng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "网址",
@@ -6141,7 +6141,7 @@ const VOCAB_DATA = [
     "meaning": "Hoàn toàn",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "袜子",
@@ -6149,7 +6149,7 @@ const VOCAB_DATA = [
     "meaning": "Tất, vớ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "为",
@@ -6157,7 +6157,7 @@ const VOCAB_DATA = [
     "meaning": "Làm, là",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "味",
@@ -6165,7 +6165,7 @@ const VOCAB_DATA = [
     "meaning": "Mùi, vị",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "味道",
@@ -6173,7 +6173,7 @@ const VOCAB_DATA = [
     "meaning": "Mùi vị",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "卫生",
@@ -6181,7 +6181,7 @@ const VOCAB_DATA = [
     "meaning": "Vệ sinh",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "危险",
@@ -6189,7 +6189,7 @@ const VOCAB_DATA = [
     "meaning": "Nguy hiểm",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "闻",
@@ -6197,7 +6197,7 @@ const VOCAB_DATA = [
     "meaning": "Ngửi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "温度",
@@ -6205,7 +6205,7 @@ const VOCAB_DATA = [
     "meaning": "Nhiệt độ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "文件",
@@ -6213,7 +6213,7 @@ const VOCAB_DATA = [
     "meaning": "Tài liệu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "文章",
@@ -6221,7 +6221,7 @@ const VOCAB_DATA = [
     "meaning": "Bài văn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "文字",
@@ -6229,7 +6229,7 @@ const VOCAB_DATA = [
     "meaning": "Chữ viết",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "无",
@@ -6237,7 +6237,7 @@ const VOCAB_DATA = [
     "meaning": "Không có",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "午餐",
@@ -6245,7 +6245,7 @@ const VOCAB_DATA = [
     "meaning": "Bữa trưa",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "无法",
@@ -6253,7 +6253,7 @@ const VOCAB_DATA = [
     "meaning": "Không thể",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "误会",
@@ -6261,7 +6261,7 @@ const VOCAB_DATA = [
     "meaning": "Hiểu lầm",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "无聊",
@@ -6269,7 +6269,7 @@ const VOCAB_DATA = [
     "meaning": "Chán nản, vô vị",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "无论",
@@ -6277,7 +6277,7 @@ const VOCAB_DATA = [
     "meaning": "Bất luận, dù cho",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "污染",
@@ -6285,7 +6285,7 @@ const VOCAB_DATA = [
     "meaning": "Ô nhiễm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 10)"
   },
   {
     "vocab": "细",
@@ -6293,7 +6293,7 @@ const VOCAB_DATA = [
     "meaning": "Nhỏ, tinh tế, mỏng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "吸",
@@ -6301,7 +6301,7 @@ const VOCAB_DATA = [
     "meaning": "Hút, hít",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 3)"
   },
   {
     "vocab": "下降",
@@ -6309,7 +6309,7 @@ const VOCAB_DATA = [
     "meaning": "Hạ xuống, giảm xuống",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 4)"
   },
   {
     "vocab": "咸",
@@ -6317,7 +6317,7 @@ const VOCAB_DATA = [
     "meaning": "Mặn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "鲜",
@@ -6325,7 +6325,7 @@ const VOCAB_DATA = [
     "meaning": "Tươi, ngon",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "项",
@@ -6333,7 +6333,7 @@ const VOCAB_DATA = [
     "meaning": "Khoản, mục",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "响",
@@ -6341,7 +6341,7 @@ const VOCAB_DATA = [
     "meaning": "Vang, kêu",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "香",
@@ -6349,7 +6349,7 @@ const VOCAB_DATA = [
     "meaning": "Thơm",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "相比",
@@ -6357,7 +6357,7 @@ const VOCAB_DATA = [
     "meaning": "So sánh",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "想法",
@@ -6365,7 +6365,7 @@ const VOCAB_DATA = [
     "meaning": "Ý nghĩ, cách nghĩ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "相反",
@@ -6373,7 +6373,7 @@ const VOCAB_DATA = [
     "meaning": "Ngược lại",
     "type": "Tính từ, Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "相互",
@@ -6381,7 +6381,7 @@ const VOCAB_DATA = [
     "meaning": "Lẫn nhau",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "相同",
@@ -6389,7 +6389,7 @@ const VOCAB_DATA = [
     "meaning": "Giống nhau",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "详细",
@@ -6397,7 +6397,7 @@ const VOCAB_DATA = [
     "meaning": "Chi tiết",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "鲜花",
@@ -6405,7 +6405,7 @@ const VOCAB_DATA = [
     "meaning": "Hoa tươi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "现金",
@@ -6413,7 +6413,7 @@ const VOCAB_DATA = [
     "meaning": "Tiền mặt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "羡慕",
@@ -6421,7 +6421,7 @@ const VOCAB_DATA = [
     "meaning": "Ngưỡng mộ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "线上",
@@ -6429,7 +6429,7 @@ const VOCAB_DATA = [
     "meaning": "Trực tuyến (online)",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "线下",
@@ -6437,7 +6437,7 @@ const VOCAB_DATA = [
     "meaning": "Trực tiếp (offline)",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "现有",
@@ -6445,7 +6445,7 @@ const VOCAB_DATA = [
     "meaning": "Hiện có",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "小吃",
@@ -6453,7 +6453,7 @@ const VOCAB_DATA = [
     "meaning": "Đồ ăn vặt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "效果",
@@ -6461,7 +6461,7 @@ const VOCAB_DATA = [
     "meaning": "Hiệu quả",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "笑话",
@@ -6469,7 +6469,7 @@ const VOCAB_DATA = [
     "meaning": "Truyện cười, chế giễu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "小伙子",
@@ -6477,7 +6477,7 @@ const VOCAB_DATA = [
     "meaning": "Chàng trai trẻ",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "小说",
@@ -6485,7 +6485,7 @@ const VOCAB_DATA = [
     "meaning": "Tiểu thuyết",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "消息",
@@ -6493,7 +6493,7 @@ const VOCAB_DATA = [
     "meaning": "Tin tức",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "小组",
@@ -6501,7 +6501,7 @@ const VOCAB_DATA = [
     "meaning": "Tổ, nhóm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "西部",
@@ -6509,7 +6509,7 @@ const VOCAB_DATA = [
     "meaning": "Phía tây",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "血",
@@ -6517,7 +6517,7 @@ const VOCAB_DATA = [
     "meaning": "Máu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "西红柿",
@@ -6525,7 +6525,7 @@ const VOCAB_DATA = [
     "meaning": "Cà chua",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "心",
@@ -6533,7 +6533,7 @@ const VOCAB_DATA = [
     "meaning": "Tim, lòng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "性",
@@ -6541,7 +6541,7 @@ const VOCAB_DATA = [
     "meaning": "Tính chất",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "醒",
@@ -6549,7 +6549,7 @@ const VOCAB_DATA = [
     "meaning": "Tỉnh (ngủ), thức giấc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "性别",
@@ -6557,7 +6557,7 @@ const VOCAB_DATA = [
     "meaning": "Giới tính",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "兴奋",
@@ -6565,7 +6565,7 @@ const VOCAB_DATA = [
     "meaning": "Hưng phấn",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "幸福",
@@ -6573,7 +6573,7 @@ const VOCAB_DATA = [
     "meaning": "Hạnh phúc",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "性格",
@@ -6581,7 +6581,7 @@ const VOCAB_DATA = [
     "meaning": "Tính cách",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "星星",
@@ -6589,7 +6589,7 @@ const VOCAB_DATA = [
     "meaning": "Ngôi sao",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "信号",
@@ -6597,7 +6597,7 @@ const VOCAB_DATA = [
     "meaning": "Tín hiệu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "辛苦",
@@ -6605,7 +6605,7 @@ const VOCAB_DATA = [
     "meaning": "Vất vả, cực nhọc",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "心情",
@@ -6613,7 +6613,7 @@ const VOCAB_DATA = [
     "meaning": "Tâm trạng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "信息",
@@ -6621,7 +6621,7 @@ const VOCAB_DATA = [
     "meaning": "Thông tin",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "信心",
@@ -6629,7 +6629,7 @@ const VOCAB_DATA = [
     "meaning": "Lòng tin, tự tin",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "熊",
@@ -6637,7 +6637,7 @@ const VOCAB_DATA = [
     "meaning": "Con gấu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "兄弟",
@@ -6645,7 +6645,7 @@ const VOCAB_DATA = [
     "meaning": "Anh em",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "修",
@@ -6653,7 +6653,7 @@ const VOCAB_DATA = [
     "meaning": "Sửa chữa",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "修理",
@@ -6661,7 +6661,7 @@ const VOCAB_DATA = [
     "meaning": "Sửa chữa",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "细心",
@@ -6669,7 +6669,7 @@ const VOCAB_DATA = [
     "meaning": "Cẩn thận, tỉ mỉ",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "吸引",
@@ -6677,7 +6677,7 @@ const VOCAB_DATA = [
     "meaning": "Thu hút",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "许多",
@@ -6685,7 +6685,7 @@ const VOCAB_DATA = [
     "meaning": "Nhiều",
     "type": "Số từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "学费",
@@ -6693,7 +6693,7 @@ const VOCAB_DATA = [
     "meaning": "Học phí",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "学院",
@@ -6701,7 +6701,7 @@ const VOCAB_DATA = [
     "meaning": "Học viện",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "压",
@@ -6709,7 +6709,7 @@ const VOCAB_DATA = [
     "meaning": "Nén, ép",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "牙膏",
@@ -6717,7 +6717,7 @@ const VOCAB_DATA = [
     "meaning": "Kem đánh răng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "压力",
@@ -6725,7 +6725,7 @@ const VOCAB_DATA = [
     "meaning": "Áp lực",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "盐",
@@ -6733,7 +6733,7 @@ const VOCAB_DATA = [
     "meaning": "Muối",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "演",
@@ -6741,7 +6741,7 @@ const VOCAB_DATA = [
     "meaning": "Diễn, biểu diễn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "烟",
@@ -6749,7 +6749,7 @@ const VOCAB_DATA = [
     "meaning": "Khói, thuốc lá",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "演唱",
@@ -6757,7 +6757,7 @@ const VOCAB_DATA = [
     "meaning": "Hát biểu diễn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "演出",
@@ -6765,7 +6765,7 @@ const VOCAB_DATA = [
     "meaning": "Biểu diễn",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "养成",
@@ -6773,7 +6773,7 @@ const VOCAB_DATA = [
     "meaning": "Hình thành (thói quen)",
     "type": "Động từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "严格",
@@ -6781,7 +6781,7 @@ const VOCAB_DATA = [
     "meaning": "Nghiêm khắc",
     "type": "Động từ, Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "阳光",
@@ -6789,7 +6789,7 @@ const VOCAB_DATA = [
     "meaning": "Ánh nắng, ánh mặt trời",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "样子",
@@ -6797,7 +6797,7 @@ const VOCAB_DATA = [
     "meaning": "Dáng vẻ, kiểu dáng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "眼镜",
@@ -6805,7 +6805,7 @@ const VOCAB_DATA = [
     "meaning": "Kính mắt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "2. Cơ thể & Sức khỏe"
+    "topic": "2. Cơ thể & Sức khỏe (Phần 2)"
   },
   {
     "vocab": "研究",
@@ -6813,7 +6813,7 @@ const VOCAB_DATA = [
     "meaning": "Nghiên cứu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "研究生",
@@ -6821,7 +6821,7 @@ const VOCAB_DATA = [
     "meaning": "Nghiên cứu sinh",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "眼前",
@@ -6829,7 +6829,7 @@ const VOCAB_DATA = [
     "meaning": "Trước mắt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "演员",
@@ -6837,7 +6837,7 @@ const VOCAB_DATA = [
     "meaning": "Diễn viên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "严重",
@@ -6845,7 +6845,7 @@ const VOCAB_DATA = [
     "meaning": "Nghiêm trọng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "邀请",
@@ -6853,7 +6853,7 @@ const VOCAB_DATA = [
     "meaning": "Mời, mời gọi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "要是",
@@ -6861,7 +6861,7 @@ const VOCAB_DATA = [
     "meaning": "Nếu như",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "钥匙",
@@ -6869,7 +6869,7 @@ const VOCAB_DATA = [
     "meaning": "Chìa khóa",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "亚洲",
@@ -6877,7 +6877,7 @@ const VOCAB_DATA = [
     "meaning": "Châu Á",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "夜",
@@ -6885,7 +6885,7 @@ const VOCAB_DATA = [
     "meaning": "Đêm",
     "type": "Danh từ, Lượng từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "夜晚",
@@ -6901,7 +6901,7 @@ const VOCAB_DATA = [
     "meaning": "Có lẽ",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "叶子",
@@ -6909,7 +6909,7 @@ const VOCAB_DATA = [
     "meaning": "Lá cây",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "己",
@@ -6917,7 +6917,7 @@ const VOCAB_DATA = [
     "meaning": "Bản thân",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "意见",
@@ -6925,7 +6925,7 @@ const VOCAB_DATA = [
     "meaning": "Ý kiến",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "因此",
@@ -6933,7 +6933,7 @@ const VOCAB_DATA = [
     "meaning": "Do đó, vì thế",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "以内",
@@ -6949,7 +6949,7 @@ const VOCAB_DATA = [
     "meaning": "thắng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "赢得",
@@ -6957,7 +6957,7 @@ const VOCAB_DATA = [
     "meaning": "thắng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "应聘",
@@ -6965,7 +6965,7 @@ const VOCAB_DATA = [
     "meaning": "Đơn xin việc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "引起",
@@ -6973,7 +6973,7 @@ const VOCAB_DATA = [
     "meaning": "gây ra",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "印象",
@@ -6981,7 +6981,7 @@ const VOCAB_DATA = [
     "meaning": "ấn tượng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "一切",
@@ -6989,7 +6989,7 @@ const VOCAB_DATA = [
     "meaning": "mọi thứ",
     "type": "Đại từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "一生",
@@ -6997,7 +6997,7 @@ const VOCAB_DATA = [
     "meaning": "suốt đời",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "艺术",
@@ -7005,7 +7005,7 @@ const VOCAB_DATA = [
     "meaning": "Nghệ thuật",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "勇敢",
@@ -7013,7 +7013,7 @@ const VOCAB_DATA = [
     "meaning": "can đảm",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "用来",
@@ -7021,7 +7021,7 @@ const VOCAB_DATA = [
     "meaning": "Được sử dụng cho",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "用于",
@@ -7029,7 +7029,7 @@ const VOCAB_DATA = [
     "meaning": "Vì",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "永远",
@@ -7037,7 +7037,7 @@ const VOCAB_DATA = [
     "meaning": "mãi mãi",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "由",
@@ -7045,7 +7045,7 @@ const VOCAB_DATA = [
     "meaning": "Tùy thuộc vào",
     "type": "Giới từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "油",
@@ -7053,7 +7053,7 @@ const VOCAB_DATA = [
     "meaning": "Dầu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "优点",
@@ -7061,7 +7061,7 @@ const VOCAB_DATA = [
     "meaning": "lợi thế",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "友好",
@@ -7069,7 +7069,7 @@ const VOCAB_DATA = [
     "meaning": "thân thiện",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "幽默",
@@ -7077,7 +7077,7 @@ const VOCAB_DATA = [
     "meaning": "hài hước",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "尤其",
@@ -7085,7 +7085,7 @@ const VOCAB_DATA = [
     "meaning": "đặc biệt",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "友情",
@@ -7093,7 +7093,7 @@ const VOCAB_DATA = [
     "meaning": "Tình bạn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "有趣",
@@ -7101,7 +7101,7 @@ const VOCAB_DATA = [
     "meaning": "hấp dẫn",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "游玩",
@@ -7109,7 +7109,7 @@ const VOCAB_DATA = [
     "meaning": "chơi",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "有效",
@@ -7117,7 +7117,7 @@ const VOCAB_DATA = [
     "meaning": "có hiệu quả",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "优秀",
@@ -7125,7 +7125,7 @@ const VOCAB_DATA = [
     "meaning": "xuất sắc",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "友谊",
@@ -7133,7 +7133,7 @@ const VOCAB_DATA = [
     "meaning": "tình bạn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "由于",
@@ -7141,7 +7141,7 @@ const VOCAB_DATA = [
     "meaning": "bởi vì",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "有着",
@@ -7149,7 +7149,7 @@ const VOCAB_DATA = [
     "meaning": "có",
     "type": "Động từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "与",
@@ -7157,7 +7157,7 @@ const VOCAB_DATA = [
     "meaning": "Và",
     "type": "Liên từ, Giới từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "原来",
@@ -7165,7 +7165,7 @@ const VOCAB_DATA = [
     "meaning": "hóa ra là",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "远离",
@@ -7181,7 +7181,7 @@ const VOCAB_DATA = [
     "meaning": "tha thứ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "原因",
@@ -7189,7 +7189,7 @@ const VOCAB_DATA = [
     "meaning": "lý do",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "院长",
@@ -7197,7 +7197,7 @@ const VOCAB_DATA = [
     "meaning": "Trưởng khoa",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "院子",
@@ -7205,7 +7205,7 @@ const VOCAB_DATA = [
     "meaning": "sân",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "7. Địa điểm & Nơi chốn"
+    "topic": "7. Địa điểm & Nơi chốn (Phần 2)"
   },
   {
     "vocab": "约",
@@ -7213,7 +7213,7 @@ const VOCAB_DATA = [
     "meaning": "Về",
     "type": "Động từ, Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "月饼",
@@ -7221,7 +7221,7 @@ const VOCAB_DATA = [
     "meaning": "bánh trung thu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "阅读",
@@ -7229,7 +7229,7 @@ const VOCAB_DATA = [
     "meaning": "đọc hiểu",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "月份",
@@ -7237,7 +7237,7 @@ const VOCAB_DATA = [
     "meaning": "tháng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "约会",
@@ -7245,7 +7245,7 @@ const VOCAB_DATA = [
     "meaning": "Hẹn hò",
     "type": "Danh từ, Động từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "语法",
@@ -7253,7 +7253,7 @@ const VOCAB_DATA = [
     "meaning": "ngữ pháp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "愉快",
@@ -7261,7 +7261,7 @@ const VOCAB_DATA = [
     "meaning": "vui sướng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "云",
@@ -7269,7 +7269,7 @@ const VOCAB_DATA = [
     "meaning": "đám mây",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "允许",
@@ -7277,7 +7277,7 @@ const VOCAB_DATA = [
     "meaning": "cho phép",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "于是",
@@ -7285,7 +7285,7 @@ const VOCAB_DATA = [
     "meaning": "sau đó",
     "type": "Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "预习",
@@ -7293,7 +7293,7 @@ const VOCAB_DATA = [
     "meaning": "Xem trước",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "再次",
@@ -7301,7 +7301,7 @@ const VOCAB_DATA = [
     "meaning": "lại",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "再说",
@@ -7309,7 +7309,7 @@ const VOCAB_DATA = [
     "meaning": "Hơn nữa",
     "type": "Động từ, Liên từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "暂时",
@@ -7317,7 +7317,7 @@ const VOCAB_DATA = [
     "meaning": "tạm thời",
     "type": "Danh từ, Phó từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "暂停",
@@ -7325,7 +7325,7 @@ const VOCAB_DATA = [
     "meaning": "tạm dừng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "早餐",
@@ -7333,7 +7333,7 @@ const VOCAB_DATA = [
     "meaning": "bữa sáng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "早晨",
@@ -7341,7 +7341,7 @@ const VOCAB_DATA = [
     "meaning": "buổi sáng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "杂志",
@@ -7349,7 +7349,7 @@ const VOCAB_DATA = [
     "meaning": "Tạp chí",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "增加",
@@ -7357,7 +7357,7 @@ const VOCAB_DATA = [
     "meaning": "Tăng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "增长",
@@ -7365,7 +7365,7 @@ const VOCAB_DATA = [
     "meaning": "tăng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "责任",
@@ -7373,7 +7373,7 @@ const VOCAB_DATA = [
     "meaning": "trách nhiệm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "着",
@@ -7381,7 +7381,7 @@ const VOCAB_DATA = [
     "meaning": "Mặc",
     "type": "Trợ từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "着火",
@@ -7389,7 +7389,7 @@ const VOCAB_DATA = [
     "meaning": "đang cháy",
     "type": "Động từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "招聘",
@@ -7397,7 +7397,7 @@ const VOCAB_DATA = [
     "meaning": "tuyển dụng",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "者",
@@ -7405,7 +7405,7 @@ const VOCAB_DATA = [
     "meaning": "thay thế cho đối tượng đề cập trước đó",
     "type": "Hậu tố",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "证",
@@ -7413,7 +7413,7 @@ const VOCAB_DATA = [
     "meaning": "giấy chứng nhận",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "整",
@@ -7421,7 +7421,7 @@ const VOCAB_DATA = [
     "meaning": "tất cả",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "正常",
@@ -7429,7 +7429,7 @@ const VOCAB_DATA = [
     "meaning": "Bình thường",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "整个",
@@ -7437,7 +7437,7 @@ const VOCAB_DATA = [
     "meaning": "toàn bộ",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "正好",
@@ -7445,7 +7445,7 @@ const VOCAB_DATA = [
     "meaning": "Vừa phải",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "证件",
@@ -7453,7 +7453,7 @@ const VOCAB_DATA = [
     "meaning": "NHẬN DẠNG",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "整理",
@@ -7461,7 +7461,7 @@ const VOCAB_DATA = [
     "meaning": "ngăn nắp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "证明",
@@ -7469,7 +7469,7 @@ const VOCAB_DATA = [
     "meaning": "chứng minh",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "正确",
@@ -7477,7 +7477,7 @@ const VOCAB_DATA = [
     "meaning": "Chính xác",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "正式",
@@ -7485,7 +7485,7 @@ const VOCAB_DATA = [
     "meaning": "chính thức",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "真正",
@@ -7493,7 +7493,7 @@ const VOCAB_DATA = [
     "meaning": "thực tế",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "值",
@@ -7501,7 +7501,7 @@ const VOCAB_DATA = [
     "meaning": "giá trị",
     "type": "Động từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "指",
@@ -7509,7 +7509,7 @@ const VOCAB_DATA = [
     "meaning": "đề cập đến",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "之",
@@ -7517,7 +7517,7 @@ const VOCAB_DATA = [
     "meaning": "Của",
     "type": "Đại từ, Trợ từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "支持",
@@ -7525,7 +7525,7 @@ const VOCAB_DATA = [
     "meaning": "ủng hộ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "指出",
@@ -7533,7 +7533,7 @@ const VOCAB_DATA = [
     "meaning": "Chỉ ra",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "值得",
@@ -7541,7 +7541,7 @@ const VOCAB_DATA = [
     "meaning": "đáng giá",
     "type": "Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "支付",
@@ -7557,7 +7557,7 @@ const VOCAB_DATA = [
     "meaning": "chỉ đành",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "之后",
@@ -7565,7 +7565,7 @@ const VOCAB_DATA = [
     "meaning": "sau đó",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "之间",
@@ -7581,7 +7581,7 @@ const VOCAB_DATA = [
     "meaning": "trực tiếp",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "纸巾",
@@ -7589,7 +7589,7 @@ const VOCAB_DATA = [
     "meaning": "khăn giấy",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "质量",
@@ -7597,7 +7597,7 @@ const VOCAB_DATA = [
     "meaning": "chất lượng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "之前",
@@ -7605,7 +7605,7 @@ const VOCAB_DATA = [
     "meaning": "Trước",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "至少",
@@ -7613,7 +7613,7 @@ const VOCAB_DATA = [
     "meaning": "Ít nhất",
     "type": "Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "知识",
@@ -7621,7 +7621,7 @@ const VOCAB_DATA = [
     "meaning": "Kiến thức",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "植物",
@@ -7629,7 +7629,7 @@ const VOCAB_DATA = [
     "meaning": "thực vật",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "职业",
@@ -7637,7 +7637,7 @@ const VOCAB_DATA = [
     "meaning": "Nghề nghiệp",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "之中",
@@ -7653,7 +7653,7 @@ const VOCAB_DATA = [
     "meaning": "loại",
     "type": "Lượng từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "重",
@@ -7661,7 +7661,7 @@ const VOCAB_DATA = [
     "meaning": "Nặng",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "中餐",
@@ -7669,7 +7669,7 @@ const VOCAB_DATA = [
     "meaning": "Đồ ăn Trung Quốc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "重点",
@@ -7677,7 +7677,7 @@ const VOCAB_DATA = [
     "meaning": "Điểm chính",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "中年",
@@ -7685,7 +7685,7 @@ const VOCAB_DATA = [
     "meaning": "trung niên",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "重视",
@@ -7693,7 +7693,7 @@ const VOCAB_DATA = [
     "meaning": "xem trọng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "周围",
@@ -7709,7 +7709,7 @@ const VOCAB_DATA = [
     "meaning": "chúc",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "赚",
@@ -7717,7 +7717,7 @@ const VOCAB_DATA = [
     "meaning": "kiếm",
     "type": "Động từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "转",
@@ -7725,7 +7725,7 @@ const VOCAB_DATA = [
     "meaning": "chuyển/ xoay",
     "type": "Động từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "转发",
@@ -7733,7 +7733,7 @@ const VOCAB_DATA = [
     "meaning": "chuyển tiếp",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "装",
@@ -7741,7 +7741,7 @@ const VOCAB_DATA = [
     "meaning": "Đóng gói",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "转机",
@@ -7749,7 +7749,7 @@ const VOCAB_DATA = [
     "meaning": "Bước ngoặt",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "8. Giao thông & Di chuyển"
+    "topic": "8. Giao thông & Di chuyển (Phần 2)"
   },
   {
     "vocab": "专门",
@@ -7757,7 +7757,7 @@ const VOCAB_DATA = [
     "meaning": "chuyên",
     "type": "Tính từ, Phó từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "专业",
@@ -7765,7 +7765,7 @@ const VOCAB_DATA = [
     "meaning": "lớn lao",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "祝贺",
@@ -7773,7 +7773,7 @@ const VOCAB_DATA = [
     "meaning": "chúc mừng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "著名",
@@ -7781,7 +7781,7 @@ const VOCAB_DATA = [
     "meaning": "Nổi tiếng",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "准",
@@ -7789,7 +7789,7 @@ const VOCAB_DATA = [
     "meaning": "cho phép",
     "type": "Tính từ, Động từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "准确",
@@ -7797,7 +7797,7 @@ const VOCAB_DATA = [
     "meaning": "chính xác",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "12. Miêu tả & Đánh giá"
+    "topic": "12. Miêu tả & Đánh giá (Phần 5)"
   },
   {
     "vocab": "准时",
@@ -7805,7 +7805,7 @@ const VOCAB_DATA = [
     "meaning": "đúng giờ",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "主意",
@@ -7813,7 +7813,7 @@ const VOCAB_DATA = [
     "meaning": "ý tưởng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "自",
@@ -7821,7 +7821,7 @@ const VOCAB_DATA = [
     "meaning": "tự/ từ",
     "type": "Giới từ, Đại từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "资料",
@@ -7829,7 +7829,7 @@ const VOCAB_DATA = [
     "meaning": "vật liệu",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "自然",
@@ -7837,7 +7837,7 @@ const VOCAB_DATA = [
     "meaning": "thiên nhiên",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "15. Tự nhiên"
+    "topic": "15. Tự nhiên (Phần 2)"
   },
   {
     "vocab": "自习",
@@ -7845,7 +7845,7 @@ const VOCAB_DATA = [
     "meaning": "Tự học",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "仔细",
@@ -7853,7 +7853,7 @@ const VOCAB_DATA = [
     "meaning": "sự cẩn thận",
     "type": "Tính từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "自信",
@@ -7861,7 +7861,7 @@ const VOCAB_DATA = [
     "meaning": "sự tự tin",
     "type": "Tính từ, Danh từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "自学",
@@ -7869,7 +7869,7 @@ const VOCAB_DATA = [
     "meaning": "Tự học",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "总结",
@@ -7877,7 +7877,7 @@ const VOCAB_DATA = [
     "meaning": "Tóm tắt",
     "type": "Động từ, Danh từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức"
+    "topic": "4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "组",
@@ -7885,7 +7885,7 @@ const VOCAB_DATA = [
     "meaning": "Nhóm",
     "type": "Động từ, Lượng từ",
     "lesson": "",
-    "topic": "1. Con người & Các mối quan hệ"
+    "topic": "1. Con người & Các mối quan hệ (Phần 4)"
   },
   {
     "vocab": "租",
@@ -7893,7 +7893,7 @@ const VOCAB_DATA = [
     "meaning": "thuê",
     "type": "Động từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "最终",
@@ -7901,7 +7901,7 @@ const VOCAB_DATA = [
     "meaning": "cuối cùng",
     "type": "Danh từ, Tính từ",
     "lesson": "",
-    "topic": "10. Thời gian"
+    "topic": "10. Thời gian (Phần 2)"
   },
   {
     "vocab": "尊重",
@@ -7909,7 +7909,7 @@ const VOCAB_DATA = [
     "meaning": "sự tôn trọng",
     "type": "Động từ",
     "lesson": "",
-    "topic": "3. Cảm xúc & Thái độ"
+    "topic": "3. Cảm xúc & Thái độ (Phần 3)"
   },
   {
     "vocab": "座",
@@ -7917,7 +7917,7 @@ const VOCAB_DATA = [
     "meaning": "ghế",
     "type": "Lượng từ, Danh từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "做法",
@@ -7925,7 +7925,7 @@ const VOCAB_DATA = [
     "meaning": "cách làm",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "作家",
@@ -7933,7 +7933,7 @@ const VOCAB_DATA = [
     "meaning": "nhà văn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "做梦",
@@ -7941,7 +7941,7 @@ const VOCAB_DATA = [
     "meaning": "nằm mơ",
     "type": "Động từ",
     "lesson": "",
-    "topic": "4. Tư duy & Nhận thức, 11. Công việc & Nghề nghiệp"
+    "topic": "4. Tư duy & Nhận thức (Phần 4), 11. Công việc & Nghề nghiệp (Phần 4)"
   },
   {
     "vocab": "作品",
@@ -7949,7 +7949,7 @@ const VOCAB_DATA = [
     "meaning": "công việc",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "作为",
@@ -7957,7 +7957,7 @@ const VOCAB_DATA = [
     "meaning": "BẰNG",
     "type": "Động từ, Giới từ",
     "lesson": "",
-    "topic": "14. Công cụ ngữ pháp & Cấu trúc"
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
   {
     "vocab": "座位",
@@ -7965,7 +7965,7 @@ const VOCAB_DATA = [
     "meaning": "chổ ngồi",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "6. Đồ vật & Công cụ"
+    "topic": "6. Đồ vật & Công cụ (Phần 3)"
   },
   {
     "vocab": "作文",
@@ -7973,7 +7973,7 @@ const VOCAB_DATA = [
     "meaning": "bài văn",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt"
+    "topic": "5. Đời sống sinh hoạt (Phần 11)"
   },
   {
     "vocab": "作用",
@@ -7981,7 +7981,7 @@ const VOCAB_DATA = [
     "meaning": "tác dụng",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "5. Đời sống sinh hoạt, 4. Tư duy & Nhận thức"
+    "topic": "5. Đời sống sinh hoạt (Phần 11), 4. Tư duy & Nhận thức (Phần 4)"
   },
   {
     "vocab": "左右",
@@ -7989,7 +7989,7 @@ const VOCAB_DATA = [
     "meaning": "khoảng",
     "type": "Danh từ, Phó từ",
     "lesson": "",
-    "topic": "13. Số lượng & Đo lường"
+    "topic": "13. Số lượng & Đo lường (Phần 3)"
   },
   {
     "vocab": "作者",
@@ -7997,6 +7997,6 @@ const VOCAB_DATA = [
     "meaning": "tác giả",
     "type": "Danh từ",
     "lesson": "",
-    "topic": "11. Công việc & Nghề nghiệp"
+    "topic": "11. Công việc & Nghề nghiệp (Phần 4)"
   }
 ];
