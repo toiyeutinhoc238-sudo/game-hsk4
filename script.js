@@ -59,6 +59,8 @@ let currentSpinCount = 0;
 const audioIntro = new Audio('nhac_nen/modau.mp3');
 const audioSpin = new Audio('nhac_nen/quayvongquay.mp3');
 const audioClap = new Audio('nhac_nen/votay.mp3');
+const audioRight = new Audio('nhac_nen/dung.mp3');
+const audioWrong = new Audio('nhac_nen/sai.mp3');
 let introStarted = false;
 
 function toggleSound() {
@@ -509,19 +511,35 @@ function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isT
         }
     }
     
-    setTimeout(() => {
+    let proceeded = false;
+    const proceed = () => {
+        if (proceeded) return;
+        proceeded = true;
+        
         if (isCorrect) {
-            finishTurn(`Chính xác! Bạn nhận được ${isDouble ? 'gấp đôi' : points} điểm.`, true);
+            finishTurn(`Chính xác! Bạn nhận được ${isDouble ? 'gấp đôi' : points} điểm.`, true, 1000);
         } else if (isTimeout) {
-            finishTurn(`Hết thời gian! Không nhận được điểm.`, false);
+            finishTurn(`Hết thời gian! Không nhận được điểm.`, false, 1000);
         } else {
-            finishTurn(`Sai rồi! Không nhận được điểm.`, false);
+            finishTurn(`Sai rồi! Không nhận được điểm.`, false, 1000);
         }
         
         setTimeout(() => {
             questionModal.classList.remove('show');
-        }, 1000);
-    }, 2000);
+        }, 500);
+    };
+
+    const audioToPlay = isCorrect ? audioRight : audioWrong;
+    audioToPlay.currentTime = 0;
+    audioToPlay.onended = proceed;
+    
+    audioToPlay.play().catch(e => {
+        console.log("Audio play failed", e);
+        setTimeout(proceed, 2000);
+    });
+    
+    // Fallback timer just in case audio fails to trigger onended
+    setTimeout(proceed, 5000);
 }
 
 // Special Actions Dialogs
@@ -573,7 +591,7 @@ function startTargeting(actionTitle, callback) {
 }
 
 // End Turn
-function finishTurn(message, success = null) {
+function finishTurn(message, success = null, delay = 3000) {
     updateScoreboard();
     
     // Highlight the result
@@ -589,7 +607,7 @@ function finishTurn(message, success = null) {
         } else {
             nextTurn();
         }
-    }, 3000);
+    }, delay);
 }
 
 function nextTurn() {
