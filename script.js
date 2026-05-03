@@ -370,6 +370,45 @@ function handleResult(result) {
     }
 }
 
+// Pinyin distractor generator
+function generatePinyinDistractors(correctPinyin) {
+    const toneMap = {
+        'a': ['ā', 'á', 'ǎ', 'à', 'a'], 'ā': ['a', 'á', 'ǎ', 'à'], 'á': ['a', 'ā', 'ǎ', 'à'], 'ǎ': ['a', 'ā', 'á', 'à'], 'à': ['a', 'ā', 'á', 'ǎ'],
+        'e': ['ē', 'é', 'ě', 'è', 'e'], 'ē': ['e', 'é', 'ě', 'è'], 'é': ['e', 'ē', 'ě', 'è'], 'ě': ['e', 'ē', 'é', 'è'], 'è': ['e', 'ē', 'é', 'ě'],
+        'i': ['ī', 'í', 'ǐ', 'ì', 'i'], 'ī': ['i', 'í', 'ǐ', 'ì'], 'í': ['i', 'ī', 'ǐ', 'ì'], 'ǐ': ['i', 'ī', 'í', 'ì'], 'ì': ['i', 'ī', 'í', 'ǐ'],
+        'o': ['ō', 'ó', 'ǒ', 'ò', 'o'], 'ō': ['o', 'ó', 'ǒ', 'ò'], 'ó': ['o', 'ō', 'ǒ', 'ò'], 'ǒ': ['o', 'ō', 'ó', 'ò'], 'ò': ['o', 'ō', 'ó', 'ǒ'],
+        'u': ['ū', 'ú', 'ǔ', 'ù', 'u'], 'ū': ['u', 'ú', 'ǔ', 'ù'], 'ú': ['u', 'ū', 'ǔ', 'ù'], 'ǔ': ['u', 'ū', 'ú', 'ù'], 'ù': ['u', 'ū', 'ú', 'ǔ'],
+        'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'], 'ǖ': ['ü', 'ǘ', 'ǚ', 'ǜ'], 'ǘ': ['ü', 'ǖ', 'ǚ', 'ǜ'], 'ǚ': ['ü', 'ǖ', 'ǘ', 'ǜ'], 'ǜ': ['ü', 'ǖ', 'ǘ', 'ǚ']
+    };
+    
+    let distractors = [];
+    let chars = correctPinyin.split('');
+    let toneIndices = [];
+    chars.forEach((c, i) => {
+        if (toneMap[c]) toneIndices.push(i);
+    });
+    
+    if (toneIndices.length > 0) {
+        let attempts = 0;
+        while (distractors.length < 3 && attempts < 50) {
+            attempts++;
+            let variantChars = [...chars];
+            let idxToChange = toneIndices[Math.floor(Math.random() * toneIndices.length)];
+            let originalChar = variantChars[idxToChange];
+            let possibleReplacements = toneMap[originalChar];
+            let replacement = possibleReplacements[Math.floor(Math.random() * possibleReplacements.length)];
+            
+            variantChars[idxToChange] = replacement;
+            let variantPinyin = variantChars.join('');
+            if (variantPinyin !== correctPinyin && !distractors.includes(variantPinyin)) {
+                distractors.push(variantPinyin);
+            }
+        }
+    }
+    
+    return distractors;
+}
+
 // Question System
 function showQuestion(points, isDouble = false) {
     const word = filteredVocab[Math.floor(Math.random() * filteredVocab.length)];
@@ -385,11 +424,11 @@ function showQuestion(points, isDouble = false) {
     let correctAnswer, questionText;
     if (questionType === 'meaning') {
         questionText = `Nghĩa của từ "${word.vocab}" là gì?`;
-        pinyinEl.textContent = `[ ${word.pinyin} ]`;
+        pinyinEl.textContent = ``;
         correctAnswer = word.meaning;
     } else {
         questionText = `Phiên âm của từ "${word.vocab}" là gì?`;
-        pinyinEl.textContent = `( ${word.meaning} )`;
+        pinyinEl.textContent = ``;
         correctAnswer = word.pinyin;
     }
     
@@ -397,11 +436,24 @@ function showQuestion(points, isDouble = false) {
     
     // Generate distractors
     let distractors = [];
-    while (distractors.length < 3) {
-        const randomWord = vocabData[Math.floor(Math.random() * vocabData.length)];
-        const distractor = questionType === 'meaning' ? randomWord.meaning : randomWord.pinyin;
-        if (distractor !== correctAnswer && !distractors.includes(distractor)) {
-            distractors.push(distractor);
+    if (questionType === 'meaning') {
+        while (distractors.length < 3) {
+            const randomWord = vocabData[Math.floor(Math.random() * vocabData.length)];
+            const distractor = randomWord.meaning;
+            if (distractor !== correctAnswer && !distractors.includes(distractor)) {
+                distractors.push(distractor);
+            }
+        }
+    } else {
+        distractors = generatePinyinDistractors(correctAnswer);
+        let attempts = 0;
+        while (distractors.length < 3 && attempts < 50) {
+            attempts++;
+            const randomWord = vocabData[Math.floor(Math.random() * vocabData.length)];
+            const distractor = randomWord.pinyin;
+            if (distractor !== correctAnswer && !distractors.includes(distractor)) {
+                distractors.push(distractor);
+            }
         }
     }
     
@@ -417,11 +469,11 @@ function showQuestion(points, isDouble = false) {
     });
     
     questionModal.classList.add('show');
-    startTimer();
+    startTimer(correctAnswer);
 }
 
 let timerInterval;
-function startTimer() {
+function startTimer(correctAnswer) {
     const progress = document.getElementById('timer-progress');
     let width = 100;
     progress.style.width = '100%';
@@ -432,12 +484,12 @@ function startTimer() {
         progress.style.width = `${width}%`;
         if (width <= 0) {
             clearInterval(timerInterval);
-            checkAnswer(false, 0, false); // Timeout
+            checkAnswer(false, 0, false, null, correctAnswer, true); // Timeout
         }
-    }, 150); // 15 seconds total
+    }, 100); // 10 seconds total
 }
 
-function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer) {
+function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isTimeout = false) {
     clearInterval(timerInterval);
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach(btn => {
@@ -452,12 +504,16 @@ function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer) {
         if (isDouble) p.score *= 2;
         else p.score += points;
     } else {
-        clickedBtn.classList.add('wrong');
+        if (clickedBtn) {
+            clickedBtn.classList.add('wrong');
+        }
     }
     
     setTimeout(() => {
         if (isCorrect) {
             finishTurn(`Chính xác! Bạn nhận được ${isDouble ? 'gấp đôi' : points} điểm.`, true);
+        } else if (isTimeout) {
+            finishTurn(`Hết thời gian! Không nhận được điểm.`, false);
         } else {
             finishTurn(`Sai rồi! Không nhận được điểm.`, false);
         }
