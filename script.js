@@ -48,6 +48,7 @@ let players = [];
 let currentPlayerIndex = 0;
 let vocabData = [];
 let filteredVocab = [];
+let currentSessionVocab = [];
 let selectedTopic = "";
 let isSpinning = false;
 let currentRotation = 0;
@@ -208,6 +209,8 @@ function setupGame(count, topic) {
         // Use includes to match words that might have multiple topics
         filteredVocab = vocabData.filter(v => v.topic.split(',').map(t => t.trim()).includes(topic));
     }
+    
+    currentSessionVocab = [...filteredVocab].sort(() => Math.random() - 0.5);
     
     document.getElementById('setup-screen').classList.remove('show');
     document.querySelector('.current-status').textContent = `Chủ đề: ${topic}`;
@@ -431,7 +434,10 @@ function generatePinyinDistractors(correctPinyin) {
 
 // Question System
 function showQuestion(points, isDouble = false) {
-    const word = filteredVocab[Math.floor(Math.random() * filteredVocab.length)];
+    if (currentSessionVocab.length === 0) {
+        currentSessionVocab = [...filteredVocab].sort(() => Math.random() - 0.5);
+    }
+    const word = currentSessionVocab.pop();
     const questionType = Math.random() > 0.5 ? 'meaning' : 'pinyin';
     
     const questionEl = document.getElementById('question-text');
