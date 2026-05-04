@@ -53,7 +53,7 @@ let selectedTopic = "";
 let isSpinning = false;
 let currentRotation = 0;
 let isMuted = false;
-const MAX_ROUNDS = 7;
+let currentMaxRounds = 7;
 let currentSpinCount = 0;
 
 // Audio Management
@@ -215,6 +215,7 @@ function setupGame(count, topic) {
     document.getElementById('setup-screen').classList.remove('show');
     document.querySelector('.current-status').textContent = `Chủ đề: ${topic}`;
     currentSpinCount = 0;
+    currentMaxRounds = 7;
     updateStatus();
     updateScoreboard();
 }
@@ -626,8 +627,18 @@ function finishTurn(message, success = null, delay = 3000) {
 
     setTimeout(() => {
         currentSpinCount++;
-        if (currentSpinCount >= players.length * MAX_ROUNDS) {
-            showGameOver();
+        if (currentSpinCount >= players.length * currentMaxRounds) {
+            const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
+            if (players.length > 1 && sortedPlayers[0].score === sortedPlayers[1].score) {
+                currentMaxRounds++;
+                lastResultDisplay.textContent = "Hòa điểm! Thêm vòng chơi phụ để phân định thắng bại.";
+                lastResultDisplay.style.color = 'var(--accent)';
+                setTimeout(() => {
+                    nextTurn();
+                }, 2000);
+            } else {
+                showGameOver();
+            }
         } else {
             nextTurn();
         }
@@ -643,7 +654,7 @@ function nextTurn() {
     
     // Update round display
     const round = Math.floor(currentSpinCount / players.length) + 1;
-    document.getElementById('round-display').textContent = `${round} / ${MAX_ROUNDS}`;
+    document.getElementById('round-display').textContent = `${round} / ${currentMaxRounds}`;
 }
 
 function showGameOver() {

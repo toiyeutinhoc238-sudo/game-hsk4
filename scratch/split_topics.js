@@ -9,7 +9,8 @@ let data = JSON.parse(jsonStr);
 // Collect all unique topics
 let topicMap = {};
 data.forEach(word => {
-    let topics = word.topic.split(',').map(t => t.trim()).filter(t => t.length > 0);
+    let topics = word.topic.split(',').map(t => t.replace(/\s*\(Phần \d+\)/g, '').trim()).filter(t => t.length > 0);
+    topics = [...new Set(topics)];
     topics.forEach(t => {
         if (!topicMap[t]) {
             topicMap[t] = [];
@@ -26,10 +27,10 @@ data.forEach(word => {
 
 for (let [topic, words] of Object.entries(topicMap)) {
     let n = words.length;
-    // If n > 30, we split
-    if (n > 30) {
-        // Calculate number of parts to keep sizes ~20-30
-        let numParts = Math.max(Math.ceil(n / 30), Math.floor(n / 20));
+    // If n > 20, we split
+    if (n > 20) {
+        // Calculate number of parts to keep sizes ~15-20
+        let numParts = Math.max(Math.ceil(n / 20), Math.floor(n / 15));
         let baseSize = Math.floor(n / numParts);
         let remainder = n % numParts;
         
