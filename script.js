@@ -173,12 +173,14 @@ function backToTopics() {
 }
 
 function selectPlayers(count) {
+    startIntro();
     window.tempPlayerCount = count;
     document.getElementById('player-count-step').style.display = 'none';
     document.getElementById('rules-step').style.display = 'block';
 }
 
 function startCountdown() {
+    startIntro();
     document.getElementById('rules-step').style.display = 'none';
     document.getElementById('countdown-step').style.display = 'flex';
     

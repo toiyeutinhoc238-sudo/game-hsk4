@@ -16,7 +16,7 @@
     </button>
 
     <!-- Setup Screen -->
-    <div id="setup-screen" class="modal show" style="background: var(--background); opacity: 1;" onclick="startIntro()">
+    <div id="setup-screen" class="modal show" style="background: var(--background); opacity: 1;">
         <div class="modal-content">
             <div id="topic-selection-step">
                 <div style="text-align: center; margin-bottom: 3rem;">
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div id="player-count-step" style="display: none;">
+            <div id="player-count-step" style="display: none;" onclick="startIntro()">
                 <p style="margin-bottom: 2rem; color: var(--text-dim);">Chọn số lượng người chơi</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
                     <button class="option-btn" onclick="selectPlayers(2)">2 Người chơi</button>
