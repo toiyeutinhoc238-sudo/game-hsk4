@@ -500,8 +500,8 @@ function showQuestion(points, isDouble = false) {
     options.forEach(opt => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
-        btn.textContent = opt;
-        btn.onclick = (e) => checkAnswer(opt === correctAnswer, points, isDouble, e.target, correctAnswer);
+        btn.textContent = opt.toLowerCase();
+        btn.onclick = (e) => checkAnswer(opt.toLowerCase() === correctAnswer.toLowerCase(), points, isDouble, e.target, correctAnswer.toLowerCase());
         optionsGrid.appendChild(btn);
     });
     
@@ -531,7 +531,7 @@ function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isT
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach(btn => {
         btn.disabled = true;
-        if (btn.textContent === correctAnswer) {
+        if (btn.textContent === correctAnswer.toLowerCase()) {
             btn.classList.add('correct');
         }
     });
@@ -692,8 +692,8 @@ function showGameOver() {
         summaryBody.innerHTML = filteredVocab.map(v => `
             <tr>
                 <td style="font-weight: 800; color: var(--accent);">${v.vocab}</td>
-                <td style="color: var(--text-dim);">${v.pinyin}</td>
-                <td>${v.meaning}</td>
+                <td style="color: var(--text-dim);">${v.pinyin.toLowerCase()}</td>
+                <td>${v.meaning.toLowerCase()}</td>
             </tr>
         `).join('');
     }
