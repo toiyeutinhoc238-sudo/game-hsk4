@@ -58,11 +58,14 @@ let currentSpinCount = 0;
 
 // Audio Management
 const audioIntro = new Audio('nhac_nen/modau.mp3');
+audioIntro.loop = true;
+
 const audioSpin = new Audio('nhac_nen/quayvongquay.mp3');
 const audioClap = new Audio('nhac_nen/votay.mp3');
 const audioRight = new Audio('nhac_nen/dung.mp3');
 const audioWrong = new Audio('nhac_nen/sai.mp3');
-let introStarted = false;
+// let introStarted = false; // Removed flag as we now check audio.paused state
+
 
 function toggleSound() {
     isMuted = !isMuted;
@@ -70,16 +73,21 @@ function toggleSound() {
     icon.textContent = isMuted ? '🔇' : '🔊';
     
     audioIntro.muted = isMuted;
-    // audioSpin and audioClap remain unmuted as per user request
+    if (!isMuted) startIntro();
 }
 
 function startIntro() {
-    if (!introStarted) {
-        audioIntro.loop = true;
-        audioIntro.play().catch(e => console.log("Auto-play blocked, waiting for interaction"));
-        introStarted = true;
+    if (audioIntro.paused && !isMuted) {
+        audioIntro.play().catch(e => {
+            console.log("Auto-play blocked, waiting for next user interaction");
+        });
     }
 }
+
+// Global interaction listener to "unlock" audio on first click/tap
+['click', 'touchstart'].forEach(evt => {
+    document.addEventListener(evt, startIntro, { once: true });
+});
 
 // Setup Game Steps Flow
 function populateTopics() {
