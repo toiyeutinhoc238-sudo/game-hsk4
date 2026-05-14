@@ -1234,7 +1234,7 @@ const VOCAB_DATA = [
   {
     "vocab": "掉",
     "pinyin": "diào",
-    "meaning": "Thua",
+    "meaning": "rơi, rớt, mất, bỏ đi, giảm xuống",
     "type": "Động từ",
     "lesson": "",
     "topic": "10. Thời gian (Phần 1)"
@@ -1986,7 +1986,7 @@ const VOCAB_DATA = [
   {
     "vocab": "各种",
     "pinyin": "gèzhǒng",
-    "meaning": "Nhiều",
+    "meaning": "các loại; mọi; đủ loại; các kiểu; đủ kiểu",
     "type": "Đại từ",
     "lesson": "",
     "topic": "12. Miêu tả & Đánh giá (Phần 2)"
@@ -3482,7 +3482,7 @@ const VOCAB_DATA = [
   {
     "vocab": "空",
     "pinyin": "kōng",
-    "meaning": "vô giá trị",
+    "meaning": "để trống; bỏ trống; để không, chỗ trống; khoảng trống",
     "type": "Tính từ",
     "lesson": "",
     "topic": "12. Miêu tả & Đánh giá (Phần 3)"
@@ -3954,7 +3954,7 @@ const VOCAB_DATA = [
   {
     "vocab": "满",
     "pinyin": "mǎn",
-    "meaning": "Đầy",
+    "meaning": "đầy, đủ, khắp",
     "type": "Tính từ, Động từ",
     "lesson": "",
     "topic": "12. Miêu tả & Đánh giá (Phần 4)"
@@ -4002,7 +4002,7 @@ const VOCAB_DATA = [
   {
     "vocab": "美好",
     "pinyin": "měihǎo",
-    "meaning": "Tốt",
+    "meaning": "tốt đẹp, đẹp đẽ (Thường dùng cho: cuộc sống, tương lai, ký ức, tình cảm)",
     "type": "Tính từ",
     "lesson": "",
     "topic": "12. Miêu tả & Đánh giá (Phần 4)"
@@ -4018,7 +4018,7 @@ const VOCAB_DATA = [
   {
     "vocab": "美丽",
     "pinyin": "měilì",
-    "meaning": "sắc đẹp",
+    "meaning": "đẹp, xinh đẹp, mỹ lệ （Thường dùng để khen: phong cảnh, con người, sự vật)",
     "type": "Tính từ",
     "lesson": "",
     "topic": "12. Miêu tả & Đánh giá (Phần 4)"
@@ -7450,7 +7450,7 @@ const VOCAB_DATA = [
   {
     "vocab": "正好",
     "pinyin": "zhènghǎo",
-    "meaning": "Vừa phải",
+    "meaning": "vừa đúng lúc, vừa khéo, vừa đủ, đúng dịp",
     "type": "Tính từ, Phó từ",
     "lesson": "",
     "topic": "12. Miêu tả & Đánh giá (Phần 7)"
