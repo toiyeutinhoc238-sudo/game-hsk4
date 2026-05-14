@@ -234,7 +234,7 @@ const VOCAB_DATA = [
   {
     "vocab": "表示",
     "pinyin": "biǎoshì",
-    "meaning": "thể hiện",
+    "meaning": "biểu thị, bày tỏ, tỏ ý",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 1)"
@@ -242,7 +242,7 @@ const VOCAB_DATA = [
   {
     "vocab": "表现",
     "pinyin": "biǎoxiàn",
-    "meaning": "biểu hiện",
+    "meaning": "thể hiện, biểu hiện, phô bày",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 1)"
@@ -250,7 +250,7 @@ const VOCAB_DATA = [
   {
     "vocab": "表扬",
     "pinyin": "biǎoyáng",
-    "meaning": "khen",
+    "meaning": "khen, tán thưởng, tán dương",
     "type": "Động từ",
     "lesson": "",
     "topic": "3. Cảm xúc & Thái độ (Phần 1), 5. Đời sống sinh hoạt (Phần 1)"
@@ -466,7 +466,7 @@ const VOCAB_DATA = [
   {
     "vocab": "擦",
     "pinyin": "cā",
-    "meaning": "lau đi",
+    "meaning": "chùi, chà, cọ, lau",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 2)"
@@ -482,7 +482,7 @@ const VOCAB_DATA = [
   {
     "vocab": "材料",
     "pinyin": "cáiliào",
-    "meaning": "Vật liệu",
+    "meaning": "vật liệu, tư liệu, nguyên liệu",
     "type": "Danh từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 2)"
@@ -690,7 +690,7 @@ const VOCAB_DATA = [
   {
     "vocab": "重新",
     "pinyin": "chóngxīn",
-    "meaning": "lại",
+    "meaning": "lần nữa, lại lần nữa, lại",
     "type": "Phó từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 3)"
@@ -738,7 +738,7 @@ const VOCAB_DATA = [
   {
     "vocab": "出口",
     "pinyin": "chūkǒu",
-    "meaning": "ra",
+    "meaning": "nói ra, xuất khẩu, rời",
     "type": "Danh từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 3)"
@@ -953,7 +953,7 @@ const VOCAB_DATA = [
   },
   {
     "vocab": "待",
-    "pinyin": "dāi",
+    "pinyin": "dài",
     "meaning": "đối xử",
     "type": "Động từ",
     "lesson": "",
@@ -1050,7 +1050,7 @@ const VOCAB_DATA = [
   {
     "vocab": "道路",
     "pinyin": "dàolù",
-    "meaning": "cách",
+    "meaning": "con đường, đường giao thông",
     "type": "Danh từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 4)"
@@ -1106,7 +1106,7 @@ const VOCAB_DATA = [
   {
     "vocab": "答应",
     "pinyin": "dāying",
-    "meaning": "đáp ứng",
+    "meaning": "đồng ý, bằng lòng, đáp lại, trả",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 5)"
@@ -1258,7 +1258,7 @@ const VOCAB_DATA = [
   {
     "vocab": "订",
     "pinyin": "dìng",
-    "meaning": "đặt hàng",
+    "meaning": "lập, ký kết, đặt trước,",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 5)"
@@ -1418,7 +1418,7 @@ const VOCAB_DATA = [
   {
     "vocab": "多么",
     "pinyin": "duōme",
-    "meaning": "Làm sao",
+    "meaning": "biết bao; thật (dùng trong câu cảm thán); bao nhiêu; chừng nào; bao xa (dùng trong câu hỏi); mấy; như nào; cỡ nào; bao nhiêu (mức độ tương đối cao)",
     "type": "Phó từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 5)"
@@ -1554,7 +1554,7 @@ const VOCAB_DATA = [
   {
     "vocab": "房租",
     "pinyin": "fángzū",
-    "meaning": "thuê nhà",
+    "meaning": "tiền thuê nhà",
     "type": "Danh từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 6)"
@@ -1706,7 +1706,7 @@ const VOCAB_DATA = [
   {
     "vocab": "复杂",
     "pinyin": "fùzá",
-    "meaning": "tổ hợp",
+    "meaning": "phức tạp",
     "type": "Tính từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 7)"
@@ -1738,7 +1738,7 @@ const VOCAB_DATA = [
   {
     "vocab": "改",
     "pinyin": "gǎi",
-    "meaning": "thay đổi",
+    "meaning": "thay đổi, đổi, sửa chữa, sữa đổi",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 7)"
@@ -1770,7 +1770,7 @@ const VOCAB_DATA = [
   {
     "vocab": "感 (hậu tố)",
     "pinyin": "gǎn",
-    "meaning": "được thêm vào sau động từ hoặc tính từ để tạo thành danh từ",
+    "meaning": "dùng sau một số động từ, tính từ hoặc danh từ để tạo thành danh từ biểu thị cảm giác, cảm nhận, ấn tượng hoặc mức độ nào đó.",
     "type": "",
     "lesson": "",
     "topic": "2. Cơ thể & Sức khỏe (Phần 1)"
@@ -1874,7 +1874,7 @@ const VOCAB_DATA = [
   {
     "vocab": "感谢",
     "pinyin": "gǎnxiè",
-    "meaning": "tri ân",
+    "meaning": "cảm ơn, cảm tạ",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 7)"
@@ -1994,7 +1994,7 @@ const VOCAB_DATA = [
   {
     "vocab": "共",
     "pinyin": "gòng",
-    "meaning": "chung",
+    "meaning": "gồm; tổng cộng; tổng số",
     "type": "Phó từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 7)"
@@ -2058,7 +2058,7 @@ const VOCAB_DATA = [
   {
     "vocab": "共同",
     "pinyin": "gòngtóng",
-    "meaning": "chung",
+    "meaning": "cùng; chung，chung; giống nhau",
     "type": "Tính từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 7)"
@@ -2226,7 +2226,7 @@ const VOCAB_DATA = [
   {
     "vocab": "国籍",
     "pinyin": "guójí",
-    "meaning": "Quốc tịch",
+    "meaning": "quốc tịch, lai lịch",
     "type": "Danh từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 8)"
@@ -2410,7 +2410,7 @@ const VOCAB_DATA = [
   {
     "vocab": "换乘",
     "pinyin": "huànchéng",
-    "meaning": "Chuyển khoản",
+    "meaning": "đổi; chuyển (tuyến hoặc phương tiện khác để di chuyển)",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 9)"
@@ -2482,7 +2482,7 @@ const VOCAB_DATA = [
   {
     "vocab": "获得",
     "pinyin": "huòdé",
-    "meaning": "lấy",
+    "meaning": "được; có được; thu được; giành được; đạt được; nhận được",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 9)"
@@ -3290,7 +3290,7 @@ const VOCAB_DATA = [
   {
     "vocab": "聚餐",
     "pinyin": "jùcān",
-    "meaning": "bữa tiệc tối",
+    "meaning": "liên hoan, bữa tiệc liên hoan",
     "type": "Danh từ, Động từ",
     "lesson": "",
     "topic": "1. Con người & Các mối quan hệ (Phần 3)"
@@ -3378,7 +3378,7 @@ const VOCAB_DATA = [
   {
     "vocab": "考生",
     "pinyin": "kǎoshēng",
-    "meaning": "Ứng viên",
+    "meaning": "thí sinh, học sinh dự thi",
     "type": "Danh từ",
     "lesson": "",
     "topic": "1. Con người & Các mối quan hệ (Phần 3)"
@@ -3722,7 +3722,7 @@ const VOCAB_DATA = [
   {
     "vocab": "联系",
     "pinyin": "liánxì",
-    "meaning": "kết nối",
+    "meaning": "liên lạc, liên hệ",
     "type": "Động từ, Danh từ",
     "lesson": "",
     "topic": "1. Con người & Các mối quan hệ (Phần 3)"
@@ -5026,7 +5026,7 @@ const VOCAB_DATA = [
   {
     "vocab": "商量",
     "pinyin": "shāngliang",
-    "meaning": "bàn luận",
+    "meaning": "thương lượng, bàn bạc",
     "type": "Động từ",
     "lesson": "",
     "topic": "1. Con người & Các mối quan hệ (Phần 4)"
@@ -7402,7 +7402,7 @@ const VOCAB_DATA = [
   {
     "vocab": "者",
     "pinyin": "zhě",
-    "meaning": "thay thế cho đối tượng đề cập trước đó",
+    "meaning": "(Đại từ) thay thế cho người, sự vật, sự việc, hoặc những đối tượng đề cập trước",
     "type": "Hậu tố",
     "lesson": "",
     "topic": "1. Con người & Các mối quan hệ (Phần 5)"
