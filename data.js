@@ -154,7 +154,7 @@ const VOCAB_DATA = [
   {
     "vocab": "倍",
     "pinyin": "bèi",
-    "meaning": "lần",
+    "meaning": "lần, gấp （Dùng để chỉ bội số “gấp bao nhiêu lần”）",
     "type": "Lượng từ",
     "lesson": "",
     "topic": "13. Số lượng & Đo lường (Phần 1)"
@@ -562,7 +562,7 @@ const VOCAB_DATA = [
   {
     "vocab": "超过",
     "pinyin": "chāoguò",
-    "meaning": "Quá",
+    "meaning": "vượt quá, hơn （Biểu thị vượt qua giới hạn/số lượng/mức độ ）",
     "type": "Động từ",
     "lesson": "",
     "topic": "13. Số lượng & Đo lường (Phần 1)"
@@ -1754,7 +1754,7 @@ const VOCAB_DATA = [
   {
     "vocab": "赶",
     "pinyin": "gǎn",
-    "meaning": "mau",
+    "meaning": "thúc nhanh lên / đuổi theo / tranh thủ cho kịp",
     "type": "Động từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
@@ -2538,7 +2538,7 @@ const VOCAB_DATA = [
   {
     "vocab": "互相",
     "pinyin": "hùxiāng",
-    "meaning": "nhau",
+    "meaning": "lẫn nhau, với nhau, qua lại với nhau. Nó dùng để biểu thị hành động hoặc quan hệ xảy ra giữa hai hay nhiều bên theo chiều song phương.",
     "type": "Phó từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 10), 15. Tự nhiên (Phần 2)"
@@ -2841,7 +2841,7 @@ const VOCAB_DATA = [
   },
   {
     "vocab": "价钱",
-    "pinyin": "jiàqian",
+    "pinyin": "jiàqián",
     "meaning": "Giá",
     "type": "Danh từ",
     "lesson": "",
@@ -3098,7 +3098,7 @@ const VOCAB_DATA = [
   {
     "vocab": "景区",
     "pinyin": "jǐngqū",
-    "meaning": "Khu vực danh lam thắng cảnh",
+    "meaning": "khu danh lam thắng cảnh, khu tham quan, khu du lịch có phong cảnh hoặc giá trị văn hóa . “景区” nhấn mạnh vào một khu vực được quy hoạch để tham quan du lịch",
     "type": "Danh từ",
     "lesson": "",
     "topic": "15. Tự nhiên (Phần 2), 7. Địa điểm & Nơi chốn (Phần 2)"
@@ -3114,7 +3114,7 @@ const VOCAB_DATA = [
   {
     "vocab": "景色",
     "pinyin": "jǐngsè",
-    "meaning": "xem",
+    "meaning": "phong cảnh，cảnh sắc，cảnh vật thiên nhiên hoặc khung cảnh nhìn thấy được.Thường dùng để chỉ vẻ đẹp của thiên nhiên, môi trường hoặc cảnh tượng trước mắt.",
     "type": "Danh từ",
     "lesson": "",
     "topic": "15. Tự nhiên (Phần 2)"
@@ -3674,7 +3674,7 @@ const VOCAB_DATA = [
   {
     "vocab": "俩",
     "pinyin": "liǎ",
-    "meaning": "cả hai",
+    "meaning": "hai người / hai cái （“俩” là cách nói khẩu ngữ của: 两个)",
     "type": "Số từ, Danh từ",
     "lesson": "",
     "topic": "13. Số lượng & Đo lường (Phần 2)"
@@ -3826,8 +3826,8 @@ const VOCAB_DATA = [
   {
     "vocab": "例如",
     "pinyin": "lìrú",
-    "meaning": "Ví dụ",
-    "type": "Động từ",
+    "meaning": "Liên từ / từ nối dùng để nêu ví dụ; ví dụ như, chẳng hạn như. Nó dùng để dẫn ví dụ, chứ không phải bản thân “ví dụ”.",
+    "type": "Liên từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
   },
@@ -3882,7 +3882,7 @@ const VOCAB_DATA = [
   {
     "vocab": "例子",
     "pinyin": "lìzi",
-    "meaning": "ví dụ",
+    "meaning": "Danh từ: ví dụ, trường hợp minh họa. Nó là “một ví dụ cụ thể”",
     "type": "Danh từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 1)"
@@ -6153,9 +6153,9 @@ const VOCAB_DATA = [
   },
   {
     "vocab": "为",
-    "pinyin": "wéi",
-    "meaning": "Làm, là",
-    "type": "Động từ",
+    "pinyin": "wéi / wèi",
+    "meaning": "1. 为 (wéi - Động từ): là, trở thành. 2. 为 (wèi - Giới từ): vì, cho, đối với",
+    "type": "Động từ / Giới từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 2)"
   },
@@ -6912,10 +6912,18 @@ const VOCAB_DATA = [
     "topic": "15. Tự nhiên (Phần 3)"
   },
   {
-    "vocab": "己",
+    "vocab": "已",
     "pinyin": "yǐ",
-    "meaning": "Bản thân",
+    "meaning": "Nghĩa là “đã”. Thường biểu thị:, sự việc đã xảy ra, trạng thái đã hoàn thành",
     "type": "Phó từ",
+    "lesson": "",
+    "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 3)"
+  },
+  {
+    "vocab": "己",
+    "pinyin": "jǐ",
+    "meaning": "thường không đứng riêng trong khẩu ngữ, mà chủ yếu xuất hiện trong: từ ghép, thành ngữ, văn viết. Nghĩa thường gặp: bản thân mình, chính mình",
+    "type": "Đại từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 3)"
   },
@@ -7026,7 +7034,7 @@ const VOCAB_DATA = [
   {
     "vocab": "用于",
     "pinyin": "yòngyú",
-    "meaning": "Vì",
+    "meaning": "dùng cho, được dùng để （Biểu thị mục đích hoặc phạm vi sử dụng ）",
     "type": "Động từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 3)"
@@ -7042,7 +7050,7 @@ const VOCAB_DATA = [
   {
     "vocab": "由",
     "pinyin": "yóu",
-    "meaning": "Tùy thuộc vào",
+    "meaning": "do, bởi; từ; để （Giới từ/động từ mang sắc thái trang trọng ）",
     "type": "Giới từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 3)"
@@ -7282,7 +7290,7 @@ const VOCAB_DATA = [
   {
     "vocab": "于是",
     "pinyin": "yúshì",
-    "meaning": "sau đó",
+    "meaning": "vì vậy, thế là （Liên từ biểu thị kết quả xảy ra sau nguyên nhân phía trước ）",
     "type": "Liên từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 3)"
@@ -7377,7 +7385,7 @@ const VOCAB_DATA = [
   },
   {
     "vocab": "着",
-    "pinyin": "zhe",
+    "pinyin": "zhuó",
     "meaning": "Mặc",
     "type": "Trợ từ",
     "lesson": "",
@@ -7954,7 +7962,7 @@ const VOCAB_DATA = [
   {
     "vocab": "作为",
     "pinyin": "zuòwéi",
-    "meaning": "BẰNG",
+    "meaning": "với tư cách là; coi là （Có thể làm giới từ hoặc động từ ）",
     "type": "Động từ, Giới từ",
     "lesson": "",
     "topic": "14. Công cụ ngữ pháp & Cấu trúc (Phần 3)"
