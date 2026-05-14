@@ -681,7 +681,7 @@ const VOCAB_DATA = [
   },
   {
     "vocab": "重",
-    "pinyin": "chóng",
+    "pinyin": "zhòng",
     "meaning": "Nặng",
     "type": "Phó từ",
     "lesson": "",
@@ -2994,7 +2994,7 @@ const VOCAB_DATA = [
   {
     "vocab": "节约",
     "pinyin": "jiéyuē",
-    "meaning": "cứu",
+    "meaning": "tiết kiệm, sử dụng hợp lý để tránh lãng phí.",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 11)"
@@ -3178,7 +3178,7 @@ const VOCAB_DATA = [
   {
     "vocab": "进行",
     "pinyin": "jìnxíng",
-    "meaning": "chỉ đạo",
+    "meaning": "tiến hành, thực hiện, triển khai một hoạt động/công việc nào đó.",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 11)"
@@ -3282,7 +3282,7 @@ const VOCAB_DATA = [
   {
     "vocab": "举办",
     "pinyin": "jǔbàn",
-    "meaning": "giữ",
+    "meaning": "đứng ra tổ chức, chủ trì, lo liệu để một hoạt động hay sự kiện được diễn ra. Nhấn mạnh vào quá trình chuẩn bị, tổ chức và chịu trách nhiệm.",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 11)"
@@ -3330,7 +3330,7 @@ const VOCAB_DATA = [
   {
     "vocab": "举行",
     "pinyin": "jǔxíng",
-    "meaning": "Giữ",
+    "meaning": "tiến hành, cử hành một hoạt động/sự kiện theo kế hoạch. Nhấn mạnh vào việc sự kiện đang được diễn ra hoặc được thực hiện.",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 11)"
@@ -6489,7 +6489,7 @@ const VOCAB_DATA = [
   },
   {
     "vocab": "消息",
-    "pinyin": "xiǎoxi",
+    "pinyin": "xiāoxi",
     "meaning": "Tin tức",
     "type": "Danh từ",
     "lesson": "",
@@ -6954,7 +6954,7 @@ const VOCAB_DATA = [
   {
     "vocab": "赢得",
     "pinyin": "yíngdé",
-    "meaning": "thắng",
+    "meaning": "giành được，đạt được nhờ nỗ lực， thu được kết quả tốt",
     "type": "Động từ",
     "lesson": "",
     "topic": "5. Đời sống sinh hoạt (Phần 14)"
@@ -7450,7 +7450,7 @@ const VOCAB_DATA = [
   {
     "vocab": "证件",
     "pinyin": "zhèngjiàn",
-    "meaning": "NHẬN DẠNG",
+    "meaning": "giấy chứng nhận, giấy tờ chứng từ",
     "type": "Danh từ",
     "lesson": "",
     "topic": "6. Đồ vật & Công cụ (Phần 4)"
@@ -7946,7 +7946,7 @@ const VOCAB_DATA = [
   {
     "vocab": "作品",
     "pinyin": "zuòpǐn",
-    "meaning": "công việc",
+    "meaning": "tác phẩm",
     "type": "Danh từ",
     "lesson": "",
     "topic": "6. Đồ vật & Công cụ (Phần 4)"
