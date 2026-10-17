@@ -290,7 +290,7 @@ function drawWheel() {
         ctx.rotate(angle + angleStep / 2);
         ctx.textAlign = 'right';
         ctx.fillStyle = 'white';
-        ctx.font = 'bold 18px "Be Vietnam Pro"';
+        ctx.font = 'bold 18px "Be Vietnam Pro", "LXGW WenKai", sans-serif';
         ctx.shadowColor = 'rgba(0,0,0,0.5)';
         ctx.shadowBlur = 4;
         ctx.fillText(seg.label, radius - 40, 8);
@@ -458,18 +458,16 @@ function showQuestion(points, isDouble = false) {
     
     badgeEl.textContent = isDouble ? `GẤP ĐÔI ĐIỂM` : `${points} Điểm`;
     
-    let correctAnswer, questionText;
+    let correctAnswer;
     if (questionType === 'meaning') {
-        questionText = `Nghĩa của từ "${word.vocab}" là gì?`;
+        questionEl.innerHTML = `Nghĩa của từ "<span class="chinese-word">${word.vocab}</span>" là gì?`;
         pinyinEl.textContent = ``;
         correctAnswer = word.meaning;
     } else {
-        questionText = `Phiên âm của từ "${word.vocab}" là gì?`;
+        questionEl.innerHTML = `Phiên âm của từ "<span class="chinese-word">${word.vocab}</span>" là gì?`;
         pinyinEl.textContent = ``;
         correctAnswer = word.pinyin;
     }
-    
-    questionEl.textContent = questionText;
     
     // Generate distractors
     let distractors = [];
@@ -691,7 +689,7 @@ function showGameOver() {
         summaryContainer.style.display = 'block';
         summaryBody.innerHTML = filteredVocab.map(v => `
             <tr>
-                <td style="font-weight: 800; color: var(--accent);">${v.vocab}</td>
+                <td class="chinese-word-cell" style="font-weight: 800; color: var(--accent);">${v.vocab}</td>
                 <td style="color: var(--text-dim);">${v.pinyin.toLowerCase()}</td>
                 <td>${v.meaning.toLowerCase()}</td>
             </tr>

@@ -24,7 +24,10 @@ Trò chơi mô phỏng gameshow "Chiếc Nón Kỳ Diệu" giúp bạn ôn luy�
 Dữ liệu được trích xuất từ file `ngan_hang_tu_vung.xlsx` và lưu dưới dạng `data.js` để tránh lỗi bảo mật (CORS) khi mở trực tiếp file HTML.
 
 ## Công nghệ
-- HTML5 / CSS3 (Vanilla)
+- HTML5 / CSS3 (Vanilla Responsive)
 - Javascript (Vanilla)
-- Canvas API cho vòng quay
-- Google Fonts (Outfit)
+- Canvas API cho vòng quay 3D
+- Google Fonts: Be Vietnam Pro (Latin/Tiếng Việt)
+- Khải Thể (KaiTi / LXGW WenKai): Chuẩn thư pháp Hán tự HSK
+- Tối ưu đa thiết bị: Điện thoại, máy tính bảng, laptop, máy tính để bàn
+
