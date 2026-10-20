@@ -20,15 +20,10 @@
     <div class="bg-fixed-layer"></div>
     <div class="bg-overlay-layer"></div>
 
-    <!-- Top Control Bar (Fixed Top Right: Fullscreen, Sound) -->
-    <div class="top-controls">
-        <button id="fullscreen-toggle" class="control-btn" onclick="LMSAdapter.toggleFullscreen()" title="Toàn màn hình (Phím F)" aria-label="Toàn màn hình">
-            <span class="icon">⛶</span>
-        </button>
-        <button id="sound-toggle" class="control-btn sound-control" onclick="toggleSound()" title="Bật/Tắt âm thanh" aria-label="Bật/Tắt âm thanh">
-            <span class="icon">🔊</span>
-        </button>
-    </div>
+    <!-- Sound Control (Fixed Top Right) -->
+    <button id="sound-toggle" class="sound-control" onclick="toggleSound()" title="Bật/Tắt âm thanh" aria-label="Bật/Tắt âm thanh">
+        <span class="icon">🔊</span>
+    </button>
 
     <!-- LMS Toast Notification -->
     <div id="lms-toast" class="lms-toast"></div>

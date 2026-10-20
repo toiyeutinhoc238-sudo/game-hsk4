@@ -40,7 +40,7 @@ Game được trang bị `lms-adapter.js` và `imsmanifest.xml` chuẩn quốc t
    - Hệ thống tự động ghi nhận điểm số (`cmi.core.score.raw`), thời gian học (`cmi.core.session_time`), và trạng thái hoàn thành (`passed`/`completed`).
 2. **Nhúng qua iFrame (Web nội bộ, Google Classroom, WordPress/LearnDash)**:
    - Hỗ trợ cơ chế tự động co giãn chiều cao (`postMessage` `setHeight` & `resize`) giúp triệt tiêu thanh cuộn kép.
-   - Hỗ trợ nút **Toàn màn hình (Fullscreen)** trực tiếp trong giao diện (phím tắt `F`) giúp người học mở rộng không gian chơi ngay trong trang.
+   - Giao diện tự động tối ưu hiển thị (fluid responsive layout) vừa vặn trên mọi khung hình mà không cần phụ thuộc cấu hình iframe.
 3. **Chống lỗi Sandbox & Mạng trường học**:
    - `SafeStorage`: Tự động chuyển sang bộ nhớ RAM nếu trình duyệt chặn `localStorage` trong iFrame cross-origin.
    - `Web Audio API Synthesizer`: Tự động tạo hiệu ứng âm thanh bằng bộ dao động tần số nếu trường học chặn file `.mp3` hoặc chính sách autoplay nghiêm ngặt.

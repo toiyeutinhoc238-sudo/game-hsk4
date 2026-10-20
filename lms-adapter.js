@@ -150,15 +150,6 @@
             window.addEventListener('beforeunload', () => this.terminate());
             window.addEventListener('unload', () => this.terminate());
 
-            // 4. Setup Keybinding (F for Fullscreen)
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'f' || e.key === 'F') {
-                    if (!['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
-                        this.toggleFullscreen();
-                    }
-                }
-            });
-
             this.isInitialized = true;
             this.sendPostMessage('HSK4_LMS_READY', {
                 title: 'Chiếc Nón Kỳ Diệu - HSK 4 Edition',
