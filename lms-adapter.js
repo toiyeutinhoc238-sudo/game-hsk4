@@ -115,9 +115,6 @@
 
             if (this.isInIframe && document.body) {
                 document.body.classList.add('embedded-lms');
-                // Show popout button if in iframe
-                const popoutBtn = document.getElementById('popout-btn');
-                if (popoutBtn) popoutBtn.style.display = 'flex';
             }
 
             // 1. Detect SCORM
@@ -341,17 +338,9 @@
         },
 
         /**
-         * Smart Fullscreen toggle with LMS iframe fallback
+         * Smart Fullscreen toggle (in-place native or in-frame CSS expansion)
          */
         toggleFullscreen(targetElem = document.documentElement) {
-            // Check if browser/iframe allows fullscreen
-            const isFsDisallowed = (document.fullscreenEnabled === false);
-
-            if (this.isInIframe && isFsDisallowed) {
-                this.openNewTab();
-                return;
-            }
-
             try {
                 if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                     const req = targetElem.requestFullscreen || targetElem.webkitRequestFullscreen || targetElem.mozRequestFullScreen || targetElem.msRequestFullscreen;
@@ -361,45 +350,29 @@
                             p.then(() => {
                                 this.showToast("⛶ Đã bật chế độ Toàn Màn Hình");
                             }).catch(() => {
-                                // Fullscreen rejected by iframe policy -> fallback to new tab
-                                if (this.isInIframe) {
-                                    this.openNewTab();
-                                } else {
-                                    document.body.classList.toggle('app-fullscreen-mode');
-                                    this.showToast("⛶ Đã mở rộng giao diện");
-                                }
+                                document.body.classList.toggle('app-fullscreen-mode');
+                                const isExpanded = document.body.classList.contains('app-fullscreen-mode');
+                                this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
                             });
                             return;
                         }
                     }
+                    document.body.classList.toggle('app-fullscreen-mode');
+                    const isExpanded = document.body.classList.contains('app-fullscreen-mode');
+                    this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
                 } else {
                     const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
                     if (exit) {
                         exit.call(document);
+                        document.body.classList.remove('app-fullscreen-mode');
                         this.showToast("🗗 Đã trở về chế độ chuẩn");
                     }
                 }
             } catch (e) {
-                if (this.isInIframe) {
-                    this.openNewTab();
-                }
+                document.body.classList.toggle('app-fullscreen-mode');
+                const isExpanded = document.body.classList.contains('app-fullscreen-mode');
+                this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
             }
-        },
-
-        /**
-         * Safely open game in standalone new tab (for narrow LMS iframes)
-         */
-        openNewTab() {
-            try {
-                const win = window.open(window.location.href, '_blank');
-                if (win) {
-                    this.showToast("🚀 Đang mở game trong tab mới...");
-                    return;
-                }
-            } catch (e) {
-                console.warn("Popup blocked:", e);
-            }
-            this.showToast("⛶ Trình duyệt đã chặn tab mới. Vui lòng cho phép popup.");
         },
 
         /**
