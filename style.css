@@ -135,37 +135,44 @@ body::before {
     z-index: 1;
 }
 
-/* Sound Control Button */
-.sound-control {
+/* Top Controls Bar (Sound, Fullscreen, Popout Tab) */
+.top-controls {
     position: fixed;
-    top: clamp(12px, 2vw, 20px);
-    right: clamp(12px, 2vw, 20px);
+    top: clamp(10px, 2vw, 20px);
+    right: clamp(10px, 2vw, 20px);
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 1.2vw, 10px);
+    z-index: 200;
+}
+
+.control-btn {
     background: var(--surface);
     border: 1px solid var(--glass-border);
     color: var(--text);
-    width: clamp(44px, 5vw, 56px);
-    height: clamp(44px, 5vw, 56px);
+    width: clamp(40px, 4.5vw, 52px);
+    height: clamp(40px, 4.5vw, 52px);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    z-index: 200;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-.sound-control:hover {
+.control-btn:hover {
     border-color: var(--accent);
     transform: scale(1.08);
-    box-shadow: 0 0 18px rgba(251, 191, 36, 0.4);
+    box-shadow: 0 0 16px rgba(251, 191, 36, 0.4);
+    color: var(--accent);
 }
 
-.sound-control:active {
-    transform: scale(0.95);
+.control-btn:active {
+    transform: scale(0.94);
 }
 
 /* Header */
@@ -1099,3 +1106,109 @@ canvas#wheel {
         font-size: 0.95rem;
     }
 }
+
+/* ==========================================================================
+   LMS (Learning Management System) & iFrame Embed Optimizations
+   ========================================================================== */
+
+/* Toast notification for LMS messages */
+.lms-toast {
+    position: fixed;
+    bottom: clamp(15px, 3vw, 25px);
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-weight: 600;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(251, 191, 36, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.lms-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Embedded LMS Mode (Auto-activated when game is inside Moodle/Canvas iframe) */
+body.embedded-lms .container {
+    padding: clamp(0.5rem, 1.5vw, 1.25rem);
+    gap: clamp(0.6rem, 1.5vw, 1.25rem);
+}
+
+body.embedded-lms header {
+    margin-bottom: 0.2rem;
+}
+
+body.embedded-lms .main-title {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+}
+
+/* Responsive optimization for short iframe heights (e.g. 500px - 720px) */
+@media (max-height: 720px) {
+    .container {
+        padding: 0.5rem 1rem;
+        gap: 0.75rem;
+    }
+
+    header {
+        margin-bottom: 0.2rem;
+    }
+
+    .main-title {
+        font-size: 1.8rem;
+    }
+
+    .current-status {
+        font-size: 0.85rem;
+    }
+
+    .wheel-wrapper {
+        width: min(58vh, 420px);
+        height: min(58vh, 420px);
+    }
+
+    .scoreboard {
+        padding: 0.75rem 1rem;
+    }
+
+    .scoreboard h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .player-card {
+        padding: 0.6rem 0.9rem;
+    }
+
+    .game-info {
+        padding: 0.6rem 0.75rem;
+    }
+
+    .modal-content {
+        padding: 1.2rem;
+        max-height: 94vh;
+        max-height: 94dvh;
+    }
+}
+
+/* CSS Fallback Fullscreen Mode (for browsers/iframes restricting native Fullscreen API) */
+body.app-fullscreen-mode {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    padding: 0;
+}
+

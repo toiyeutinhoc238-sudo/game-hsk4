@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Simulation Environment (Moodle / Canvas Test)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e293b;
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            background: #0f172a;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .status-badge {
+            background: #059669;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .iframe-container {
+            width: 100%;
+            height: 750px;
+            border: 2px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #020617;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .log-box {
+            margin-top: 15px;
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            max-height: 150px;
+            overflow-y: auto;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h2>Moodle / Canvas LMS Simulation Environment</h2>
+            <p style="margin: 4px 0 0; color: #94a3b8; font-size: 14px;">Simulating SCORM 1.2 CMI API & HTML5 postMessage integration</p>
+        </div>
+        <div id="scorm-status" class="status-badge">SCORM 1.2: Listening</div>
+    </div>
+
+    <div class="iframe-container">
+        <iframe id="game-frame" src="../index.html" allowfullscreen allow="autoplay"></iframe>
+    </div>
+
+    <div class="log-box" id="lms-log">
+        [LMS Core] Mock LMS initialized. Ready to receive events...<br>
+    </div>
+
+    <script>
+        const logBox = document.getElementById('lms-log');
+        function log(msg) {
+            logBox.innerHTML += `[${new Date().toLocaleTimeString()}] ${msg}<br>`;
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // Mock SCORM 1.2 API
+        window.API = {
+            cmi: {},
+            LMSInitialize(val) {
+                log("<b>SCORM: LMSInitialize called!</b>");
+                document.getElementById('scorm-status').textContent = "SCORM 1.2: Connected";
+                return "true";
+            },
+            LMSSetValue(param, val) {
+                this.cmi[param] = val;
+                log(`SCORM: LMSSetValue(${param}, ${val})`);
+                return "true";
+            },
+            LMSGetValue(param) {
+                return this.cmi[param] || "";
+            },
+            LMSCommit(val) {
+                log("SCORM: LMSCommit saved successfully.");
+                return "true";
+            },
+            LMSFinish(val) {
+                log("SCORM: LMSFinish session completed.");
+                document.getElementById('scorm-status').textContent = "SCORM 1.2: Finished";
+                return "true";
+            },
+            LMSGetLastError() { return "0"; },
+            LMSGetErrorString(errCode) { return "No error"; },
+            LMSGetDiagnostic(errCode) { return "Diagnostic: OK"; }
+        };
+
+        // Listen for postMessage from game
+        window.addEventListener('message', (e) => {
+            if (e.data && e.data.source === 'HSK4_MAGIC_WHEEL') {
+                log(`PostMessage [${e.data.action}]: ` + JSON.stringify(e.data.payload));
+            }
+        });
+    </script>
+</body>
+</html>

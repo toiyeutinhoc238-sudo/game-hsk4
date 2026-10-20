@@ -150,12 +150,16 @@ function selectTopic(topic, updateUrl = true) {
     startIntro();
     window.tempSelectedTopic = topic;
     
-    // Update URL if requested
+    // Update URL safely if requested (catch SecurityError in restricted LMS iframes)
     if (updateUrl) {
         const slug = createSlug(topic);
         if (slug) {
-            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + slug;
-            window.history.pushState({path:newUrl},'',newUrl);
+            try {
+                const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + slug;
+                window.history.pushState({path:newUrl},'',newUrl);
+            } catch (e) {
+                // Ignore SecurityError in cross-origin / sandboxed LMS iframe
+            }
         }
     }
     
@@ -164,13 +168,26 @@ function selectTopic(topic, updateUrl = true) {
 }
 
 function checkUrlParams() {
-    const param = window.location.search.substring(1);
-    
-    if (param) {
-        const targetTopic = window.allTopics.find(t => createSlug(t) === param);
-        if (targetTopic) {
-            // Select topic without updating URL again
-            selectTopic(targetTopic, false);
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const keys = Array.from(urlParams.keys());
+        if (keys.length > 0 && window.allTopics) {
+            for (const key of keys) {
+                const targetTopic = window.allTopics.find(t => createSlug(t) === key);
+                if (targetTopic) {
+                    selectTopic(targetTopic, false);
+                    return;
+                }
+            }
+        }
+    } catch (e) {
+        // Fallback for older browsers or restricted environment
+        const param = window.location.search.substring(1);
+        if (param && window.allTopics) {
+            const targetTopic = window.allTopics.find(t => createSlug(t) === param);
+            if (targetTopic) {
+                selectTopic(targetTopic, false);
+            }
         }
     }
 }
@@ -316,9 +333,13 @@ function spin() {
     isSpinning = true;
     spinBtn.disabled = true;
 
-    // Play spin audio
+    // Play spin audio safely with LMS fallback
     audioSpin.currentTime = 0;
-    audioSpin.play();
+    if (window.LMSAdapter) {
+        window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
+    } else {
+        audioSpin.play().catch(e => console.log("Spin sound restricted:", e));
+    }
 
     // Use audio duration for spin time (fallback to 5s if not loaded)
     const spinDuration = audioSpin.duration ? audioSpin.duration * 1000 : 5000;
@@ -562,14 +583,24 @@ function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isT
         }, 500);
     };
 
+    // Report progress to LMS / SCORM
+    if (window.LMSAdapter) {
+        const questionEl = document.getElementById('question-text');
+        window.LMSAdapter.reportProgress(questionEl ? questionEl.textContent : '', isCorrect, isDouble ? points * 2 : points);
+    }
+
     const audioToPlay = isCorrect ? audioRight : audioWrong;
     audioToPlay.currentTime = 0;
     audioToPlay.onended = proceed;
     
-    audioToPlay.play().catch(e => {
-        console.log("Audio play failed", e);
-        setTimeout(proceed, 2000);
-    });
+    if (window.LMSAdapter) {
+        window.LMSAdapter.safePlayAudio(audioToPlay, isCorrect ? 'correct' : 'wrong');
+    } else {
+        audioToPlay.play().catch(e => {
+            console.log("Audio play failed", e);
+            setTimeout(proceed, 2000);
+        });
+    }
     
     // Fallback timer just in case audio fails to trigger onended
     setTimeout(proceed, 5000);
@@ -697,7 +728,12 @@ function showGameOver() {
     }
     
     audioIntro.pause();
-    audioClap.play();
+    if (window.LMSAdapter) {
+        window.LMSAdapter.safePlayAudio(audioClap, 'victory');
+        window.LMSAdapter.reportComplete(winner, sortedPlayers, currentMaxRounds);
+    } else {
+        audioClap.play().catch(() => {});
+    }
     modal.classList.add('show');
 }
 

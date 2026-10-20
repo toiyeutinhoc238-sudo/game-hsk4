@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="HSK4_Magic_Wheel_SCORM12" version="1.2"
+          xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                              http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations default="HSK4_Default_Org">
+    <organization identifier="HSK4_Default_Org">
+      <title>Chiếc Nón Kỳ Diệu - HSK 4 Edition</title>
+      <item identifier="ITEM_HSK4_MAGIC_WHEEL" identifierref="RES_HSK4_MAGIC_WHEEL">
+        <title>Chiếc Nón Kỳ Diệu - Ôn Luyện Từ Vựng Tiếng Trung HSK 4</title>
+        <adlcp:masteryscore>60</adlcp:masteryscore>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES_HSK4_MAGIC_WHEEL" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html" />
+      <file href="style.css" />
+      <file href="data.js" />
+      <file href="script.js" />
+      <file href="lms-adapter.js" />
+      <file href="background.png" />
+      <file href="wheel_3d.png" />
+      <file href="nhac_nen/modau.mp3" />
+      <file href="nhac_nen/quayvongquay.mp3" />
+      <file href="nhac_nen/dung.mp3" />
+      <file href="nhac_nen/sai.mp3" />
+      <file href="nhac_nen/votay.mp3" />
+    </resource>
+  </resources>
+</manifest>
