@@ -408,7 +408,31 @@
                 targetUrl.searchParams.delete('state');
                 targetUrl.hash = '';
                 targetUrl.searchParams.set('popout', '1');
-                const win = window.open(targetUrl.toString(), 'HSK4_Standalone_Game', 'width=1240,height=880,resizable=yes');
+                
+                let win = null;
+                try {
+                    win = window.open(targetUrl.toString(), 'HSK4_Standalone_Game', 'width=1240,height=880,resizable=yes');
+                } catch (e) {}
+
+                if (!win || win.closed || typeof win.closed === 'undefined') {
+                    try { win = window.open(targetUrl.toString(), 'HSK4_Standalone_Game'); } catch (e) {}
+                }
+
+                if (!win || win.closed || typeof win.closed === 'undefined') {
+                    try { win = window.open(targetUrl.toString(), '_blank'); } catch (e) {}
+                }
+
+                if (!win || win.closed || typeof win.closed === 'undefined') {
+                    const a = document.createElement('a');
+                    a.href = targetUrl.toString();
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    win = true;
+                }
+
                 if (win) {
                     this.showToast("🚀 Đang mở trò chơi ở cửa sổ mới...");
                     return;

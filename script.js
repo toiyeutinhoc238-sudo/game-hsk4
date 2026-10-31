@@ -925,8 +925,7 @@ function initSyncEngine() {
     const params = new URLSearchParams(window.location.search);
     isChildWindow = Boolean(
         params.get('popout') === '1' ||
-        params.get('mode') === 'popup' ||
-        (window.opener && window.opener !== window && window.name === 'HSK4_Standalone_Game')
+        params.get('mode') === 'popup'
     );
     window.isChildWindow = isChildWindow;
 
@@ -955,6 +954,16 @@ function initSyncEngine() {
         };
         window.addEventListener('beforeunload', handleUnload);
         window.addEventListener('pagehide', handleUnload);
+    } else {
+        const popoutBtn = document.getElementById('popout-btn');
+        if (popoutBtn) {
+            popoutBtn.title = "Mở ở cửa sổ mới (Đồng bộ tiến trình)";
+            popoutBtn.setAttribute('aria-label', "Mở ở cửa sổ mới");
+            popoutBtn.onclick = function (e) {
+                if (e && e.preventDefault) e.preventDefault();
+                openGameInNewWindow(e);
+            };
+        }
     }
 
     // 2. Setup BroadcastChannel (Same-origin instant bus)
@@ -1363,20 +1372,34 @@ function openGameInNewWindow(e) {
         return;
     }
 
-    if (window.childGameWindow && !window.childGameWindow.closed) {
-        try { window.childGameWindow.focus(); } catch (err) {}
-        return;
+    // If an existing child window is already open and valid, bring it to focus
+    if (window.childGameWindow) {
+        let isAlive = false;
+        try {
+            isAlive = !window.childGameWindow.closed;
+        } catch (err) {
+            isAlive = false;
+        }
+        if (isAlive) {
+            try {
+                window.childGameWindow.focus();
+                if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+                    window.LMSAdapter.showToast("🗗 Đã chuyển tới cửa sổ game đang mở!");
+                }
+                return;
+            } catch (err) {}
+        }
     }
 
     // 1. Pause countdown timer and audio in LMS parent window (matches HSK 2)
     if (typeof window.pauseTimer === 'function') {
         window.pauseTimer();
     }
-    if (typeof audioIntro !== 'undefined' && !audioIntro.paused) {
-        audioIntro.pause();
+    if (typeof audioIntro !== 'undefined' && audioIntro && !audioIntro.paused) {
+        try { audioIntro.pause(); } catch (err) {}
     }
-    if (typeof audioSpin !== 'undefined' && !audioSpin.paused) {
-        audioSpin.pause();
+    if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
+        try { audioSpin.pause(); } catch (err) {}
     }
 
     // 2. Snapshot current state
@@ -1389,6 +1412,7 @@ function openGameInNewWindow(e) {
     if (window.safeStorage) {
         window.safeStorage.setItem('hsk4_synced_state', stateStr);
         window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
+        window.safeStorage.setItem('hsk4_active_session', snapshot.syncSessionId);
     }
 
     if (window.gameSyncChannel) {
@@ -1397,19 +1421,15 @@ function openGameInNewWindow(e) {
         } catch (err) {}
     }
 
-    // 3. Show Parent LMS Sync Overlay
-    const syncModal = document.getElementById('sync-active-modal');
-    if (syncModal) {
-        syncModal.classList.add('show');
-        updateSyncOverlayInfo(snapshot);
-    }
-
-    // 4. Clean URL (Short & Safe, identical to HSK 2)
+    // 3. Clean URL (Short & Safe, identical to HSK 2)
     const targetUrl = new URL(window.location.href);
     targetUrl.searchParams.delete('state');
     targetUrl.hash = '';
     targetUrl.searchParams.set('popout', '1');
     targetUrl.searchParams.set('session', snapshot.syncSessionId);
+    if (selectedTopic && selectedTopic !== 'Tất cả') {
+        targetUrl.searchParams.set('topic', selectedTopic);
+    }
 
     const w = Math.min(1240, window.screen.availWidth - 40);
     const h = Math.min(880, window.screen.availHeight - 60);
@@ -1417,16 +1437,52 @@ function openGameInNewWindow(e) {
     const top = Math.max(0, Math.floor((window.screen.availHeight - h) / 2));
     const windowFeatures = `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`;
 
-    // Standard static window name 'HSK4_Standalone_Game' (matches HSK 2 architecture)
+    // 4. Multi-tier Opening Strategy (Guarantees success across LMS iFrames & Browser popup blockers)
     let child = null;
+
+    // Strategy 1: Standalone Popup Window (Matches HSK 2 preferred UX)
     try {
         child = window.open(targetUrl.toString(), 'HSK4_Standalone_Game', windowFeatures);
     } catch (err) {
-        console.warn("window.open failed:", err);
+        console.warn("[Popout] window.open with features failed/blocked:", err);
     }
 
+    // Strategy 2: Named Window without features (Browser tab, far less restricted)
     if (!child || child.closed || typeof child.closed === 'undefined') {
-        if (syncModal) syncModal.classList.remove('show');
+        try {
+            child = window.open(targetUrl.toString(), 'HSK4_Standalone_Game');
+        } catch (err) {
+            console.warn("[Popout] window.open named tab failed:", err);
+        }
+    }
+
+    // Strategy 3: Standard New Tab (_blank)
+    if (!child || child.closed || typeof child.closed === 'undefined') {
+        try {
+            child = window.open(targetUrl.toString(), '_blank');
+        } catch (err) {
+            console.warn("[Popout] window.open _blank failed:", err);
+        }
+    }
+
+    // Strategy 4: Anchor Click Fallback (Bypasses strict iframe sandboxes in modern browsers)
+    if (!child || child.closed || typeof child.closed === 'undefined') {
+        try {
+            const a = document.createElement('a');
+            a.href = targetUrl.toString();
+            a.target = '_blank';
+            a.rel = 'noopener';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+                window.LMSAdapter.showToast("🚀 Đang mở trò chơi ở tab mới...");
+            }
+            return;
+        } catch (err) {
+            console.warn("[Popout] Anchor click fallback failed:", err);
+        }
+
         if (typeof window.resumeTimer === 'function') window.resumeTimer();
         if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
             window.LMSAdapter.showToast("⚠️ Vui lòng cho phép popup trên trình duyệt của bạn!");
@@ -1436,19 +1492,41 @@ function openGameInNewWindow(e) {
 
     window.childGameWindow = child;
 
-    // Monitor child window closure (Poller identical to HSK 2)
-    if (window.childCheckInterval) clearInterval(window.childCheckInterval);
-    window.childCheckInterval = setInterval(() => {
-        if (!window.childGameWindow || window.childGameWindow.closed) {
-            clearInterval(window.childCheckInterval);
-            window.childCheckInterval = null;
-            resumeInThisWindow();
-        }
-    }, 350);
+    // 5. Show Parent LMS Sync Overlay ONLY when game is actively running (Matches HSK 2)
+    const syncModal = document.getElementById('sync-active-modal');
+    if (syncModal && snapshot.stage !== 'setup') {
+        syncModal.classList.add('show');
+        updateSyncOverlayInfo(snapshot);
+    }
 
     if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-        window.LMSAdapter.showToast("🚀 Đang mở game ở cửa sổ mới! Màn hình LMS tạm dừng và chờ đồng bộ.");
+        window.LMSAdapter.showToast("🚀 Đang chơi tại cửa sổ mới! Màn hình LMS tạm dừng và chờ đồng bộ.");
     }
+
+    // 6. Safe poller to detect child window closure (Grace period + try-catch)
+    if (window.childCheckInterval) {
+        clearInterval(window.childCheckInterval);
+        window.childCheckInterval = null;
+    }
+
+    setTimeout(() => {
+        if (!window.childGameWindow) return;
+        window.childCheckInterval = setInterval(() => {
+            let isClosed = false;
+            try {
+                isClosed = !window.childGameWindow || window.childGameWindow.closed;
+            } catch (err) {
+                // If cross-origin or security exception, don't assume closed immediately
+                isClosed = false;
+            }
+            if (isClosed) {
+                clearInterval(window.childCheckInterval);
+                window.childCheckInterval = null;
+                window.childGameWindow = null;
+                resumeInThisWindow(false);
+            }
+        }, 600);
+    }, 1500);
 }
 
 /**
@@ -1466,17 +1544,22 @@ function closePopoutAndReturnToLMS() {
 
 /**
  * Resume playing directly in the Parent LMS window (Matches HSK 2 Architecture)
+ * @param {boolean} forceCloseChild - whether user explicitly clicked to force close child window
  */
-function resumeInThisWindow() {
+function resumeInThisWindow(forceCloseChild = false) {
     if (window.childCheckInterval) {
         clearInterval(window.childCheckInterval);
         window.childCheckInterval = null;
     }
 
-    if (window.childGameWindow && !window.childGameWindow.closed) {
-        try { window.childGameWindow.close(); } catch (e) {}
+    if (forceCloseChild && window.childGameWindow) {
+        try {
+            if (!window.childGameWindow.closed) {
+                window.childGameWindow.close();
+            }
+        } catch (e) {}
+        window.childGameWindow = null;
     }
-    window.childGameWindow = null;
 
     const syncModal = document.getElementById('sync-active-modal');
     if (syncModal) syncModal.classList.remove('show');
@@ -1494,8 +1577,11 @@ function resumeInThisWindow() {
         if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
             if (stateToApply.isGameOver) {
                 window.LMSAdapter.showToast("🏆 Đã đồng bộ kết quả từ cửa sổ mới!");
+            } else if (stateToApply.stage === 'playing') {
+                const round = Math.floor((stateToApply.currentSpinCount || 0) / ((stateToApply.players && stateToApply.players.length) || 1)) + 1;
+                window.LMSAdapter.showToast(`🎮 Đã đồng bộ tiến trình! Tiếp tục vòng ${round}/${stateToApply.currentMaxRounds || 7}`);
             } else {
-                window.LMSAdapter.showToast("🎮 Đã đồng bộ tiến trình từ cửa sổ mới! Tiếp tục cuộc chơi.");
+                window.LMSAdapter.showToast("🎮 Đã đồng bộ tiến trình từ cửa sổ mới!");
             }
         }
     } else {
@@ -1507,11 +1593,14 @@ function resumeInThisWindow() {
  * Focus the active Child Window from Parent
  */
 function focusChildWindow() {
-    if (window.childGameWindow && !window.childGameWindow.closed) {
-        try { window.childGameWindow.focus(); } catch (e) {}
-    } else {
-        openGameInNewWindow();
+    let isAlive = false;
+    if (window.childGameWindow) {
+        try { isAlive = !window.childGameWindow.closed; } catch (e) { isAlive = false; }
     }
+    if (isAlive) {
+        try { window.childGameWindow.focus(); return; } catch (e) {}
+    }
+    openGameInNewWindow();
 }
 
 /**
