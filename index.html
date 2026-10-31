@@ -20,10 +20,21 @@
     <div class="bg-fixed-layer"></div>
     <div class="bg-overlay-layer"></div>
 
-    <!-- Sound Control (Fixed Top Right) -->
-    <button id="sound-toggle" class="sound-control" onclick="toggleSound()" title="Bật/Tắt âm thanh" aria-label="Bật/Tắt âm thanh">
-        <span class="icon">🔊</span>
-    </button>
+    <!-- Top Control Bar (Fixed Top Right: Popout Window, Sound) -->
+    <div class="top-controls">
+        <button id="popout-btn" class="control-btn" onclick="openStandaloneWindow()" title="Mở ở cửa sổ mới (Tự động đồng bộ tiến trình)" aria-label="Mở ở cửa sổ mới">
+            <span class="icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </span>
+        </button>
+        <button id="sound-toggle" class="control-btn sound-control" onclick="toggleSound()" title="Bật/Tắt âm thanh" aria-label="Bật/Tắt âm thanh">
+            <span class="icon">🔊</span>
+        </button>
+    </div>
 
     <!-- LMS Toast Notification -->
     <div id="lms-toast" class="lms-toast"></div>
@@ -177,6 +188,54 @@
             </div>
 
             <button class="option-btn restart-btn" onclick="location.reload()">CHƠI LẠI</button>
+        </div>
+    </div>
+
+    <!-- Real-time Synchronization Overlay (Shown on Parent LMS when Child Window is Active) -->
+    <div id="sync-active-modal" class="modal sync-modal" onclick="if (event.target === this) resumeInThisWindow()">
+        <div class="modal-content sync-modal-content">
+            <button class="modal-close-btn" onclick="resumeInThisWindow()" title="Đóng & Tiếp tục chơi tại đây" aria-label="Đóng overlay">✕</button>
+            <div class="sync-badge">
+                <span class="sync-dot"></span>
+                <span>ĐỒNG BỘ THỜI GIAN THỰC</span>
+            </div>
+            
+            <div class="sync-icon-box">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </div>
+
+            <h2 class="sync-title">Trò Chơi Đang Mở Ở Cửa Sổ Mới</h2>
+            <p class="sync-description">
+                Bạn đang chơi trên cửa sổ mới. Mọi lượt quay, câu hỏi và điểm số đang được tự động đồng bộ về LMS theo thời gian thực.
+            </p>
+
+            <div class="sync-status-card">
+                <div class="sync-info-item">
+                    <span class="sync-info-label">Chủ đề</span>
+                    <span id="sync-overlay-topic" class="sync-info-val">-</span>
+                </div>
+                <div class="sync-info-item">
+                    <span class="sync-info-label">Vòng chơi</span>
+                    <span id="sync-overlay-round" class="sync-info-val">1 / 7</span>
+                </div>
+                <div class="sync-info-item">
+                    <span class="sync-info-label">Lượt quay</span>
+                    <span id="sync-overlay-turn" class="sync-info-val">-</span>
+                </div>
+            </div>
+
+            <div class="sync-modal-actions">
+                <button class="option-btn sync-focus-btn" onclick="focusChildWindow()">
+                    🗗 Chuyển Sang Cửa Sổ Mới
+                </button>
+                <button class="option-btn sync-resume-btn" onclick="resumeInThisWindow()">
+                    ▶ Tiếp Tục Chơi Tại Màn Hình Này
+                </button>
+            </div>
         </div>
     </div>
 

@@ -69,11 +69,12 @@ const audioWrong = new Audio('nhac_nen/sai.mp3');
 
 function toggleSound() {
     isMuted = !isMuted;
-    const icon = document.querySelector('.sound-control .icon');
-    icon.textContent = isMuted ? '🔇' : '🔊';
+    const icon = document.querySelector('#sound-toggle .icon');
+    if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
     
     audioIntro.muted = isMuted;
     if (!isMuted) startIntro();
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 function startIntro() {
@@ -165,6 +166,7 @@ function selectTopic(topic, updateUrl = true) {
     
     document.getElementById('topic-selection-step').style.display = 'none';
     document.getElementById('player-count-step').style.display = 'block';
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 function checkUrlParams() {
@@ -195,6 +197,7 @@ function checkUrlParams() {
 function backToTopics() {
     document.getElementById('player-count-step').style.display = 'none';
     document.getElementById('topic-selection-step').style.display = 'block';
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 function selectPlayers(count) {
@@ -202,6 +205,7 @@ function selectPlayers(count) {
     window.tempPlayerCount = count;
     document.getElementById('player-count-step').style.display = 'none';
     document.getElementById('rules-step').style.display = 'block';
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 function startCountdown() {
@@ -245,6 +249,7 @@ function setupGame(count, topic) {
     currentMaxRounds = 7;
     updateStatus();
     updateScoreboard();
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 // DOM Elements
@@ -264,7 +269,13 @@ function init() {
         drawWheel();
         updateScoreboard();
         populateTopics();
-        checkUrlParams();
+        
+        // Only check URL params if not in popup mode (popup mode uses synchronized state)
+        const isPopup = window.location.search.includes('mode=popup') || (window.name && window.name.startsWith('HSK4_POPUP_'));
+        if (!isPopup) {
+            checkUrlParams();
+        }
+        initSyncEngine();
     } else {
         console.error('Failed to load vocabulary data: VOCAB_DATA is not defined.');
     }
@@ -524,8 +535,20 @@ function showQuestion(points, isDouble = false) {
         optionsGrid.appendChild(btn);
     });
     
+    window.currentActiveQuestionData = {
+        badgeText: isDouble ? `GẤP ĐÔI ĐIỂM` : `${points} Điểm`,
+        questionHtml: questionEl.innerHTML,
+        pinyin: pinyinEl.textContent,
+        options: options,
+        correctAnswer: correctAnswer,
+        points: points,
+        isDouble: isDouble,
+        currentWordVocab: word.vocab
+    };
+
     questionModal.classList.add('show');
     startTimer(correctAnswer);
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 let timerInterval;
@@ -569,6 +592,7 @@ function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isT
     const proceed = () => {
         if (proceeded) return;
         proceeded = true;
+        window.currentActiveQuestionData = null;
         
         if (isCorrect) {
             finishTurn(`Chính xác! Bạn nhận được ${isDouble ? 'gấp đôi' : points} điểm.`, true, 1000);
@@ -637,6 +661,8 @@ function startTargeting(actionTitle, callback) {
     statusHighlight.style.color = 'var(--accent)';
     
     document.body.classList.add('targeting-mode');
+    window.currentActiveActionTitle = actionTitle;
+    if (typeof broadcastGameState === 'function') broadcastGameState();
     
     // Add click listeners to scoreboard items
     const cards = document.querySelectorAll('.player-card');
@@ -646,6 +672,8 @@ function startTargeting(actionTitle, callback) {
                 // Remove listeners and cleanup
                 cards.forEach(c => c.onclick = null);
                 document.body.classList.remove('targeting-mode');
+                window.currentActiveActionTitle = null;
+                if (typeof broadcastGameState === 'function') broadcastGameState();
                 
                 // Execute action
                 callback(players[index]);
@@ -663,6 +691,8 @@ function finishTurn(message, success = null, delay = 3000) {
     if (success === true) lastResultDisplay.style.color = 'var(--success)';
     else if (success === false) lastResultDisplay.style.color = 'var(--error)';
     else lastResultDisplay.style.color = 'var(--accent)';
+
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 
     setTimeout(() => {
         currentSpinCount++;
@@ -694,6 +724,7 @@ function nextTurn() {
     // Update round display
     const round = Math.floor(currentSpinCount / players.length) + 1;
     document.getElementById('round-display').textContent = `${round} / ${currentMaxRounds}`;
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 function showGameOver() {
@@ -735,6 +766,7 @@ function showGameOver() {
         audioClap.play().catch(() => {});
     }
     modal.classList.add('show');
+    if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
 // UI Updates
@@ -765,5 +797,577 @@ init();
 
 // Handle browser back button
 window.addEventListener('popstate', () => {
-    window.location.reload();
+    if (!window.isChildWindow) {
+        window.location.reload();
+    }
 });
+
+/* ==========================================================================
+   REAL-TIME TWO-WAY STATE SYNCHRONIZATION ENGINE
+   Tương thích đa cửa sổ & LMS iFrame (Moodle, Canvas, SCORM, Popup Window)
+   ========================================================================== */
+
+let isChildWindow = false;
+let childGameWindow = null;
+let childCheckInterval = null;
+let gameSyncChannel = null;
+window.currentActiveQuestionData = null;
+window.currentActiveActionTitle = null;
+
+/**
+ * Initialize Real-time Synchronization Engine
+ */
+function initSyncEngine() {
+    isChildWindow = Boolean(
+        (window.name && window.name.startsWith('HSK4_POPUP_')) ||
+        window.location.search.includes('mode=popup') ||
+        (window.opener && window.opener !== window)
+    );
+    window.isChildWindow = isChildWindow;
+
+    // 1. Setup UI for child popup window
+    if (isChildWindow) {
+        document.body.classList.add('is-child-window');
+        const popoutBtn = document.getElementById('popout-btn');
+        if (popoutBtn) {
+            popoutBtn.title = "Lưu & Đóng cửa sổ (Quay lại LMS)";
+            popoutBtn.setAttribute('aria-label', 'Đóng cửa sổ và quay lại LMS');
+            popoutBtn.onclick = closeStandaloneChildWindow;
+            const iconSpan = popoutBtn.querySelector('.icon');
+            if (iconSpan) {
+                iconSpan.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                `;
+            }
+        }
+
+        window.addEventListener('beforeunload', handleChildClose);
+        window.addEventListener('unload', handleChildClose);
+    }
+
+    // 2. Setup BroadcastChannel (Same-origin instant bus)
+    if (typeof BroadcastChannel !== 'undefined') {
+        try {
+            gameSyncChannel = new BroadcastChannel('hsk4_game_sync_bus');
+            gameSyncChannel.onmessage = (event) => {
+                if (!event || !event.data) return;
+                handleIncomingSyncMessage(event.data);
+            };
+        } catch (e) {
+            console.warn("[Sync] BroadcastChannel not available:", e);
+        }
+    }
+    window.gameSyncChannel = gameSyncChannel;
+
+    // 3. Setup postMessage Listener (Cross-window & LMS iFrame bridge)
+    window.addEventListener('message', (event) => {
+        if (!event || !event.data) return;
+        handleIncomingSyncMessage(event.data);
+    });
+
+    // 4. Setup LocalStorage listener for cross-tab sync fallback
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'hsk4_game_sync_state' && event.newValue) {
+            try {
+                const state = JSON.parse(event.newValue);
+                importGameState(state, false);
+            } catch (e) {}
+        }
+    });
+
+    // 5. If child window, restore state immediately
+    if (isChildWindow) {
+        let stateImported = false;
+
+        // Try window.name (instant synchronous transfer across window.open)
+        if (window.name && window.name.startsWith('HSK4_POPUP_')) {
+            try {
+                const raw = decodeURIComponent(window.name.substring(11));
+                const state = JSON.parse(raw);
+                importGameState(state, false);
+                stateImported = true;
+            } catch (e) {
+                console.warn("[Sync] Could not parse window.name state:", e);
+            }
+        }
+
+        // Fallback to safeStorage
+        if (!stateImported && window.safeStorage) {
+            const saved = window.safeStorage.getItem('hsk4_game_sync_state');
+            if (saved) {
+                try {
+                    const state = JSON.parse(saved);
+                    importGameState(state, false);
+                    stateImported = true;
+                } catch (e) {}
+            }
+        }
+
+        // Notify parent LMS window that child is ready
+        if (window.opener && !window.opener.closed) {
+            try {
+                window.opener.postMessage({ type: 'HSK4_CHILD_READY' }, '*');
+            } catch (e) {}
+        }
+    }
+}
+
+/**
+ * Handle Incoming Messages across postMessage & BroadcastChannel
+ */
+function handleIncomingSyncMessage(data) {
+    if (!data) return;
+    const type = data.type || data.action;
+
+    if (type === 'HSK4_STATE_SYNC' && data.state) {
+        importGameState(data.state, false);
+        updateSyncOverlayInfo(data.state);
+    } else if (type === 'HSK4_CHILD_READY') {
+        if (window.childGameWindow && !window.childGameWindow.closed) {
+            try {
+                window.childGameWindow.postMessage({
+                    type: 'HSK4_STATE_SYNC',
+                    state: exportGameState()
+                }, '*');
+            } catch (e) {}
+        }
+    } else if (type === 'HSK4_CHILD_CLOSING') {
+        if (data.state) {
+            importGameState(data.state, false);
+        }
+        onChildWindowClosed();
+    } else if (type === 'HSK4_PARENT_RESUMED') {
+        if (isChildWindow && window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+            window.LMSAdapter.showToast("⚠️ Bạn đã chọn tiếp tục chơi trên màn hình LMS.");
+        }
+    }
+}
+
+/**
+ * Export complete current game state snapshot
+ */
+function exportGameState() {
+    let stage = 'playing';
+    let step = null;
+    const setupScreen = document.getElementById('setup-screen');
+    const questionModal = document.getElementById('question-modal');
+    const gameOverModal = document.getElementById('game-over-modal');
+
+    if (setupScreen && setupScreen.classList.contains('show')) {
+        stage = 'setup';
+        const playerCountStep = document.getElementById('player-count-step');
+        const rulesStep = document.getElementById('rules-step');
+        const countdownStep = document.getElementById('countdown-step');
+        
+        if (countdownStep && countdownStep.style.display !== 'none') {
+            step = 'countdown';
+        } else if (rulesStep && rulesStep.style.display !== 'none') {
+            step = 'rules';
+        } else if (playerCountStep && playerCountStep.style.display !== 'none') {
+            step = 'player_count';
+        } else {
+            step = 'topic';
+        }
+    } else if (gameOverModal && gameOverModal.classList.contains('show')) {
+        stage = 'game_over';
+    }
+
+    let activeQuestion = null;
+    if (questionModal && questionModal.classList.contains('show') && window.currentActiveQuestionData) {
+        activeQuestion = {
+            isOpen: true,
+            ...window.currentActiveQuestionData
+        };
+    }
+
+    let activeAction = null;
+    if (document.body.classList.contains('targeting-mode')) {
+        activeAction = {
+            isTargeting: true,
+            actionTitle: window.currentActiveActionTitle || '',
+            lastResultText: lastResultDisplay ? lastResultDisplay.textContent : ''
+        };
+    }
+
+    return {
+        stage: stage,
+        step: step,
+        tempSelectedTopic: window.tempSelectedTopic || null,
+        tempPlayerCount: window.tempPlayerCount || null,
+        selectedTopic: selectedTopic || null,
+        players: players ? JSON.parse(JSON.stringify(players)) : [],
+        currentPlayerIndex: currentPlayerIndex,
+        currentSpinCount: currentSpinCount,
+        currentMaxRounds: currentMaxRounds,
+        currentRotation: currentRotation,
+        lastResult: {
+            text: lastResultDisplay ? lastResultDisplay.textContent : '-',
+            color: lastResultDisplay ? lastResultDisplay.style.color : ''
+        },
+        remainingVocabWords: currentSessionVocab ? currentSessionVocab.map(v => v.vocab) : [],
+        activeQuestion: activeQuestion,
+        activeAction: activeAction,
+        isGameOver: stage === 'game_over',
+        isMuted: isMuted,
+        timestamp: Date.now()
+    };
+}
+
+/**
+ * Restore game state from state snapshot
+ */
+function importGameState(state, shouldBroadcast = false) {
+    if (!state) return;
+
+    // Stop any ongoing question countdown
+    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+
+    // 1. Audio Mute State
+    if (typeof state.isMuted === 'boolean') {
+        isMuted = state.isMuted;
+        const soundIcon = document.querySelector('#sound-toggle .icon');
+        if (soundIcon) soundIcon.textContent = isMuted ? '🔇' : '🔊';
+        if (typeof audioIntro !== 'undefined') audioIntro.muted = isMuted;
+    }
+
+    // 2. Setup Screen State
+    if (state.stage === 'setup') {
+        const setupScreen = document.getElementById('setup-screen');
+        if (setupScreen) setupScreen.classList.add('show');
+        document.getElementById('question-modal').classList.remove('show');
+        document.getElementById('game-over-modal').classList.remove('show');
+        document.body.classList.remove('targeting-mode');
+
+        document.getElementById('topic-selection-step').style.display = 'none';
+        document.getElementById('player-count-step').style.display = 'none';
+        document.getElementById('rules-step').style.display = 'none';
+        document.getElementById('countdown-step').style.display = 'none';
+
+        if (state.step === 'player_count' && state.tempSelectedTopic) {
+            window.tempSelectedTopic = state.tempSelectedTopic;
+            document.getElementById('player-count-step').style.display = 'block';
+        } else if (state.step === 'rules' && state.tempSelectedTopic && state.tempPlayerCount) {
+            window.tempSelectedTopic = state.tempSelectedTopic;
+            window.tempPlayerCount = state.tempPlayerCount;
+            document.getElementById('rules-step').style.display = 'block';
+        } else {
+            document.getElementById('topic-selection-step').style.display = 'block';
+        }
+        if (shouldBroadcast) broadcastGameState();
+        return;
+    }
+
+    // 3. Playing / Game Over State
+    const setupScreen = document.getElementById('setup-screen');
+    if (setupScreen) setupScreen.classList.remove('show');
+
+    // Explicitly hide all setup step views
+    const topicStep = document.getElementById('topic-selection-step');
+    const playerStep = document.getElementById('player-count-step');
+    const rulesStep = document.getElementById('rules-step');
+    const countdownStep = document.getElementById('countdown-step');
+    if (topicStep) topicStep.style.display = 'none';
+    if (playerStep) playerStep.style.display = 'none';
+    if (rulesStep) rulesStep.style.display = 'none';
+    if (countdownStep) countdownStep.style.display = 'none';
+
+    selectedTopic = state.selectedTopic || "Tất cả";
+    const currentStatusEl = document.querySelector('.current-status');
+    if (currentStatusEl) currentStatusEl.textContent = `Chủ đề: ${selectedTopic}`;
+
+    if (typeof vocabData !== 'undefined' && vocabData.length > 0) {
+        if (selectedTopic === "Tất cả") {
+            filteredVocab = vocabData;
+        } else {
+            filteredVocab = vocabData.filter(v => v.topic.split(',').map(t => t.trim()).includes(selectedTopic));
+        }
+
+        if (state.remainingVocabWords && Array.isArray(state.remainingVocabWords) && state.remainingVocabWords.length > 0) {
+            currentSessionVocab = filteredVocab.filter(v => state.remainingVocabWords.includes(v.vocab));
+            if (currentSessionVocab.length === 0) {
+                currentSessionVocab = [...filteredVocab].sort(() => Math.random() - 0.5);
+            }
+        } else {
+            currentSessionVocab = [...filteredVocab].sort(() => Math.random() - 0.5);
+        }
+    }
+
+    players = state.players ? JSON.parse(JSON.stringify(state.players)) : [];
+    currentPlayerIndex = typeof state.currentPlayerIndex === 'number' ? state.currentPlayerIndex : 0;
+    currentSpinCount = typeof state.currentSpinCount === 'number' ? state.currentSpinCount : 0;
+    currentMaxRounds = typeof state.currentMaxRounds === 'number' ? state.currentMaxRounds : 7;
+    currentRotation = typeof state.currentRotation === 'number' ? state.currentRotation : 0;
+
+    if (canvas) {
+        canvas.style.transition = 'none';
+        canvas.style.transform = `rotate(${currentRotation}rad)`;
+    }
+
+    updateScoreboard();
+    updateStatus();
+
+    const round = Math.floor(currentSpinCount / (players.length || 1)) + 1;
+    const roundDisplay = document.getElementById('round-display');
+    if (roundDisplay) roundDisplay.textContent = `${round} / ${currentMaxRounds}`;
+
+    if (state.lastResult && lastResultDisplay) {
+        lastResultDisplay.textContent = state.lastResult.text || "-";
+        lastResultDisplay.style.color = state.lastResult.color || 'var(--text)';
+    }
+
+    isSpinning = false;
+    spinBtn.disabled = false;
+
+    // Restore Question Modal
+    if (state.activeQuestion && state.activeQuestion.isOpen) {
+        const q = state.activeQuestion;
+        window.currentActiveQuestionData = q;
+        const badgeEl = document.getElementById('question-points-badge');
+        const questionEl = document.getElementById('question-text');
+        const pinyinEl = document.getElementById('question-pinyin');
+        const optionsGrid = document.getElementById('options-grid');
+
+        if (badgeEl) badgeEl.textContent = q.badgeText || `${q.points} Điểm`;
+        if (questionEl) questionEl.innerHTML = q.questionHtml || '';
+        if (pinyinEl) pinyinEl.textContent = q.pinyin || '';
+
+        if (optionsGrid && q.options) {
+            optionsGrid.innerHTML = '';
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt.toLowerCase();
+                btn.onclick = (e) => checkAnswer(opt.toLowerCase() === q.correctAnswer.toLowerCase(), q.points, q.isDouble, e.target, q.correctAnswer.toLowerCase());
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        document.getElementById('question-modal').classList.add('show');
+        startTimer(q.correctAnswer);
+    } else {
+        document.getElementById('question-modal').classList.remove('show');
+        window.currentActiveQuestionData = null;
+    }
+
+    // Restore Targeting Action (Steal / Swap)
+    if (state.activeAction && state.activeAction.isTargeting) {
+        if (state.activeAction.actionTitle === 'CƯỚP ĐIỂM') {
+            showStealDialog();
+        } else if (state.activeAction.actionTitle === 'HOÁN ĐỔI ĐIỂM') {
+            showSwapDialog();
+        }
+    } else {
+        document.body.classList.remove('targeting-mode');
+        window.currentActiveActionTitle = null;
+    }
+
+    // Restore Game Over Modal
+    if (state.isGameOver) {
+        showGameOver();
+    } else {
+        document.getElementById('game-over-modal').classList.remove('show');
+    }
+
+    if (shouldBroadcast) broadcastGameState();
+}
+
+/**
+ * Broadcast current game state across all active channels
+ */
+function broadcastGameState() {
+    const state = exportGameState();
+    const stateStr = JSON.stringify(state);
+
+    if (window.safeStorage) {
+        window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
+    }
+
+    const msg = { type: 'HSK4_STATE_SYNC', state: state };
+
+    if (window.gameSyncChannel) {
+        try { window.gameSyncChannel.postMessage(msg); } catch (e) {}
+    }
+
+    if (window.opener && window.opener !== window && !window.opener.closed) {
+        try { window.opener.postMessage(msg, '*'); } catch (e) {}
+    }
+
+    if (window.childGameWindow && !window.childGameWindow.closed) {
+        try { window.childGameWindow.postMessage(msg, '*'); } catch (e) {}
+    }
+
+    updateSyncOverlayInfo(state);
+}
+
+/**
+ * Open Game in Dedicated Standalone Window with State Handover
+ */
+function openStandaloneWindow() {
+    if (window.childGameWindow && !window.childGameWindow.closed) {
+        window.childGameWindow.focus();
+        return;
+    }
+
+    const state = exportGameState();
+    const stateStr = JSON.stringify(state);
+    if (window.safeStorage) {
+        window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
+    }
+
+    const w = Math.min(1240, Math.floor(window.screen.availWidth * 0.95));
+    const h = Math.min(880, Math.floor(window.screen.availHeight * 0.95));
+    const left = Math.max(0, Math.floor((window.screen.availWidth - w) / 2));
+    const top = Math.max(0, Math.floor((window.screen.availHeight - h) / 2));
+
+    // Use clean base URL so child popup isn't forced into topic selection by URL params
+    const baseUrl = window.location.href.split('?')[0].split('#')[0];
+    const targetUrl = baseUrl + '?mode=popup';
+
+    const winName = 'HSK4_POPUP_' + encodeURIComponent(stateStr);
+    const child = window.open(targetUrl, winName, `width=${w},height=${h},top=${top},left=${left},resizable=yes,scrollbars=yes`);
+
+    if (!child || child.closed || typeof child.closed === 'undefined') {
+        if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+            window.LMSAdapter.showToast("⚠️ Trình duyệt đã chặn cửa sổ mới. Vui lòng cho phép popup.");
+        }
+        return;
+    }
+
+    window.childGameWindow = child;
+
+    // Show Parent LMS Sync Overlay
+    const syncModal = document.getElementById('sync-active-modal');
+    if (syncModal) {
+        syncModal.classList.add('show');
+        updateSyncOverlayInfo(state);
+    }
+
+    // Monitor child window closure
+    if (window.childCheckInterval) clearInterval(window.childCheckInterval);
+    window.childCheckInterval = setInterval(() => {
+        if (window.childGameWindow && window.childGameWindow.closed) {
+            onChildWindowClosed();
+        }
+    }, 400);
+
+    if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+        window.LMSAdapter.showToast("🚀 Đang mở game ở cửa sổ mới với tiến trình hiện tại...");
+    }
+}
+
+/**
+ * Handle Child Window Closure & Synchronize Back to LMS Parent
+ */
+function handleChildClose() {
+    const finalState = exportGameState();
+    const stateStr = JSON.stringify(finalState);
+    if (window.safeStorage) {
+        window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
+    }
+    const msg = { type: 'HSK4_CHILD_CLOSING', state: finalState };
+    if (window.gameSyncChannel) {
+        try { window.gameSyncChannel.postMessage(msg); } catch (e) {}
+    }
+    if (window.opener && window.opener !== window && !window.opener.closed) {
+        try { window.opener.postMessage(msg, '*'); } catch (e) {}
+    }
+}
+
+function closeStandaloneChildWindow() {
+    handleChildClose();
+    window.close();
+}
+
+function onChildWindowClosed() {
+    if (!window.childGameWindow) return;
+    window.childGameWindow = null;
+    if (window.childCheckInterval) {
+        clearInterval(window.childCheckInterval);
+        window.childCheckInterval = null;
+    }
+
+    const syncModal = document.getElementById('sync-active-modal');
+    if (syncModal) syncModal.classList.remove('show');
+
+    // Read latest saved state from storage to catch any final changes
+    if (window.safeStorage) {
+        const saved = window.safeStorage.getItem('hsk4_game_sync_state');
+        if (saved) {
+            try {
+                const state = JSON.parse(saved);
+                importGameState(state, false);
+            } catch (e) {}
+        }
+    }
+
+    if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+        window.LMSAdapter.showToast("🔄 Đã đồng bộ tiến trình từ cửa sổ mới! Tiếp tục cuộc chơi.");
+    }
+}
+
+/**
+ * Focus the active Child Window from Parent
+ */
+function focusChildWindow() {
+    if (window.childGameWindow && !window.childGameWindow.closed) {
+        window.childGameWindow.focus();
+    } else {
+        openStandaloneWindow();
+    }
+}
+
+/**
+ * Resume playing directly in the Parent LMS window
+ */
+function resumeInThisWindow() {
+    const syncModal = document.getElementById('sync-active-modal');
+    if (syncModal) syncModal.classList.remove('show');
+
+    if (window.childGameWindow && !window.childGameWindow.closed) {
+        try {
+            window.childGameWindow.postMessage({ type: 'HSK4_PARENT_RESUMED' }, '*');
+        } catch (e) {}
+    }
+
+    if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+        window.LMSAdapter.showToast("▶ Bạn đang tiếp tục chơi tại màn hình này");
+    }
+}
+
+/**
+ * Update real-time sync overlay information
+ */
+function updateSyncOverlayInfo(state) {
+    if (!state) return;
+    const topicEl = document.getElementById('sync-overlay-topic');
+    const roundEl = document.getElementById('sync-overlay-round');
+    const turnEl = document.getElementById('sync-overlay-turn');
+
+    if (topicEl) topicEl.textContent = state.selectedTopic || state.tempSelectedTopic || "Chưa chọn";
+    if (roundEl) {
+        const playersCount = state.players ? state.players.length : 1;
+        const roundNum = Math.floor((state.currentSpinCount || 0) / (playersCount || 1)) + 1;
+        roundEl.textContent = `${roundNum} / ${state.currentMaxRounds || 7}`;
+    }
+    if (turnEl) {
+        if (state.players && state.players.length > 0) {
+            const p = state.players[state.currentPlayerIndex || 0];
+            turnEl.textContent = p ? p.name : "-";
+        } else {
+            turnEl.textContent = "Thiết lập game";
+        }
+    }
+}
+
+// Global functions exposed to window
+window.exportGameState = exportGameState;
+window.importGameState = importGameState;
+window.broadcastGameState = broadcastGameState;
+window.openStandaloneWindow = openStandaloneWindow;
+window.focusChildWindow = focusChildWindow;
+window.resumeInThisWindow = resumeInThisWindow;
+window.closeStandaloneChildWindow = closeStandaloneChildWindow;
+

@@ -204,22 +204,35 @@
                     if (typeof window.toggleSound === 'function' && window.isMuted) {
                         window.toggleSound();
                     }
+                } else if (action === 'HSK4_LMS_PROGRESS' && data.payload && this.isSCORM) {
+                    // Forward progress reported from child popup window to SCORM
+                    this.reportProgress(data.payload.question, data.payload.isCorrect, data.payload.pointsAwarded);
+                } else if (action === 'HSK4_LMS_COMPLETE' && data.payload && this.isSCORM) {
+                    // Forward completion reported from child popup window to SCORM
+                    this.reportComplete(data.payload.winner, data.payload.scoreboard, data.payload.totalRounds);
                 }
             });
         },
 
         /**
-         * Broadcast events to parent LMS window
+         * Broadcast events to parent LMS window & opener if popup
          */
         sendPostMessage(action, payload = {}) {
+            const message = {
+                source: 'HSK4_MAGIC_WHEEL',
+                action: action,
+                payload: payload,
+                timestamp: Date.now()
+            };
             try {
                 if (window.parent && window.parent !== window) {
-                    window.parent.postMessage({
-                        source: 'HSK4_MAGIC_WHEEL',
-                        action: action,
-                        payload: payload,
-                        timestamp: Date.now()
-                    }, '*');
+                    window.parent.postMessage(message, '*');
+                }
+            } catch (e) {}
+
+            try {
+                if (window.opener && window.opener !== window && !window.opener.closed) {
+                    window.opener.postMessage(message, '*');
                 }
             } catch (e) {}
         },

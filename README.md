@@ -38,9 +38,9 @@ Game được trang bị `lms-adapter.js` và `imsmanifest.xml` chuẩn quốc t
    - Nén toàn bộ thư mục thành file `.zip`.
    - Upload trực tiếp file zip lên LMS dưới dạng khóa học/hoạt động SCORM 1.2 hoặc SCORM 2004.
    - Hệ thống tự động ghi nhận điểm số (`cmi.core.score.raw`), thời gian học (`cmi.core.session_time`), và trạng thái hoàn thành (`passed`/`completed`).
-2. **Nhúng qua iFrame (Web nội bộ, Google Classroom, WordPress/LearnDash)**:
+2. **Nhúng qua iFrame & Chế độ Cửa Sổ Mới (Đồng bộ hai chiều)**:
    - Hỗ trợ cơ chế tự động co giãn chiều cao (`postMessage` `setHeight` & `resize`) giúp triệt tiêu thanh cuộn kép.
-   - Giao diện tự động tối ưu hiển thị (fluid responsive layout) vừa vặn trên mọi khung hình mà không cần phụ thuộc cấu hình iframe.
+   - Nút **Mở ở cửa sổ mới (Popout Window)**: Tự động đồng bộ trạng thái hai chiều theo thời gian thực (Two-way Real-time Game State Synchronization). Khi người học đang chơi trên LMS và muốn mở rộng không gian, trò chơi trong cửa sổ mới sẽ tiếp tục chính xác tại lượt quay, số điểm và câu hỏi hiện tại. Khi đóng cửa sổ mới (hoặc tắt tab), màn hình LMS lập tức cập nhật và tiếp tục tại khoảnh khắc đó mà không bị gián đoạn hay mất kết nối SCORM.
 3. **Chống lỗi Sandbox & Mạng trường học**:
    - `SafeStorage`: Tự động chuyển sang bộ nhớ RAM nếu trình duyệt chặn `localStorage` trong iFrame cross-origin.
    - `Web Audio API Synthesizer`: Tự động tạo hiệu ứng âm thanh bằng bộ dao động tần số nếu trường học chặn file `.mp3` hoặc chính sách autoplay nghiêm ngặt.
