@@ -23,8 +23,8 @@
     <!-- Top Control Bar (Fixed Top Right: Popout Window, Sound) -->
     <div class="top-controls">
         <button id="popout-btn" class="control-btn" onclick="openGameInNewWindow(event)" title="Mở ở cửa sổ mới (Đồng bộ tiến trình)" aria-label="Mở ở cửa sổ mới">
-            <span class="icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <span class="icon" style="pointer-events: none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
                     <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -260,10 +260,12 @@
                 window.close();
                 return;
             }
-            const width = Math.min(1240, window.screen.availWidth - 40);
-            const height = Math.min(880, window.screen.availHeight - 60);
-            const left = Math.max(0, Math.floor((window.screen.availWidth - width) / 2));
-            const top = Math.max(0, Math.floor((window.screen.availHeight - height) / 2));
+            const scrWidth = (window.screen && window.screen.availWidth) || window.innerWidth || 1280;
+            const scrHeight = (window.screen && window.screen.availHeight) || window.innerHeight || 800;
+            const width = Math.min(1240, scrWidth - 40);
+            const height = Math.min(880, scrHeight - 60);
+            const left = Math.max(0, Math.floor((scrWidth - width) / 2));
+            const top = Math.max(0, Math.floor((scrHeight - height) / 2));
             const features = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
             const targetUrl = new URL(window.location.href);
             targetUrl.searchParams.set('popout', '1');
@@ -283,6 +285,16 @@
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
+                win = true;
+            }
+            if (win) {
+                if (window.LMSAdapter && window.LMSAdapter.showToast) {
+                    window.LMSAdapter.showToast("🚀 Đang mở giao diện trong cửa sổ mới...");
+                }
+            } else {
+                if (window.LMSAdapter && window.LMSAdapter.showToast) {
+                    window.LMSAdapter.showToast("⚠️ Vui lòng cho phép popup trên trình duyệt của bạn!");
+                }
             }
         };
     </script>

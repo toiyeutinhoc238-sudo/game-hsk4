@@ -43,6 +43,15 @@ function shadeColor(color, percent) {
     return "#" + RR + GG + BB;
 }
 
+// Synchronization & Window State Management
+var isChildWindow = false;
+var childGameWindow = null;
+var childCheckInterval = null;
+var gameSyncChannel = null;
+var latestSyncedState = null;
+window.currentActiveQuestionData = null;
+window.currentActiveActionTitle = null;
+
 // State Management
 let players = [];
 let currentPlayerIndex = 0;
@@ -846,13 +855,7 @@ window.addEventListener('popstate', () => {
    Kiến trúc chuẩn hoá dựa trên nền tảng ổn định của HSK 2
    ========================================================================== */
 
-let isChildWindow = false;
-let childGameWindow = null;
-let childCheckInterval = null;
-let gameSyncChannel = null;
-let latestSyncedState = null;
-window.currentActiveQuestionData = null;
-window.currentActiveActionTitle = null;
+// (Sync variables initialized at top of script to eliminate TDZ ReferenceErrors)
 
 // Storage fallback
 const storage = window.safeStorage || {
@@ -1367,28 +1370,11 @@ function broadcastGameState(extraProps = null, isClosing = false) {
 function openGameInNewWindow(e) {
     if (e && e.preventDefault) e.preventDefault();
 
-    if (isChildWindow) {
+    const params = new URLSearchParams(window.location.search);
+    const isPop = params.get('popout') === '1' || params.get('mode') === 'popup';
+    if (isPop || isChildWindow) {
         closePopoutAndReturnToLMS();
         return;
-    }
-
-    // If an existing child window is already open and valid, bring it to focus
-    if (window.childGameWindow) {
-        let isAlive = false;
-        try {
-            isAlive = !window.childGameWindow.closed;
-        } catch (err) {
-            isAlive = false;
-        }
-        if (isAlive) {
-            try {
-                window.childGameWindow.focus();
-                if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-                    window.LMSAdapter.showToast("🗗 Đã chuyển tới cửa sổ game đang mở!");
-                }
-                return;
-            } catch (err) {}
-        }
     }
 
     // 1. Pause countdown timer and audio in LMS parent window (matches HSK 2)
@@ -1403,16 +1389,24 @@ function openGameInNewWindow(e) {
     }
 
     // 2. Snapshot current state
-    const snapshot = exportGameState();
+    let snapshot = null;
+    try {
+        snapshot = exportGameState();
+    } catch (err) {
+        console.warn("[Popout] exportGameState failed, fallback:", err);
+        snapshot = { stage: 'setup', timestamp: Date.now() };
+    }
     snapshot.syncSessionId = 'sync_' + Date.now();
     snapshot.isLmsWaiting = true;
     window.__HSK4_LATEST_STATE__ = snapshot;
 
     const stateStr = JSON.stringify(snapshot);
     if (window.safeStorage) {
-        window.safeStorage.setItem('hsk4_synced_state', stateStr);
-        window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
-        window.safeStorage.setItem('hsk4_active_session', snapshot.syncSessionId);
+        try {
+            window.safeStorage.setItem('hsk4_synced_state', stateStr);
+            window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
+            window.safeStorage.setItem('hsk4_active_session', snapshot.syncSessionId);
+        } catch (err) {}
     }
 
     if (window.gameSyncChannel) {
@@ -1431,10 +1425,12 @@ function openGameInNewWindow(e) {
         targetUrl.searchParams.set('topic', selectedTopic);
     }
 
-    const w = Math.min(1240, window.screen.availWidth - 40);
-    const h = Math.min(880, window.screen.availHeight - 60);
-    const left = Math.max(0, Math.floor((window.screen.availWidth - w) / 2));
-    const top = Math.max(0, Math.floor((window.screen.availHeight - h) / 2));
+    const scrWidth = (window.screen && window.screen.availWidth) || window.innerWidth || 1280;
+    const scrHeight = (window.screen && window.screen.availHeight) || window.innerHeight || 800;
+    const w = Math.min(1240, scrWidth - 40);
+    const h = Math.min(880, scrHeight - 60);
+    const left = Math.max(0, Math.floor((scrWidth - w) / 2));
+    const top = Math.max(0, Math.floor((scrHeight - h) / 2));
     const windowFeatures = `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`;
 
     // 4. Multi-tier Opening Strategy (Guarantees success across LMS iFrames & Browser popup blockers)
@@ -1475,58 +1471,61 @@ function openGameInNewWindow(e) {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-                window.LMSAdapter.showToast("🚀 Đang mở trò chơi ở tab mới...");
-            }
-            return;
+            child = true;
         } catch (err) {
             console.warn("[Popout] Anchor click fallback failed:", err);
         }
+    }
 
+    if (child) {
+        if (child !== true) {
+            window.childGameWindow = child;
+            try { child.focus(); } catch (err) {}
+        }
+
+        // 5. Show Parent LMS Sync Overlay ONLY when game is actively running (Matches HSK 2)
+        const syncModal = document.getElementById('sync-active-modal');
+        if (syncModal && snapshot.stage !== 'setup') {
+            syncModal.classList.add('show');
+            updateSyncOverlayInfo(snapshot);
+        }
+
+        if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+            const toastMsg = snapshot.stage === 'setup'
+                ? "🚀 Đang mở giao diện trong cửa sổ mới..."
+                : "🚀 Đang chơi tại cửa sổ mới! Màn hình LMS tạm dừng và chờ đồng bộ.";
+            window.LMSAdapter.showToast(toastMsg);
+        }
+
+        // 6. Safe poller to detect child window closure (Grace period + try-catch)
+        if (window.childCheckInterval) {
+            clearInterval(window.childCheckInterval);
+            window.childCheckInterval = null;
+        }
+
+        setTimeout(() => {
+            if (!window.childGameWindow || window.childGameWindow === true) return;
+            window.childCheckInterval = setInterval(() => {
+                let isClosed = false;
+                try {
+                    isClosed = !window.childGameWindow || window.childGameWindow.closed;
+                } catch (err) {
+                    isClosed = false;
+                }
+                if (isClosed) {
+                    clearInterval(window.childCheckInterval);
+                    window.childCheckInterval = null;
+                    window.childGameWindow = null;
+                    resumeInThisWindow(false);
+                }
+            }, 600);
+        }, 1500);
+    } else {
         if (typeof window.resumeTimer === 'function') window.resumeTimer();
         if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
             window.LMSAdapter.showToast("⚠️ Vui lòng cho phép popup trên trình duyệt của bạn!");
         }
-        return;
     }
-
-    window.childGameWindow = child;
-
-    // 5. Show Parent LMS Sync Overlay ONLY when game is actively running (Matches HSK 2)
-    const syncModal = document.getElementById('sync-active-modal');
-    if (syncModal && snapshot.stage !== 'setup') {
-        syncModal.classList.add('show');
-        updateSyncOverlayInfo(snapshot);
-    }
-
-    if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-        window.LMSAdapter.showToast("🚀 Đang chơi tại cửa sổ mới! Màn hình LMS tạm dừng và chờ đồng bộ.");
-    }
-
-    // 6. Safe poller to detect child window closure (Grace period + try-catch)
-    if (window.childCheckInterval) {
-        clearInterval(window.childCheckInterval);
-        window.childCheckInterval = null;
-    }
-
-    setTimeout(() => {
-        if (!window.childGameWindow) return;
-        window.childCheckInterval = setInterval(() => {
-            let isClosed = false;
-            try {
-                isClosed = !window.childGameWindow || window.childGameWindow.closed;
-            } catch (err) {
-                // If cross-origin or security exception, don't assume closed immediately
-                isClosed = false;
-            }
-            if (isClosed) {
-                clearInterval(window.childCheckInterval);
-                window.childCheckInterval = null;
-                window.childGameWindow = null;
-                resumeInThisWindow(false);
-            }
-        }, 600);
-    }, 1500);
 }
 
 /**

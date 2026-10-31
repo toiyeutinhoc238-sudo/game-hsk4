@@ -8008,3 +8008,13 @@ const VOCAB_DATA = [
     "topic": "11. Công việc & Nghề nghiệp (Phần 5)"
   }
 ];
+
+if (typeof window !== 'undefined') {
+  window.VOCAB_DATA = VOCAB_DATA;
+}
+if (typeof global !== 'undefined') {
+  global.VOCAB_DATA = VOCAB_DATA;
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = VOCAB_DATA;
+}
