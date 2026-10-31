@@ -22,7 +22,7 @@
 
     <!-- Top Control Bar (Fixed Top Right: Popout Window, Sound) -->
     <div class="top-controls">
-        <button id="popout-btn" class="control-btn" onclick="openStandaloneWindow()" title="Mở ở cửa sổ mới (Tự động đồng bộ tiến trình)" aria-label="Mở ở cửa sổ mới">
+        <button id="popout-btn" class="control-btn" onclick="openGameInNewWindow(event)" title="Mở ở cửa sổ mới (Đồng bộ tiến trình)" aria-label="Mở ở cửa sổ mới">
             <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -231,6 +231,10 @@
                     <span id="sync-overlay-turn" class="sync-info-val">-</span>
                 </div>
             </div>
+
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.25rem;">
+                💡 <em>Khi bạn đóng cửa sổ đó, màn hình LMS này sẽ tự động quay trở lại đúng khoảnh khắc bạn đang chơi.</em>
+            </p>
 
             <div class="sync-modal-actions">
                 <button class="option-btn sync-focus-btn" onclick="focusChildWindow()">

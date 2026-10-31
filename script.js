@@ -573,24 +573,41 @@ function showQuestion(points, isDouble = false) {
 }
 
 let timerInterval;
-function startTimer(correctAnswer) {
+let currentTimerWidth = 100;
+
+function startTimer(correctAnswer, startWidth = 100) {
     const progress = document.getElementById('timer-progress');
-    let width = 100;
-    progress.style.width = '100%';
+    currentTimerWidth = typeof startWidth === 'number' ? startWidth : 100;
+    if (progress) progress.style.width = `${currentTimerWidth}%`;
     
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
-        width -= 1;
-        progress.style.width = `${width}%`;
-        if (width <= 0) {
+        currentTimerWidth -= 1;
+        if (progress) progress.style.width = `${currentTimerWidth}%`;
+        if (currentTimerWidth <= 0) {
             clearInterval(timerInterval);
+            timerInterval = null;
             checkAnswer(false, 0, false, null, correctAnswer, true); // Timeout
         }
     }, 100); // 10 seconds total
 }
 
+window.pauseTimer = function () {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+};
+
+window.resumeTimer = function () {
+    const questionModal = document.getElementById('question-modal');
+    if (questionModal && questionModal.classList.contains('show') && window.currentActiveQuestionData) {
+        startTimer(window.currentActiveQuestionData.correctAnswer, currentTimerWidth > 0 ? currentTimerWidth : 100);
+    }
+};
+
 function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isTimeout = false) {
-    clearInterval(timerInterval);
+    window.pauseTimer();
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach(btn => {
         btn.disabled = true;
@@ -826,50 +843,31 @@ window.addEventListener('popstate', () => {
 /* ==========================================================================
    REAL-TIME TWO-WAY STATE SYNCHRONIZATION ENGINE
    Tương thích đa cửa sổ & LMS iFrame (Moodle, Canvas, SCORM, Popup Window)
+   Kiến trúc chuẩn hoá dựa trên nền tảng ổn định của HSK 2
    ========================================================================== */
 
 let isChildWindow = false;
 let childGameWindow = null;
 let childCheckInterval = null;
 let gameSyncChannel = null;
+let latestSyncedState = null;
 window.currentActiveQuestionData = null;
 window.currentActiveActionTitle = null;
 
-/**
- * Safely encode game state into a compact UTF-8 URL parameter / hash
- */
-function encodeStateToUrlParam(state) {
-    if (!state) return '';
-    try {
-        const json = JSON.stringify(state);
-        if (typeof TextEncoder !== 'undefined') {
-            const bytes = new TextEncoder().encode(json);
-            let binary = '';
-            const len = bytes.byteLength;
-            for (let i = 0; i < len; i++) {
-                binary += String.fromCharCode(bytes[i]);
-            }
-            return encodeURIComponent(btoa(binary));
-        } else {
-            return encodeURIComponent(json);
-        }
-    } catch (e) {
-        try {
-            return encodeURIComponent(JSON.stringify(state));
-        } catch (e2) {
-            return '';
-        }
-    }
-}
+// Storage fallback
+const storage = window.safeStorage || {
+    getItem(k) { try { return localStorage.getItem(k); } catch(e) { return null; } },
+    setItem(k, v) { try { localStorage.setItem(k, v); } catch(e) {} },
+    removeItem(k) { try { localStorage.removeItem(k); } catch(e) {} }
+};
 
 /**
- * Safely decode game state from URL parameter / hash / window.name
+ * Safely decode game state from URL parameter / hash / window.name (backward compatibility)
  */
 function decodeStateFromUrlParam(paramStr) {
     if (!paramStr) return null;
     try {
         const decodedParam = decodeURIComponent(paramStr);
-        // 1. Try UTF-8 Base64 decode
         try {
             if (typeof TextDecoder !== 'undefined') {
                 const binary = atob(decodedParam);
@@ -881,11 +879,8 @@ function decodeStateFromUrlParam(paramStr) {
                 return JSON.parse(json);
             }
         } catch (e1) {}
-
-        // 2. Try direct JSON parse
         return JSON.parse(decodedParam);
     } catch (e) {
-        // 3. Try secondary decodeURIComponent in case of double-encoding
         try {
             const doubleDecoded = decodeURIComponent(decodeURIComponent(paramStr));
             return JSON.parse(doubleDecoded);
@@ -909,37 +904,12 @@ function getInitialStateForChild() {
         }
     } catch (e) {}
 
-    // 2. Try URL hash fragment (#state=... or #<encodedState>)
+    // 2. Try URL hash fragment (#state=...)
     try {
         if (window.location.hash) {
             const rawHash = window.location.hash.substring(1);
             if (rawHash.startsWith('state=')) {
                 const state = decodeStateFromUrlParam(rawHash.substring(6));
-                if (state) return state;
-            } else {
-                const hashParams = new URLSearchParams(rawHash);
-                const stateParam = hashParams.get('state') || rawHash;
-                const state = decodeStateFromUrlParam(stateParam);
-                if (state) return state;
-            }
-        }
-    } catch (e) {}
-
-    // 3. Try window.name (HSK4_POPUP_<state>)
-    try {
-        if (window.name && window.name.startsWith('HSK4_POPUP_')) {
-            const raw = window.name.substring(11);
-            const state = decodeStateFromUrlParam(raw);
-            if (state) return state;
-        }
-    } catch (e) {}
-
-    // 4. Try safeStorage / localStorage
-    try {
-        if (window.safeStorage) {
-            const saved = window.safeStorage.getItem('hsk4_game_sync_state');
-            if (saved) {
-                const state = JSON.parse(saved);
                 if (state) return state;
             }
         }
@@ -949,15 +919,14 @@ function getInitialStateForChild() {
 }
 
 /**
- * Initialize Real-time Synchronization Engine
+ * Initialize Real-time Synchronization Engine (Based on HSK 2 Architecture)
  */
 function initSyncEngine() {
+    const params = new URLSearchParams(window.location.search);
     isChildWindow = Boolean(
-        (window.name && window.name.startsWith('HSK4_POPUP_')) ||
-        window.location.search.includes('mode=popup') ||
-        window.location.search.includes('state=') ||
-        window.location.hash.includes('state=') ||
-        (window.opener && window.opener !== window)
+        params.get('popout') === '1' ||
+        params.get('mode') === 'popup' ||
+        (window.opener && window.opener !== window && window.name === 'HSK4_Standalone_Game')
     );
     window.isChildWindow = isChildWindow;
 
@@ -966,22 +935,26 @@ function initSyncEngine() {
         document.body.classList.add('is-child-window');
         const popoutBtn = document.getElementById('popout-btn');
         if (popoutBtn) {
-            popoutBtn.title = "Lưu & Đóng cửa sổ (Quay lại LMS)";
-            popoutBtn.setAttribute('aria-label', 'Đóng cửa sổ và quay lại LMS');
-            popoutBtn.onclick = closeStandaloneChildWindow;
-            const iconSpan = popoutBtn.querySelector('.icon');
-            if (iconSpan) {
-                iconSpan.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                `;
-            }
+            popoutBtn.title = "Quay về màn hình LMS (Đóng cửa sổ này)";
+            popoutBtn.setAttribute('aria-label', "Quay về màn hình LMS");
+            popoutBtn.onclick = function (e) {
+                if (e && e.preventDefault) e.preventDefault();
+                closePopoutAndReturnToLMS();
+            };
+            const iconSpan = popoutBtn.querySelector('.icon') || popoutBtn;
+            iconSpan.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
+                    <polyline points="9 14 4 9 9 4"></polyline>
+                    <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                </svg>
+            `;
         }
 
-        window.addEventListener('beforeunload', handleChildClose);
-        window.addEventListener('unload', handleChildClose);
+        const handleUnload = () => {
+            broadcastGameState(null, true);
+        };
+        window.addEventListener('beforeunload', handleUnload);
+        window.addEventListener('pagehide', handleUnload);
     }
 
     // 2. Setup BroadcastChannel (Same-origin instant bus)
@@ -1004,21 +977,48 @@ function initSyncEngine() {
         handleIncomingSyncMessage(event.data);
     });
 
-    // 4. Setup LocalStorage listener for cross-tab sync fallback
+    // 4. Setup Storage event listener for cross-tab sync fallback
     window.addEventListener('storage', (event) => {
-        if (event.key === 'hsk4_game_sync_state' && event.newValue) {
+        if ((event.key === 'hsk4_synced_state' || event.key === 'hsk4_game_sync_state') && event.newValue) {
             try {
-                const state = JSON.parse(event.newValue);
-                importGameState(state, false);
+                const parsed = JSON.parse(event.newValue);
+                if (parsed) {
+                    handleIncomingSyncMessage({
+                        type: parsed.isPopoutClosing ? 'HSK4_POPOUT_CLOSED' : 'HSK4_STATE_SYNC',
+                        state: parsed
+                    });
+                }
             } catch (e) {}
         }
     });
 
-    // 5. If child window, restore state immediately
+    // 5. If child window, restore state snapshot
     if (isChildWindow) {
-        const initialState = getInitialStateForChild();
-        if (initialState) {
-            importGameState(initialState, false);
+        let initialSyncedState = null;
+        try {
+            const raw = storage.getItem('hsk4_synced_state') || storage.getItem('hsk4_game_sync_state');
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && (Date.now() - parsed.timestamp < 7200000)) {
+                    initialSyncedState = parsed;
+                }
+            }
+        } catch (err) {}
+
+        if (!initialSyncedState && window.opener) {
+            try {
+                if (window.opener.__HSK4_LATEST_STATE__) {
+                    initialSyncedState = window.opener.__HSK4_LATEST_STATE__;
+                }
+            } catch (e) {}
+        }
+
+        if (!initialSyncedState) {
+            initialSyncedState = getInitialStateForChild();
+        }
+
+        if (initialSyncedState) {
+            importGameState(initialSyncedState, false);
         }
 
         // Notify parent LMS window that child is ready
@@ -1036,27 +1036,37 @@ function initSyncEngine() {
 function handleIncomingSyncMessage(data) {
     if (!data) return;
     const type = data.type || data.action;
+    const state = data.state;
 
-    if (type === 'HSK4_STATE_SYNC' && data.state) {
-        importGameState(data.state, false);
-        updateSyncOverlayInfo(data.state);
-    } else if (type === 'HSK4_CHILD_READY') {
-        if (window.childGameWindow && !window.childGameWindow.closed) {
-            try {
-                window.childGameWindow.postMessage({
-                    type: 'HSK4_STATE_SYNC',
-                    state: exportGameState()
-                }, '*');
-            } catch (e) {}
+    if (!isChildWindow) {
+        if (state) {
+            latestSyncedState = state;
+            window.__HSK4_LATEST_STATE__ = state;
+            updateSyncOverlayInfo(state);
+
+            // Report progress/completion to LMS SCORM in parent window
+            if (window.LMSAdapter) {
+                if (state.isGameOver) {
+                    const winner = state.players && state.players.length > 0
+                        ? [...state.players].sort((a, b) => b.score - a.score)[0]
+                        : null;
+                    const sortedPlayers = state.players ? [...state.players].sort((a, b) => b.score - a.score) : [];
+                    window.LMSAdapter.reportComplete(winner, sortedPlayers, state.currentMaxRounds);
+                }
+            }
         }
-    } else if (type === 'HSK4_CHILD_CLOSING') {
-        if (data.state) {
-            importGameState(data.state, false);
+
+        if (type === 'HSK4_CHILD_CLOSING' || type === 'HSK4_POPOUT_CLOSED' || (state && state.isPopoutClosing)) {
+            resumeInThisWindow();
         }
-        onChildWindowClosed();
-    } else if (type === 'HSK4_PARENT_RESUMED') {
-        if (isChildWindow && window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-            window.LMSAdapter.showToast("⚠️ Bạn đã chọn tiếp tục chơi trên màn hình LMS.");
+    } else {
+        // Child window
+        if (type === 'HSK4_STATE_SYNC' && state) {
+            importGameState(state, false);
+        } else if (type === 'HSK4_PARENT_RESUMED') {
+            if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+                window.LMSAdapter.showToast("👉 Đang tiếp tục chơi trên màn hình LMS.");
+            }
         }
     }
 }
@@ -1092,6 +1102,7 @@ function exportGameState() {
     if (questionModal && questionModal.classList.contains('show') && window.currentActiveQuestionData) {
         activeQuestion = {
             isOpen: true,
+            remainingWidth: typeof currentTimerWidth === 'number' ? currentTimerWidth : 100,
             ...window.currentActiveQuestionData
         };
     }
@@ -1272,7 +1283,8 @@ function importGameState(state, shouldBroadcast = false) {
         }
 
         document.getElementById('question-modal').classList.add('show');
-        startTimer(q.correctAnswer);
+        const startW = typeof q.remainingWidth === 'number' ? q.remainingWidth : 100;
+        startTimer(q.correctAnswer, startW);
     } else {
         document.getElementById('question-modal').classList.remove('show');
         window.currentActiveQuestionData = null;
@@ -1303,15 +1315,27 @@ function importGameState(state, shouldBroadcast = false) {
 /**
  * Broadcast current game state across all active channels
  */
-function broadcastGameState() {
+function broadcastGameState(extraProps = null, isClosing = false) {
     const state = exportGameState();
+    if (extraProps) {
+        Object.assign(state, extraProps);
+    }
+    if (isClosing) {
+        state.isPopoutClosing = true;
+    }
+    window.__HSK4_LATEST_STATE__ = state;
     const stateStr = JSON.stringify(state);
 
     if (window.safeStorage) {
+        window.safeStorage.setItem('hsk4_synced_state', stateStr);
         window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
+        if (isClosing) {
+            try { localStorage.setItem('hsk4_popout_closed', Date.now().toString()); } catch (e) {}
+        }
     }
 
-    const msg = { type: 'HSK4_STATE_SYNC', state: state };
+    const msgType = isClosing ? 'HSK4_POPOUT_CLOSED' : 'HSK4_STATE_SYNC';
+    const msg = { type: msgType, state: state };
 
     if (window.gameSyncChannel) {
         try { window.gameSyncChannel.postMessage(msg); } catch (e) {}
@@ -1325,123 +1349,157 @@ function broadcastGameState() {
         try { window.childGameWindow.postMessage(msg, '*'); } catch (e) {}
     }
 
-    // Keep child window's URL updated with latest state so F5 / reload retains exact progress
-    if (window.isChildWindow) {
-        try {
-            const stateParam = encodeStateToUrlParam(state);
-            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?mode=popup&state=' + stateParam + '#state=' + stateParam;
-            window.history.replaceState({ path: newUrl }, '', newUrl);
-        } catch (e) {}
-    }
-
     updateSyncOverlayInfo(state);
 }
 
 /**
- * Open Game in Dedicated Standalone Window with State Handover
+ * Open Game in Dedicated Standalone Window with State Handover (Matches HSK 2 Architecture)
  */
-function openStandaloneWindow() {
-    if (window.childGameWindow && !window.childGameWindow.closed) {
-        window.childGameWindow.focus();
+function openGameInNewWindow(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    if (isChildWindow) {
+        closePopoutAndReturnToLMS();
         return;
     }
 
-    const state = exportGameState();
-    const stateStr = JSON.stringify(state);
-    const stateParam = encodeStateToUrlParam(state);
+    if (window.childGameWindow && !window.childGameWindow.closed) {
+        try { window.childGameWindow.focus(); } catch (err) {}
+        return;
+    }
 
+    // 1. Pause countdown timer and audio in LMS parent window (matches HSK 2)
+    if (typeof window.pauseTimer === 'function') {
+        window.pauseTimer();
+    }
+    if (typeof audioIntro !== 'undefined' && !audioIntro.paused) {
+        audioIntro.pause();
+    }
+    if (typeof audioSpin !== 'undefined' && !audioSpin.paused) {
+        audioSpin.pause();
+    }
+
+    // 2. Snapshot current state
+    const snapshot = exportGameState();
+    snapshot.syncSessionId = 'sync_' + Date.now();
+    snapshot.isLmsWaiting = true;
+    window.__HSK4_LATEST_STATE__ = snapshot;
+
+    const stateStr = JSON.stringify(snapshot);
     if (window.safeStorage) {
+        window.safeStorage.setItem('hsk4_synced_state', stateStr);
         window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
     }
 
-    const w = Math.min(1240, Math.floor(window.screen.availWidth * 0.95));
-    const h = Math.min(880, Math.floor(window.screen.availHeight * 0.95));
+    if (window.gameSyncChannel) {
+        try {
+            window.gameSyncChannel.postMessage({ type: 'HSK4_SYNC_INIT', state: snapshot });
+        } catch (err) {}
+    }
+
+    // 3. Show Parent LMS Sync Overlay
+    const syncModal = document.getElementById('sync-active-modal');
+    if (syncModal) {
+        syncModal.classList.add('show');
+        updateSyncOverlayInfo(snapshot);
+    }
+
+    // 4. Clean URL (Short & Safe, identical to HSK 2)
+    const targetUrl = new URL(window.location.href);
+    targetUrl.searchParams.delete('state');
+    targetUrl.hash = '';
+    targetUrl.searchParams.set('popout', '1');
+    targetUrl.searchParams.set('session', snapshot.syncSessionId);
+
+    const w = Math.min(1240, window.screen.availWidth - 40);
+    const h = Math.min(880, window.screen.availHeight - 60);
     const left = Math.max(0, Math.floor((window.screen.availWidth - w) / 2));
     const top = Math.max(0, Math.floor((window.screen.availHeight - h) / 2));
+    const windowFeatures = `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`;
 
-    // Base URL without existing query params or hash
-    const baseUrl = window.location.href.split('?')[0].split('#')[0];
-    const targetUrl = baseUrl + '?mode=popup&state=' + stateParam + '#state=' + stateParam;
-
-    const winName = 'HSK4_POPUP_' + stateParam;
-    const child = window.open(targetUrl, winName, `width=${w},height=${h},top=${top},left=${left},resizable=yes,scrollbars=yes`);
+    // Standard static window name 'HSK4_Standalone_Game' (matches HSK 2 architecture)
+    let child = null;
+    try {
+        child = window.open(targetUrl.toString(), 'HSK4_Standalone_Game', windowFeatures);
+    } catch (err) {
+        console.warn("window.open failed:", err);
+    }
 
     if (!child || child.closed || typeof child.closed === 'undefined') {
+        if (syncModal) syncModal.classList.remove('show');
+        if (typeof window.resumeTimer === 'function') window.resumeTimer();
         if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-            window.LMSAdapter.showToast("⚠️ Trình duyệt đã chặn cửa sổ mới. Vui lòng cho phép popup.");
+            window.LMSAdapter.showToast("⚠️ Vui lòng cho phép popup trên trình duyệt của bạn!");
         }
         return;
     }
 
     window.childGameWindow = child;
 
-    // Show Parent LMS Sync Overlay
-    const syncModal = document.getElementById('sync-active-modal');
-    if (syncModal) {
-        syncModal.classList.add('show');
-        updateSyncOverlayInfo(state);
-    }
-
-    // Monitor child window closure
+    // Monitor child window closure (Poller identical to HSK 2)
     if (window.childCheckInterval) clearInterval(window.childCheckInterval);
     window.childCheckInterval = setInterval(() => {
-        if (window.childGameWindow && window.childGameWindow.closed) {
-            onChildWindowClosed();
+        if (!window.childGameWindow || window.childGameWindow.closed) {
+            clearInterval(window.childCheckInterval);
+            window.childCheckInterval = null;
+            resumeInThisWindow();
         }
-    }, 400);
+    }, 350);
 
     if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-        window.LMSAdapter.showToast("🚀 Đang mở game ở cửa sổ mới với tiến trình hiện tại...");
+        window.LMSAdapter.showToast("🚀 Đang mở game ở cửa sổ mới! Màn hình LMS tạm dừng và chờ đồng bộ.");
     }
 }
 
 /**
  * Handle Child Window Closure & Synchronize Back to LMS Parent
  */
-function handleChildClose() {
-    const finalState = exportGameState();
-    const stateStr = JSON.stringify(finalState);
-    if (window.safeStorage) {
-        window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
+function closePopoutAndReturnToLMS() {
+    broadcastGameState(null, true);
+    if (window.opener && !window.opener.closed) {
+        try {
+            window.opener.focus();
+        } catch (e) {}
     }
-    const msg = { type: 'HSK4_CHILD_CLOSING', state: finalState };
-    if (window.gameSyncChannel) {
-        try { window.gameSyncChannel.postMessage(msg); } catch (e) {}
-    }
-    if (window.opener && window.opener !== window && !window.opener.closed) {
-        try { window.opener.postMessage(msg, '*'); } catch (e) {}
-    }
-}
-
-function closeStandaloneChildWindow() {
-    handleChildClose();
     window.close();
 }
 
-function onChildWindowClosed() {
-    if (!window.childGameWindow) return;
-    window.childGameWindow = null;
+/**
+ * Resume playing directly in the Parent LMS window (Matches HSK 2 Architecture)
+ */
+function resumeInThisWindow() {
     if (window.childCheckInterval) {
         clearInterval(window.childCheckInterval);
         window.childCheckInterval = null;
     }
 
+    if (window.childGameWindow && !window.childGameWindow.closed) {
+        try { window.childGameWindow.close(); } catch (e) {}
+    }
+    window.childGameWindow = null;
+
     const syncModal = document.getElementById('sync-active-modal');
     if (syncModal) syncModal.classList.remove('show');
 
-    // Read latest saved state from storage to catch any final changes
-    if (window.safeStorage) {
-        const saved = window.safeStorage.getItem('hsk4_game_sync_state');
-        if (saved) {
-            try {
-                const state = JSON.parse(saved);
-                importGameState(state, false);
-            } catch (e) {}
-        }
+    let stateToApply = latestSyncedState;
+    if (!stateToApply && window.safeStorage) {
+        try {
+            const saved = window.safeStorage.getItem('hsk4_synced_state') || window.safeStorage.getItem('hsk4_game_sync_state');
+            if (saved) stateToApply = JSON.parse(saved);
+        } catch (e) {}
     }
 
-    if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-        window.LMSAdapter.showToast("🔄 Đã đồng bộ tiến trình từ cửa sổ mới! Tiếp tục cuộc chơi.");
+    if (stateToApply) {
+        importGameState(stateToApply, false);
+        if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
+            if (stateToApply.isGameOver) {
+                window.LMSAdapter.showToast("🏆 Đã đồng bộ kết quả từ cửa sổ mới!");
+            } else {
+                window.LMSAdapter.showToast("🎮 Đã đồng bộ tiến trình từ cửa sổ mới! Tiếp tục cuộc chơi.");
+            }
+        }
+    } else {
+        if (typeof window.resumeTimer === 'function') window.resumeTimer();
     }
 }
 
@@ -1450,27 +1508,9 @@ function onChildWindowClosed() {
  */
 function focusChildWindow() {
     if (window.childGameWindow && !window.childGameWindow.closed) {
-        window.childGameWindow.focus();
+        try { window.childGameWindow.focus(); } catch (e) {}
     } else {
-        openStandaloneWindow();
-    }
-}
-
-/**
- * Resume playing directly in the Parent LMS window
- */
-function resumeInThisWindow() {
-    const syncModal = document.getElementById('sync-active-modal');
-    if (syncModal) syncModal.classList.remove('show');
-
-    if (window.childGameWindow && !window.childGameWindow.closed) {
-        try {
-            window.childGameWindow.postMessage({ type: 'HSK4_PARENT_RESUMED' }, '*');
-        } catch (e) {}
-    }
-
-    if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-        window.LMSAdapter.showToast("▶ Bạn đang tiếp tục chơi tại màn hình này");
+        openGameInNewWindow();
     }
 }
 
@@ -1504,22 +1544,32 @@ function updateSyncOverlayInfo(state) {
  */
 function restartGame() {
     if (window.safeStorage) {
+        window.safeStorage.removeItem('hsk4_synced_state');
         window.safeStorage.removeItem('hsk4_game_sync_state');
     }
+    const targetUrl = new URL(window.location.href);
+    targetUrl.searchParams.delete('state');
+    targetUrl.hash = '';
     if (window.isChildWindow) {
-        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + '?mode=popup';
+        targetUrl.searchParams.set('popout', '1');
     } else {
-        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        targetUrl.searchParams.delete('popout');
+        targetUrl.searchParams.delete('mode');
+        targetUrl.searchParams.delete('session');
     }
+    window.location.href = targetUrl.toString();
 }
 
-// Global functions exposed to window
+// Global functions exposed to window (supporting both naming standards)
 window.exportGameState = exportGameState;
 window.importGameState = importGameState;
 window.broadcastGameState = broadcastGameState;
-window.openStandaloneWindow = openStandaloneWindow;
+window.openGameInNewWindow = openGameInNewWindow;
+window.openStandaloneWindow = openGameInNewWindow;
 window.focusChildWindow = focusChildWindow;
 window.resumeInThisWindow = resumeInThisWindow;
-window.closeStandaloneChildWindow = closeStandaloneChildWindow;
+window.resumeInLmsWindow = resumeInThisWindow;
+window.closePopoutAndReturnToLMS = closePopoutAndReturnToLMS;
+window.closeStandaloneChildWindow = closePopoutAndReturnToLMS;
 window.restartGame = restartGame;
 

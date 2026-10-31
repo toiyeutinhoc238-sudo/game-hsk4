@@ -342,9 +342,16 @@
         },
 
         /**
-         * Smart Fullscreen toggle (in-place native or in-frame CSS expansion)
+         * Smart Fullscreen toggle with LMS iframe fallback (matches HSK 2 architecture)
          */
         toggleFullscreen(targetElem = document.documentElement) {
+            const isFsDisallowed = (document.fullscreenEnabled === false);
+
+            if (this.isInIframe && isFsDisallowed) {
+                this.openNewTab();
+                return;
+            }
+
             try {
                 if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                     const req = targetElem.requestFullscreen || targetElem.webkitRequestFullscreen || targetElem.mozRequestFullScreen || targetElem.msRequestFullscreen;
@@ -354,16 +361,17 @@
                             p.then(() => {
                                 this.showToast("⛶ Đã bật chế độ Toàn Màn Hình");
                             }).catch(() => {
-                                document.body.classList.toggle('app-fullscreen-mode');
-                                const isExpanded = document.body.classList.contains('app-fullscreen-mode');
-                                this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
+                                if (this.isInIframe) {
+                                    this.openNewTab();
+                                } else {
+                                    document.body.classList.toggle('app-fullscreen-mode');
+                                    const isExpanded = document.body.classList.contains('app-fullscreen-mode');
+                                    this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
+                                }
                             });
                             return;
                         }
                     }
-                    document.body.classList.toggle('app-fullscreen-mode');
-                    const isExpanded = document.body.classList.contains('app-fullscreen-mode');
-                    this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
                 } else {
                     const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
                     if (exit) {
@@ -373,10 +381,42 @@
                     }
                 }
             } catch (e) {
-                document.body.classList.toggle('app-fullscreen-mode');
-                const isExpanded = document.body.classList.contains('app-fullscreen-mode');
-                this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
+                if (this.isInIframe) {
+                    this.openNewTab();
+                } else {
+                    document.body.classList.toggle('app-fullscreen-mode');
+                    const isExpanded = document.body.classList.contains('app-fullscreen-mode');
+                    this.showToast(isExpanded ? "⛶ Đã mở rộng giao diện" : "🗗 Đã trở về chế độ chuẩn");
+                }
             }
+        },
+
+        /**
+         * Safely open game in standalone new window (with bidirectional state sync)
+         */
+        openNewTab() {
+            if (typeof window.openGameInNewWindow === 'function') {
+                window.openGameInNewWindow();
+                return;
+            }
+            if (typeof window.openStandaloneWindow === 'function') {
+                window.openStandaloneWindow();
+                return;
+            }
+            try {
+                const targetUrl = new URL(window.location.href);
+                targetUrl.searchParams.delete('state');
+                targetUrl.hash = '';
+                targetUrl.searchParams.set('popout', '1');
+                const win = window.open(targetUrl.toString(), 'HSK4_Standalone_Game', 'width=1240,height=880,resizable=yes');
+                if (win) {
+                    this.showToast("🚀 Đang mở trò chơi ở cửa sổ mới...");
+                    return;
+                }
+            } catch (e) {
+                console.warn("Popup blocked:", e);
+            }
+            this.showToast("⚠️ Trình duyệt đã chặn cửa sổ mới. Vui lòng cho phép popup.");
         },
 
         /**
@@ -475,5 +515,6 @@
     }
 
     window.LMSAdapter = LMSAdapter;
+    window.LMSBridge = LMSAdapter;
 
 })(window);
