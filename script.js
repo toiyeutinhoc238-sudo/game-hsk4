@@ -152,7 +152,7 @@ function selectTopic(topic, updateUrl = true) {
     window.tempSelectedTopic = topic;
     
     // Update URL safely if requested (catch SecurityError in restricted LMS iframes)
-    if (updateUrl) {
+    if (updateUrl && !window.isChildWindow) {
         const slug = createSlug(topic);
         if (slug) {
             try {
@@ -270,12 +270,12 @@ function init() {
         updateScoreboard();
         populateTopics();
         
-        // Only check URL params if not in popup mode (popup mode uses synchronized state)
-        const isPopup = window.location.search.includes('mode=popup') || (window.name && window.name.startsWith('HSK4_POPUP_'));
-        if (!isPopup) {
+        initSyncEngine();
+
+        // Only check URL params for initial topic if not in popup/sync child window
+        if (!window.isChildWindow) {
             checkUrlParams();
         }
-        initSyncEngine();
     } else {
         console.error('Failed to load vocabulary data: VOCAB_DATA is not defined.');
     }
@@ -815,12 +815,127 @@ window.currentActiveQuestionData = null;
 window.currentActiveActionTitle = null;
 
 /**
+ * Safely encode game state into a compact UTF-8 URL parameter / hash
+ */
+function encodeStateToUrlParam(state) {
+    if (!state) return '';
+    try {
+        const json = JSON.stringify(state);
+        if (typeof TextEncoder !== 'undefined') {
+            const bytes = new TextEncoder().encode(json);
+            let binary = '';
+            const len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return encodeURIComponent(btoa(binary));
+        } else {
+            return encodeURIComponent(json);
+        }
+    } catch (e) {
+        try {
+            return encodeURIComponent(JSON.stringify(state));
+        } catch (e2) {
+            return '';
+        }
+    }
+}
+
+/**
+ * Safely decode game state from URL parameter / hash / window.name
+ */
+function decodeStateFromUrlParam(paramStr) {
+    if (!paramStr) return null;
+    try {
+        const decodedParam = decodeURIComponent(paramStr);
+        // 1. Try UTF-8 Base64 decode
+        try {
+            if (typeof TextDecoder !== 'undefined') {
+                const binary = atob(decodedParam);
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++) {
+                    bytes[i] = binary.charCodeAt(i);
+                }
+                const json = new TextDecoder().decode(bytes);
+                return JSON.parse(json);
+            }
+        } catch (e1) {}
+
+        // 2. Try direct JSON parse
+        return JSON.parse(decodedParam);
+    } catch (e) {
+        // 3. Try secondary decodeURIComponent in case of double-encoding
+        try {
+            const doubleDecoded = decodeURIComponent(decodeURIComponent(paramStr));
+            return JSON.parse(doubleDecoded);
+        } catch (e2) {
+            return null;
+        }
+    }
+}
+
+/**
+ * Extract initial state snapshot from all possible handover channels
+ */
+function getInitialStateForChild() {
+    // 1. Try URL search query parameter (?state=...)
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const stateParam = urlParams.get('state');
+        if (stateParam) {
+            const state = decodeStateFromUrlParam(stateParam);
+            if (state) return state;
+        }
+    } catch (e) {}
+
+    // 2. Try URL hash fragment (#state=... or #<encodedState>)
+    try {
+        if (window.location.hash) {
+            const rawHash = window.location.hash.substring(1);
+            if (rawHash.startsWith('state=')) {
+                const state = decodeStateFromUrlParam(rawHash.substring(6));
+                if (state) return state;
+            } else {
+                const hashParams = new URLSearchParams(rawHash);
+                const stateParam = hashParams.get('state') || rawHash;
+                const state = decodeStateFromUrlParam(stateParam);
+                if (state) return state;
+            }
+        }
+    } catch (e) {}
+
+    // 3. Try window.name (HSK4_POPUP_<state>)
+    try {
+        if (window.name && window.name.startsWith('HSK4_POPUP_')) {
+            const raw = window.name.substring(11);
+            const state = decodeStateFromUrlParam(raw);
+            if (state) return state;
+        }
+    } catch (e) {}
+
+    // 4. Try safeStorage / localStorage
+    try {
+        if (window.safeStorage) {
+            const saved = window.safeStorage.getItem('hsk4_game_sync_state');
+            if (saved) {
+                const state = JSON.parse(saved);
+                if (state) return state;
+            }
+        }
+    } catch (e) {}
+
+    return null;
+}
+
+/**
  * Initialize Real-time Synchronization Engine
  */
 function initSyncEngine() {
     isChildWindow = Boolean(
         (window.name && window.name.startsWith('HSK4_POPUP_')) ||
         window.location.search.includes('mode=popup') ||
+        window.location.search.includes('state=') ||
+        window.location.hash.includes('state=') ||
         (window.opener && window.opener !== window)
     );
     window.isChildWindow = isChildWindow;
@@ -880,30 +995,9 @@ function initSyncEngine() {
 
     // 5. If child window, restore state immediately
     if (isChildWindow) {
-        let stateImported = false;
-
-        // Try window.name (instant synchronous transfer across window.open)
-        if (window.name && window.name.startsWith('HSK4_POPUP_')) {
-            try {
-                const raw = decodeURIComponent(window.name.substring(11));
-                const state = JSON.parse(raw);
-                importGameState(state, false);
-                stateImported = true;
-            } catch (e) {
-                console.warn("[Sync] Could not parse window.name state:", e);
-            }
-        }
-
-        // Fallback to safeStorage
-        if (!stateImported && window.safeStorage) {
-            const saved = window.safeStorage.getItem('hsk4_game_sync_state');
-            if (saved) {
-                try {
-                    const state = JSON.parse(saved);
-                    importGameState(state, false);
-                    stateImported = true;
-                } catch (e) {}
-            }
+        const initialState = getInitialStateForChild();
+        if (initialState) {
+            importGameState(initialState, false);
         }
 
         // Notify parent LMS window that child is ready
@@ -1053,6 +1147,10 @@ function importGameState(state, shouldBroadcast = false) {
             window.tempSelectedTopic = state.tempSelectedTopic;
             window.tempPlayerCount = state.tempPlayerCount;
             document.getElementById('rules-step').style.display = 'block';
+        } else if (state.step === 'countdown' && state.tempSelectedTopic && state.tempPlayerCount) {
+            window.tempSelectedTopic = state.tempSelectedTopic;
+            window.tempPlayerCount = state.tempPlayerCount;
+            document.getElementById('rules-step').style.display = 'block';
         } else {
             document.getElementById('topic-selection-step').style.display = 'block';
         }
@@ -1095,7 +1193,14 @@ function importGameState(state, shouldBroadcast = false) {
         }
     }
 
-    players = state.players ? JSON.parse(JSON.stringify(state.players)) : [];
+    players = state.players && state.players.length > 0 ? JSON.parse(JSON.stringify(state.players)) : [];
+    if (players.length === 0) {
+        const count = state.tempPlayerCount || 2;
+        for (let i = 1; i <= count; i++) {
+            players.push({ id: i, name: `Người chơi ${i}`, score: 0 });
+        }
+    }
+
     currentPlayerIndex = typeof state.currentPlayerIndex === 'number' ? state.currentPlayerIndex : 0;
     currentSpinCount = typeof state.currentSpinCount === 'number' ? state.currentSpinCount : 0;
     currentMaxRounds = typeof state.currentMaxRounds === 'number' ? state.currentMaxRounds : 7;
@@ -1199,6 +1304,15 @@ function broadcastGameState() {
         try { window.childGameWindow.postMessage(msg, '*'); } catch (e) {}
     }
 
+    // Keep child window's URL updated with latest state so F5 / reload retains exact progress
+    if (window.isChildWindow) {
+        try {
+            const stateParam = encodeStateToUrlParam(state);
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?mode=popup&state=' + stateParam + '#state=' + stateParam;
+            window.history.replaceState({ path: newUrl }, '', newUrl);
+        } catch (e) {}
+    }
+
     updateSyncOverlayInfo(state);
 }
 
@@ -1213,6 +1327,8 @@ function openStandaloneWindow() {
 
     const state = exportGameState();
     const stateStr = JSON.stringify(state);
+    const stateParam = encodeStateToUrlParam(state);
+
     if (window.safeStorage) {
         window.safeStorage.setItem('hsk4_game_sync_state', stateStr);
     }
@@ -1222,11 +1338,11 @@ function openStandaloneWindow() {
     const left = Math.max(0, Math.floor((window.screen.availWidth - w) / 2));
     const top = Math.max(0, Math.floor((window.screen.availHeight - h) / 2));
 
-    // Use clean base URL so child popup isn't forced into topic selection by URL params
+    // Base URL without existing query params or hash
     const baseUrl = window.location.href.split('?')[0].split('#')[0];
-    const targetUrl = baseUrl + '?mode=popup';
+    const targetUrl = baseUrl + '?mode=popup&state=' + stateParam + '#state=' + stateParam;
 
-    const winName = 'HSK4_POPUP_' + encodeURIComponent(stateStr);
+    const winName = 'HSK4_POPUP_' + stateParam;
     const child = window.open(targetUrl, winName, `width=${w},height=${h},top=${top},left=${left},resizable=yes,scrollbars=yes`);
 
     if (!child || child.closed || typeof child.closed === 'undefined') {
