@@ -169,28 +169,51 @@ function selectTopic(topic, updateUrl = true) {
     if (typeof broadcastGameState === 'function') broadcastGameState();
 }
 
-function checkUrlParams() {
+function determineInitialTopic() {
+    if (!window.allTopics || window.allTopics.length === 0) {
+        return "1. Con người & Các mối quan hệ (Phần 1)";
+    }
+
     try {
         const urlParams = new URLSearchParams(window.location.search);
+        
+        // 1. Explicit params: ?topic=... or ?chude=... or ?theme=...
+        const paramTopic = urlParams.get('topic') || urlParams.get('chude') || urlParams.get('theme');
+        if (paramTopic) {
+            const found = window.allTopics.find(t => 
+                t.toLowerCase() === paramTopic.toLowerCase() || 
+                createSlug(t).toLowerCase() === paramTopic.toLowerCase()
+            );
+            if (found) return found;
+        }
+
+        // 2. Query keys (e.g. ?chude1_phan1 or ?chude2)
         const keys = Array.from(urlParams.keys());
-        if (keys.length > 0 && window.allTopics) {
-            for (const key of keys) {
-                const targetTopic = window.allTopics.find(t => createSlug(t) === key);
-                if (targetTopic) {
-                    selectTopic(targetTopic, false);
-                    return;
-                }
+        for (const key of keys) {
+            if (key === 'mode' || key === 'state') continue;
+            const found = window.allTopics.find(t => createSlug(t).toLowerCase() === key.toLowerCase());
+            if (found) return found;
+        }
+
+        // 3. Hash fragment (e.g. #chude1_phan1)
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            if (!hash.startsWith('state=')) {
+                const found = window.allTopics.find(t => createSlug(t).toLowerCase() === hash.toLowerCase());
+                if (found) return found;
             }
         }
     } catch (e) {
-        // Fallback for older browsers or restricted environment
-        const param = window.location.search.substring(1);
-        if (param && window.allTopics) {
-            const targetTopic = window.allTopics.find(t => createSlug(t) === param);
-            if (targetTopic) {
-                selectTopic(targetTopic, false);
-            }
-        }
+        console.warn("[Topic] Could not parse URL params for topic:", e);
+    }
+
+    return window.allTopics[0] || "1. Con người & Các mối quan hệ (Phần 1)";
+}
+
+function checkUrlParams() {
+    const initialTopic = determineInitialTopic();
+    if (initialTopic) {
+        window.tempSelectedTopic = initialTopic;
     }
 }
 
@@ -270,12 +293,10 @@ function init() {
         updateScoreboard();
         populateTopics();
         
+        // Auto-select topic from URL or default topic so user goes directly to player count screen
+        window.tempSelectedTopic = determineInitialTopic();
+        
         initSyncEngine();
-
-        // Only check URL params for initial topic if not in popup/sync child window
-        if (!window.isChildWindow) {
-            checkUrlParams();
-        }
     } else {
         console.error('Failed to load vocabulary data: VOCAB_DATA is not defined.');
     }
@@ -1060,10 +1081,8 @@ function exportGameState() {
             step = 'countdown';
         } else if (rulesStep && rulesStep.style.display !== 'none') {
             step = 'rules';
-        } else if (playerCountStep && playerCountStep.style.display !== 'none') {
-            step = 'player_count';
         } else {
-            step = 'topic';
+            step = 'player_count';
         }
     } else if (gameOverModal && gameOverModal.classList.contains('show')) {
         stage = 'game_over';
@@ -1089,7 +1108,7 @@ function exportGameState() {
     return {
         stage: stage,
         step: step,
-        tempSelectedTopic: window.tempSelectedTopic || null,
+        tempSelectedTopic: window.tempSelectedTopic || determineInitialTopic(),
         tempPlayerCount: window.tempPlayerCount || null,
         selectedTopic: selectedTopic || null,
         players: players ? JSON.parse(JSON.stringify(players)) : [],
@@ -1140,19 +1159,21 @@ function importGameState(state, shouldBroadcast = false) {
         document.getElementById('rules-step').style.display = 'none';
         document.getElementById('countdown-step').style.display = 'none';
 
-        if (state.step === 'player_count' && state.tempSelectedTopic) {
+        if (state.tempSelectedTopic) {
             window.tempSelectedTopic = state.tempSelectedTopic;
-            document.getElementById('player-count-step').style.display = 'block';
-        } else if (state.step === 'rules' && state.tempSelectedTopic && state.tempPlayerCount) {
-            window.tempSelectedTopic = state.tempSelectedTopic;
+        } else if (!window.tempSelectedTopic) {
+            window.tempSelectedTopic = determineInitialTopic();
+        }
+
+        if (state.step === 'rules' && state.tempPlayerCount) {
             window.tempPlayerCount = state.tempPlayerCount;
             document.getElementById('rules-step').style.display = 'block';
-        } else if (state.step === 'countdown' && state.tempSelectedTopic && state.tempPlayerCount) {
-            window.tempSelectedTopic = state.tempSelectedTopic;
+        } else if (state.step === 'countdown' && state.tempPlayerCount) {
             window.tempPlayerCount = state.tempPlayerCount;
             document.getElementById('rules-step').style.display = 'block';
         } else {
-            document.getElementById('topic-selection-step').style.display = 'block';
+            // Default step is player_count directly
+            document.getElementById('player-count-step').style.display = 'block';
         }
         if (shouldBroadcast) broadcastGameState();
         return;
@@ -1478,6 +1499,20 @@ function updateSyncOverlayInfo(state) {
     }
 }
 
+/**
+ * Cleanly restart game without stale sync data
+ */
+function restartGame() {
+    if (window.safeStorage) {
+        window.safeStorage.removeItem('hsk4_game_sync_state');
+    }
+    if (window.isChildWindow) {
+        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + '?mode=popup';
+    } else {
+        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    }
+}
+
 // Global functions exposed to window
 window.exportGameState = exportGameState;
 window.importGameState = importGameState;
@@ -1486,4 +1521,5 @@ window.openStandaloneWindow = openStandaloneWindow;
 window.focusChildWindow = focusChildWindow;
 window.resumeInThisWindow = resumeInThisWindow;
 window.closeStandaloneChildWindow = closeStandaloneChildWindow;
+window.restartGame = restartGame;
 

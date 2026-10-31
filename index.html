@@ -42,18 +42,22 @@
     <!-- Setup Screen -->
     <div id="setup-screen" class="modal show">
         <div class="modal-content setup-modal-content">
-            <div id="topic-selection-step">
+            <div id="topic-selection-step" style="display: none;">
                 <div class="welcome-header">
                     <h1 class="welcome-title">CHÀO MỪNG</h1>
-                    <p class="welcome-desc">Chào mừng bạn đến với Chiếc Nón Kỳ Diệu phiên bản HSK 4! Hãy chọn một chủ đề bên dưới để bắt đầu hành trình chinh phục thử thách.</p>
+                    <p class="welcome-desc">Chào mừng bạn đến với Chiếc Nón Kỳ Diệu phiên bản HSK 4!</p>
                 </div>
                 <div id="topics-grid" class="options-grid topics-scroll-container">
                     <!-- Topics will be added here -->
                 </div>
             </div>
 
-            <div id="player-count-step" style="display: none;" onclick="startIntro()">
-                <p class="step-guide-text">Chọn số lượng người chơi</p>
+            <div id="player-count-step" onclick="startIntro()">
+                <div class="welcome-header" style="margin-bottom: 1.5rem;">
+                    <h1 class="welcome-title" style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.5rem;">CHIẾC NÓN KỲ DIỆU</h1>
+                    <p class="welcome-desc">Chào mừng bạn đến với Chiếc Nón Kỳ Diệu phiên bản HSK 4!</p>
+                </div>
+                <p class="step-guide-text">Chọn số lượng người chơi để bắt đầu</p>
                 <div class="player-count-options">
                     <button class="option-btn" onclick="selectPlayers(2)">2 Người chơi</button>
                     <button class="option-btn" onclick="selectPlayers(3)">3 Người chơi</button>
@@ -187,7 +191,7 @@
                 </table>
             </div>
 
-            <button class="option-btn restart-btn" onclick="location.reload()">CHƠI LẠI</button>
+            <button class="option-btn restart-btn" onclick="restartGame()">CHƠI LẠI</button>
         </div>
     </div>
 
