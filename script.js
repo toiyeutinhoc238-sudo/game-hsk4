@@ -49,6 +49,8 @@ var childGameWindow = null;
 var childCheckInterval = null;
 var gameSyncChannel = null;
 var latestSyncedState = null;
+var isWaitingForChild = false;
+window.isWaitingForChild = false;
 window.currentActiveQuestionData = null;
 window.currentActiveActionTitle = null;
 
@@ -73,17 +75,52 @@ const audioSpin = new Audio('nhac_nen/quayvongquay.mp3');
 const audioClap = new Audio('nhac_nen/votay.mp3');
 const audioRight = new Audio('nhac_nen/dung.mp3');
 const audioWrong = new Audio('nhac_nen/sai.mp3');
-// let introStarted = false; // Removed flag as we now check audio.paused state
 
+let lastSoundToggleTime = 0;
+function toggleSound(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const now = Date.now();
+    if (now - lastSoundToggleTime < 200) return; // Debounce rapid clicks
+    lastSoundToggleTime = now;
 
-function toggleSound() {
     isMuted = !isMuted;
     const icon = document.querySelector('#sound-toggle .icon');
     if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
     
-    audioIntro.muted = isMuted;
-    if (!isMuted) startIntro();
-    if (typeof broadcastGameState === 'function') broadcastGameState();
+    if (typeof audioIntro !== 'undefined') {
+        audioIntro.muted = isMuted;
+        if (isMuted) {
+            try { audioIntro.pause(); } catch (err) {}
+        } else {
+            startIntro();
+        }
+    }
+    if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
+    if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
+    if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
+    if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
+
+    broadcastAudioSync();
+}
+
+function broadcastAudioSync() {
+    const curTime = (typeof audioIntro !== 'undefined' && audioIntro && !isNaN(audioIntro.currentTime)) ? Number(audioIntro.currentTime.toFixed(2)) : 0;
+    const msg = {
+        type: 'HSK4_AUDIO_SYNC',
+        isMuted: isMuted,
+        audioCurrentTime: curTime
+    };
+    if (window.safeStorage) {
+        try { window.safeStorage.setItem('hsk4_audio_mute', isMuted ? 'true' : 'false'); } catch (e) {}
+    }
+    if (window.gameSyncChannel) {
+        try { window.gameSyncChannel.postMessage(msg); } catch (e) {}
+    }
+    if (isChildWindow && window.opener && !window.opener.closed) {
+        try { window.opener.postMessage(msg, '*'); } catch (e) {}
+    } else if (window.childGameWindow && !window.childGameWindow.closed) {
+        try { window.childGameWindow.postMessage(msg, '*'); } catch (e) {}
+    }
 }
 
 function startIntro() {
@@ -993,19 +1030,37 @@ function initSyncEngine() {
 
     // 4. Setup Storage event listener for cross-tab sync fallback
     window.addEventListener('storage', (event) => {
+        if (event.key === 'hsk4_audio_mute') {
+            const muted = event.newValue === 'true';
+            if (isMuted !== muted) {
+                isMuted = muted;
+                const icon = document.querySelector('#sound-toggle .icon');
+                if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
+                if (typeof audioIntro !== 'undefined') audioIntro.muted = isMuted;
+                if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
+                if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
+                if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
+                if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
+            }
+            return;
+        }
+
         if ((event.key === 'hsk4_synced_state' || event.key === 'hsk4_game_sync_state') && event.newValue) {
-            try {
-                const parsed = JSON.parse(event.newValue);
-                if (parsed) {
-                    handleIncomingSyncMessage({
-                        type: parsed.isPopoutClosing ? 'HSK4_POPOUT_CLOSED' : 'HSK4_STATE_SYNC',
-                        state: parsed
-                    });
-                }
-            } catch (e) {}
+            // Only process state sync if this is a child window, or if parent window is actually waiting for child
+            if (isChildWindow || window.isWaitingForChild || window.childGameWindow) {
+                try {
+                    const parsed = JSON.parse(event.newValue);
+                    if (parsed) {
+                        handleIncomingSyncMessage({
+                            type: parsed.isPopoutClosing ? 'HSK4_POPOUT_CLOSED' : 'HSK4_STATE_SYNC',
+                            state: parsed
+                        });
+                    }
+                } catch (e) {}
+            }
         }
         if (event.key === 'hsk4_popout_closed') {
-            if (!isChildWindow) {
+            if (!isChildWindow && (window.isWaitingForChild || window.childGameWindow)) {
                 resumeInThisWindow(false);
             }
         }
@@ -1057,17 +1112,21 @@ function initSyncEngine() {
             }
         }, 1500);
     } else {
-        // Parent LMS window: active auto-sync listeners on focus & visibility
-        window.addEventListener('focus', checkAndApplyLatestState);
+        // Parent LMS window: active auto-sync listeners on focus & visibility ONLY when waiting for child
+        window.addEventListener('focus', () => {
+            if (window.isWaitingForChild || window.childGameWindow) {
+                checkAndApplyLatestState();
+            }
+        });
         document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
+            if (document.visibilityState === 'visible' && (window.isWaitingForChild || window.childGameWindow)) {
                 checkAndApplyLatestState();
             }
         });
 
-        // Background poller: keep state fresh every 800ms while child window might be active
+        // Background poller: keep state fresh every 800ms while child window is active
         setInterval(() => {
-            if (!isChildWindow && (window.childGameWindow || latestSyncedState)) {
+            if (!isChildWindow && (window.childGameWindow || window.isWaitingForChild)) {
                 checkAndApplyLatestState();
             }
         }, 800);
@@ -1082,9 +1141,35 @@ function handleIncomingSyncMessage(data) {
     const type = data.type || data.action;
     const state = data.state;
 
+    // Fast-path: Audio mute synchronization between windows
+    if (type === 'HSK4_AUDIO_SYNC') {
+        if (typeof data.isMuted === 'boolean') {
+            isMuted = data.isMuted;
+            const icon = document.querySelector('#sound-toggle .icon');
+            if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
+            if (typeof audioIntro !== 'undefined') {
+                audioIntro.muted = isMuted;
+                if (isMuted) {
+                    try { audioIntro.pause(); } catch (e) {}
+                } else if (!isMuted && !isChildWindow && (window.childGameWindow && !window.childGameWindow.closed)) {
+                    // Keep parent intro paused while child is actively playing
+                    try { audioIntro.pause(); } catch (e) {}
+                } else {
+                    startIntro();
+                }
+            }
+            if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
+            if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
+            if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
+            if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
+        }
+        return;
+    }
+
     if (!isChildWindow) {
         // Child window is ready, reply with full state snapshot immediately
         if (type === 'HSK4_CHILD_READY') {
+            window.isWaitingForChild = true;
             const currentSnap = exportGameState();
             if (window.childGameWindow && !window.childGameWindow.closed) {
                 try { window.childGameWindow.postMessage({ type: 'HSK4_STATE_SYNC', state: currentSnap }, '*'); } catch (e) {}
@@ -1092,6 +1177,11 @@ function handleIncomingSyncMessage(data) {
             if (gameSyncChannel) {
                 try { gameSyncChannel.postMessage({ type: 'HSK4_STATE_SYNC', state: currentSnap }); } catch (e) {}
             }
+            return;
+        }
+
+        // Only process incoming child state if this parent window opened a child or is waiting
+        if (!window.isWaitingForChild && !window.childGameWindow) {
             return;
         }
 
@@ -1119,7 +1209,7 @@ function handleIncomingSyncMessage(data) {
 
             // Keep sync overlay updated with live state
             const syncModal = document.getElementById('sync-active-modal');
-            if (syncModal && !state.isPopoutClosing) {
+            if (syncModal && !state.isPopoutClosing && window.isWaitingForChild) {
                 if (state.stage !== 'setup') {
                     syncModal.classList.add('show');
                 }
@@ -1147,6 +1237,8 @@ function handleIncomingSyncMessage(data) {
  */
 function checkAndApplyLatestState() {
     if (isChildWindow) return;
+    if (!window.isWaitingForChild && !window.childGameWindow) return;
+
     let stateToApply = null;
     if (window.safeStorage) {
         try {
@@ -1188,7 +1280,7 @@ function checkAndApplyLatestState() {
 
     if (isClosed) {
         resumeInThisWindow(false);
-    } else if (stateToApply && stateToApply.stage !== 'setup') {
+    } else if (stateToApply && stateToApply.stage !== 'setup' && window.isWaitingForChild) {
         const syncModal = document.getElementById('sync-active-modal');
         if (syncModal) syncModal.classList.add('show');
     }
@@ -1593,6 +1685,8 @@ function openGameInNewWindow(e) {
             window.childGameWindow = child;
             try { child.focus(); } catch (err) {}
         }
+        window.isWaitingForChild = true;
+        isWaitingForChild = true;
 
         // 5. Show Parent LMS Sync Overlay ONLY when game is actively running (Matches HSK 2)
         const syncModal = document.getElementById('sync-active-modal');
@@ -1670,6 +1764,8 @@ function closePopoutAndReturnToLMS() {
  * @param {boolean} forceCloseChild - whether user explicitly clicked to force close child window
  */
 function resumeInThisWindow(forceCloseChild = false) {
+    window.isWaitingForChild = false;
+    isWaitingForChild = false;
     if (window.childCheckInterval) {
         clearInterval(window.childCheckInterval);
         window.childCheckInterval = null;
@@ -1682,6 +1778,8 @@ function resumeInThisWindow(forceCloseChild = false) {
                 window.childGameWindow.close();
             }
         } catch (e) {}
+        window.childGameWindow = null;
+    } else if (window.childGameWindow && window.childGameWindow.closed) {
         window.childGameWindow = null;
     }
 
@@ -1810,5 +1908,7 @@ window.resumeInThisWindow = resumeInThisWindow;
 window.resumeInLmsWindow = resumeInThisWindow;
 window.closePopoutAndReturnToLMS = closePopoutAndReturnToLMS;
 window.closeStandaloneChildWindow = closePopoutAndReturnToLMS;
+window.toggleSound = toggleSound;
+window.broadcastAudioSync = broadcastAudioSync;
 window.restartGame = restartGame;
 
