@@ -115,25 +115,30 @@ audioIntro.muted = isMuted;
 })();
 
 const audioSpin = new Audio('nhac_nen/quayvongquay.mp3');
-audioSpin.muted = isMuted;
+audioSpin.muted = false; // SFX always unmuted
 const audioClap = new Audio('nhac_nen/votay.mp3');
-audioClap.muted = isMuted;
+audioClap.muted = false; // SFX always unmuted
 const audioRight = new Audio('nhac_nen/dung.mp3');
-audioRight.muted = isMuted;
+audioRight.muted = false; // SFX always unmuted
 const audioWrong = new Audio('nhac_nen/sai.mp3');
-audioWrong.muted = isMuted;
+audioWrong.muted = false; // SFX always unmuted
 
 function updateSoundToggleUI() {
     const icon = document.querySelector('#sound-toggle .icon');
     if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
     const soundBtn = document.getElementById('sound-toggle');
-    if (soundBtn) soundBtn.classList.toggle('muted', isMuted);
+    if (soundBtn) {
+        soundBtn.classList.toggle('muted', isMuted);
+        soundBtn.title = isMuted ? "Bật nhạc nền" : "Tắt nhạc nền";
+        soundBtn.setAttribute('aria-label', isMuted ? "Bật nhạc nền" : "Tắt nhạc nền");
+    }
 }
 
 function applyMuteState(muted) {
     isMuted = muted;
     updateSoundToggleUI();
 
+    // Mute/Unmute ONLY background music (audioIntro); SFX remain unaffected
     if (typeof audioIntro !== 'undefined') {
         audioIntro.muted = isMuted;
         if (isMuted) {
@@ -144,10 +149,6 @@ function applyMuteState(muted) {
             }
         }
     }
-    if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
-    if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
-    if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
-    if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
 
     try {
         if (window.safeStorage) window.safeStorage.setItem('hsk4_audio_mute', isMuted ? 'true' : 'false');
@@ -507,11 +508,11 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
             result: result
         };
     } else {
-        // Fresh spin initiated by user
+        // Fresh spin initiated by user (SFX plays regardless of background music mute)
         audioSpin.currentTime = 0;
         if (window.LMSAdapter) {
             window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
-        } else if (!isMuted) {
+        } else {
             audioSpin.play().catch(e => console.log("Spin sound restricted:", e));
         }
 
@@ -1363,10 +1364,6 @@ function handleIncomingSyncMessage(data) {
                     startIntro();
                 }
             }
-            if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
-            if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
-            if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
-            if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
         }
         return;
     }
@@ -1624,13 +1621,11 @@ function importGameState(state, shouldBroadcast = false) {
     if (typeof state.isMuted === 'boolean') {
         isMuted = state.isMuted;
         updateSoundToggleUI();
-        if (typeof audioIntro !== 'undefined') audioIntro.muted = isMuted;
-        if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
-        if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
-        if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
-        if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
-        if (isMuted && typeof audioIntro !== 'undefined') {
-            try { audioIntro.pause(); } catch (e) {}
+        if (typeof audioIntro !== 'undefined') {
+            audioIntro.muted = isMuted;
+            if (isMuted) {
+                try { audioIntro.pause(); } catch (e) {}
+            }
         }
     }
 
