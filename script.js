@@ -1173,6 +1173,15 @@ function handleIncomingSyncMessage(data) {
         if (type === 'HSK4_CHILD_READY') {
             window.isWaitingForChild = true;
             isWaitingForChild = true;
+            if (typeof audioIntro !== 'undefined' && audioIntro && !audioIntro.paused) {
+                try { audioIntro.pause(); } catch (err) {}
+            }
+            const syncModal = document.getElementById('sync-active-modal');
+            if (syncModal) {
+                syncModal.classList.add('show', 'active');
+                syncModal.style.display = 'flex';
+                updateSyncOverlayInfo(exportGameState());
+            }
             const currentSnap = exportGameState();
             if (window.childGameWindow && !window.childGameWindow.closed) {
                 try { window.childGameWindow.postMessage({ type: 'HSK4_STATE_SYNC', state: currentSnap }, '*'); } catch (e) {}
@@ -1213,7 +1222,7 @@ function handleIncomingSyncMessage(data) {
             // Keep sync overlay updated with live state
             const syncModal = document.getElementById('sync-active-modal');
             if (syncModal && !state.isPopoutClosing && window.isWaitingForChild) {
-                syncModal.classList.add('show');
+                syncModal.classList.add('show', 'active');
                 syncModal.style.display = 'flex';
                 updateSyncOverlayInfo(state);
             }
@@ -1289,7 +1298,7 @@ function checkAndApplyLatestState() {
     } else if (window.isWaitingForChild) {
         const syncModal = document.getElementById('sync-active-modal');
         if (syncModal) {
-            syncModal.classList.add('show');
+            syncModal.classList.add('show', 'active');
             syncModal.style.display = 'flex';
         }
     }
@@ -1700,7 +1709,7 @@ function openGameInNewWindow(e) {
         // 5. Show Parent LMS Sync Overlay Modal (Always pauses LMS and prevents user interaction)
         const syncModal = document.getElementById('sync-active-modal');
         if (syncModal) {
-            syncModal.classList.add('show');
+            syncModal.classList.add('show', 'active');
             syncModal.style.display = 'flex';
             updateSyncOverlayInfo(snapshot);
         }
@@ -1876,19 +1885,39 @@ function updateSyncOverlayInfo(state) {
     if (topicEl) topicEl.textContent = state.selectedTopic || state.tempSelectedTopic || "Chưa chọn";
     if (roundEl) {
         if (state.stage === 'setup') {
-            roundEl.textContent = "Chuẩn bị bắt đầu";
+            if (state.step === 'rules') {
+                roundEl.textContent = "Xem luật chơi";
+            } else if (state.step === 'countdown') {
+                roundEl.textContent = "Đếm ngược";
+            } else if (state.step === 'player_count') {
+                roundEl.textContent = "Chọn người chơi";
+            } else {
+                roundEl.textContent = "Thiết lập game";
+            }
+        } else if (state.isGameOver) {
+            roundEl.textContent = "Đã kết thúc";
         } else {
             const playersCount = state.players ? state.players.length : 1;
             const roundNum = Math.floor((state.currentSpinCount || 0) / (playersCount || 1)) + 1;
-            roundEl.textContent = `${roundNum} / ${state.currentMaxRounds || 7}`;
+            roundEl.textContent = `Vòng ${roundNum} / ${state.currentMaxRounds || 7}`;
         }
     }
     if (turnEl) {
         if (state.stage === 'setup') {
-            turnEl.textContent = "Đang thiết lập tại cửa sổ mới";
+            if (state.step === 'rules') {
+                turnEl.textContent = "Đang xem luật chơi ở cửa sổ mới";
+            } else if (state.step === 'countdown') {
+                turnEl.textContent = "Đang đếm ngược ở cửa sổ mới";
+            } else if (state.step === 'player_count') {
+                turnEl.textContent = "Đang chọn số người chơi";
+            } else {
+                turnEl.textContent = "Đang thiết lập tại cửa sổ mới";
+            }
+        } else if (state.isGameOver) {
+            turnEl.textContent = "Xem kết quả & ôn tập";
         } else if (state.players && state.players.length > 0) {
             const p = state.players[state.currentPlayerIndex || 0];
-            turnEl.textContent = p ? p.name : "-";
+            turnEl.textContent = p ? `Lượt: ${p.name}` : "-";
         } else {
             turnEl.textContent = "Thiết lập game";
         }

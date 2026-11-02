@@ -1238,10 +1238,26 @@ body.app-fullscreen-mode {
 
 /* Real-time State Synchronization Modal (Parent LMS View) */
 .sync-modal {
-    background: rgba(10, 15, 29, 0.88);
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 15, 29, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    z-index: 1000;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#sync-active-modal.show,
+#sync-active-modal.active,
+.sync-modal.show,
+.sync-modal.active {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .sync-modal-content {

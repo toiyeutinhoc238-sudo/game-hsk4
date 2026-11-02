@@ -196,7 +196,7 @@
     </div>
 
     <!-- Real-time Synchronization Overlay (Shown on Parent LMS when Child Window is Active) -->
-    <div id="sync-active-modal" class="modal sync-modal" onclick="if (event.target === this) resumeInThisWindow(true)">
+    <div id="sync-active-modal" class="modal sync-modal" style="display: none; z-index: 9999;" onclick="if (event.target === this) resumeInThisWindow(true)">
         <div class="modal-content sync-modal-content">
             <button class="modal-close-btn" onclick="resumeInThisWindow(true)" title="Đóng & Tiếp tục chơi tại đây" aria-label="Đóng overlay">✕</button>
             <div class="sync-badge">
@@ -290,6 +290,15 @@
                 win = true;
             }
             if (win) {
+                try {
+                    const audios = document.querySelectorAll('audio');
+                    audios.forEach(a => { try { a.pause(); } catch (err) {} });
+                } catch (e) {}
+                const syncModal = document.getElementById('sync-active-modal');
+                if (syncModal) {
+                    syncModal.classList.add('show', 'active');
+                    syncModal.style.display = 'flex';
+                }
                 if (window.LMSAdapter && window.LMSAdapter.showToast) {
                     window.LMSAdapter.showToast("🚀 Đang mở giao diện trong cửa sổ mới...");
                 }
