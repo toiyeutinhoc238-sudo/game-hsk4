@@ -993,7 +993,40 @@ function initSyncEngine() {
         }
 
         const handleUnload = () => {
-            broadcastGameState(null, true);
+            let finalSnapshot = null;
+            try {
+                finalSnapshot = exportGameState();
+            } catch (e) {
+                finalSnapshot = { stage: 'playing', timestamp: Date.now() };
+            }
+            finalSnapshot.isPopoutClosing = true;
+
+            if (window.opener && !window.opener.closed) {
+                try {
+                    window.opener.__HSK4_LATEST_STATE__ = finalSnapshot;
+                    if (typeof window.opener.resumeInThisWindow === 'function') {
+                        window.opener.resumeInThisWindow(false);
+                    } else if (typeof window.opener.resumeInLmsWindow === 'function') {
+                        window.opener.resumeInLmsWindow(false);
+                    }
+                } catch (e) {}
+                try {
+                    window.opener.postMessage({ type: 'HSK4_POPOUT_CLOSED', state: finalSnapshot, timestamp: Date.now() }, '*');
+                } catch (e) {}
+            }
+            if (gameSyncChannel) {
+                try {
+                    gameSyncChannel.postMessage({ type: 'HSK4_POPOUT_CLOSED', state: finalSnapshot });
+                } catch (e) {}
+            }
+            if (window.safeStorage) {
+                try {
+                    const str = JSON.stringify(finalSnapshot);
+                    window.safeStorage.setItem('hsk4_synced_state', str);
+                    window.safeStorage.setItem('hsk4_game_sync_state', str);
+                    window.safeStorage.setItem('hsk4_popout_closed', Date.now().toString());
+                } catch (e) {}
+            }
         };
         window.addEventListener('beforeunload', handleUnload);
         window.addEventListener('pagehide', handleUnload);
@@ -1106,31 +1139,62 @@ function initSyncEngine() {
             try { gameSyncChannel.postMessage({ type: 'HSK4_CHILD_READY' }); } catch (e) {}
         }
 
-        // Child heartbeat: periodically broadcast state every 1.5s while active in popout
+        // Child heartbeat: continuously send heartbeat every 1 second (identical to HSK 3)
+        setInterval(() => {
+            if (isChildWindow) {
+                const hb = { type: 'HSK4_HEARTBEAT', timestamp: Date.now() };
+                if (gameSyncChannel) {
+                    try { gameSyncChannel.postMessage(hb); } catch (e) {}
+                }
+                if (window.opener && !window.opener.closed) {
+                    try { window.opener.postMessage(hb, '*'); } catch (e) {}
+                }
+            }
+        }, 1000);
+
+        // Child periodic state broadcast: every 2s while in popout
         setInterval(() => {
             if (isChildWindow) {
                 broadcastGameState();
             }
-        }, 1500);
+        }, 2000);
     } else {
         // Parent LMS window: active auto-sync listeners on focus & visibility ONLY when waiting for child
         window.addEventListener('focus', () => {
             if (window.isWaitingForChild || window.childGameWindow) {
-                checkAndApplyLatestState();
+                let isClosed = false;
+                try {
+                    if (window.childGameWindow) isClosed = window.childGameWindow.closed;
+                } catch (e) { isClosed = false; }
+                const noHeartbeat = (Date.now() - lastChildMessageTime > 2000);
+                if (isClosed || noHeartbeat) {
+                    resumeInThisWindow(false);
+                } else {
+                    checkAndApplyLatestState();
+                }
             }
         });
         document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible' && (window.isWaitingForChild || window.childGameWindow)) {
-                checkAndApplyLatestState();
+                let isClosed = false;
+                try {
+                    if (window.childGameWindow) isClosed = window.childGameWindow.closed;
+                } catch (e) { isClosed = false; }
+                const noHeartbeat = (Date.now() - lastChildMessageTime > 2000);
+                if (isClosed || noHeartbeat) {
+                    resumeInThisWindow(false);
+                } else {
+                    checkAndApplyLatestState();
+                }
             }
         });
 
-        // Background poller: keep state fresh every 800ms while child window is active
+        // Background poller: keep state fresh every 600ms while child window is active
         setInterval(() => {
             if (!isChildWindow && (window.childGameWindow || window.isWaitingForChild)) {
                 checkAndApplyLatestState();
             }
-        }, 800);
+        }, 600);
     }
 }
 
@@ -1139,7 +1203,6 @@ function initSyncEngine() {
  */
 function handleIncomingSyncMessage(data) {
     if (!data) return;
-    lastChildMessageTime = Date.now();
     const type = data.type || data.action;
     const state = data.state;
 
@@ -1168,17 +1231,38 @@ function handleIncomingSyncMessage(data) {
         return;
     }
 
+    // Heartbeat from active child window (identical to HSK 3)
+    if (type === 'HSK4_HEARTBEAT') {
+        lastChildMessageTime = Date.now();
+        return;
+    }
+
+    // Child is closing or has closed
+    if (type === 'HSK4_CHILD_CLOSING' || type === 'HSK4_POPOUT_CLOSED' || (state && state.isPopoutClosing)) {
+        if (!isChildWindow) {
+            if (state) {
+                latestSyncedState = state;
+                window.__HSK4_LATEST_STATE__ = state;
+            }
+            resumeInThisWindow(false);
+        }
+        return;
+    }
+
+    lastChildMessageTime = Date.now();
+
     if (!isChildWindow) {
         // Child window is ready, reply with full state snapshot immediately
         if (type === 'HSK4_CHILD_READY') {
             window.isWaitingForChild = true;
             isWaitingForChild = true;
+            lastChildMessageTime = Date.now();
             if (typeof audioIntro !== 'undefined' && audioIntro && !audioIntro.paused) {
                 try { audioIntro.pause(); } catch (err) {}
             }
             const syncModal = document.getElementById('sync-active-modal');
             if (syncModal) {
-                syncModal.classList.add('show', 'active');
+                syncModal.classList.add('show');
                 syncModal.style.display = 'flex';
                 updateSyncOverlayInfo(exportGameState());
             }
@@ -1222,14 +1306,10 @@ function handleIncomingSyncMessage(data) {
             // Keep sync overlay updated with live state
             const syncModal = document.getElementById('sync-active-modal');
             if (syncModal && !state.isPopoutClosing && window.isWaitingForChild) {
-                syncModal.classList.add('show', 'active');
+                syncModal.classList.add('show');
                 syncModal.style.display = 'flex';
                 updateSyncOverlayInfo(state);
             }
-        }
-
-        if (type === 'HSK4_CHILD_CLOSING' || type === 'HSK4_POPOUT_CLOSED' || (state && state.isPopoutClosing)) {
-            resumeInThisWindow(false);
         }
     } else {
         // Child window handling updates from parent
@@ -1286,19 +1366,21 @@ function checkAndApplyLatestState() {
             const popoutClosedTime = window.safeStorage.getItem('hsk4_popout_closed');
             if (popoutClosedTime && Date.now() - Number(popoutClosedTime) < 15000) {
                 popoutClosedFlag = true;
-                isClosed = true;
             }
         } catch (e) {}
     }
 
-    // Only consider closed if explicit close flag was set, or window is marked closed AND heartbeat expired
-    const isHeartbeatExpired = (Date.now() - lastChildMessageTime >= 4000);
-    if (popoutClosedFlag || (isClosed && isHeartbeatExpired)) {
+    // Tự động khôi phục nếu child đã đóng, hoặc có flag đóng, hoặc không còn gửi heartbeat quá 2.5 giây (chuẩn HSK 3)
+    const noHeartbeat = (Date.now() - lastChildMessageTime > 2500);
+    if (isClosed || popoutClosedFlag || noHeartbeat) {
         resumeInThisWindow(false);
-    } else if (window.isWaitingForChild) {
+        return;
+    }
+
+    if (window.isWaitingForChild) {
         const syncModal = document.getElementById('sync-active-modal');
         if (syncModal) {
-            syncModal.classList.add('show', 'active');
+            syncModal.classList.add('show');
             syncModal.style.display = 'flex';
         }
     }
@@ -1702,6 +1784,8 @@ function openGameInNewWindow(e) {
         if (child !== true) {
             window.childGameWindow = child;
             try { child.focus(); } catch (err) {}
+        } else {
+            window.childGameWindow = null;
         }
         window.isWaitingForChild = true;
         isWaitingForChild = true;
@@ -1709,7 +1793,7 @@ function openGameInNewWindow(e) {
         // 5. Show Parent LMS Sync Overlay Modal (Always pauses LMS and prevents user interaction)
         const syncModal = document.getElementById('sync-active-modal');
         if (syncModal) {
-            syncModal.classList.add('show', 'active');
+            syncModal.classList.add('show');
             syncModal.style.display = 'flex';
             updateSyncOverlayInfo(snapshot);
         }
@@ -1721,7 +1805,7 @@ function openGameInNewWindow(e) {
             window.LMSAdapter.showToast(toastMsg);
         }
 
-        // 6. Safe poller to detect child window closure (Grace period + heartbeat check)
+        // 6. Safe poller with Heartbeat Guard (matches HSK 3)
         if (window.childCheckInterval) {
             clearInterval(window.childCheckInterval);
             window.childCheckInterval = null;
@@ -1730,27 +1814,46 @@ function openGameInNewWindow(e) {
         lastChildMessageTime = Date.now();
 
         setTimeout(() => {
-            if (!window.childGameWindow || window.childGameWindow === true) return;
+            if (!window.isWaitingForChild) return;
             window.childCheckInterval = setInterval(() => {
+                if (!window.isWaitingForChild) {
+                    if (window.childCheckInterval) {
+                        clearInterval(window.childCheckInterval);
+                        window.childCheckInterval = null;
+                    }
+                    return;
+                }
+
                 let isClosed = false;
                 try {
                     isClosed = !window.childGameWindow || window.childGameWindow.closed;
                 } catch (err) {
                     isClosed = false;
                 }
-                if (isClosed) {
-                    // In LMS iframes, Chromium/Edge marks childGameWindow.closed = true prematurely.
-                    // If child sent a heartbeat/message within the last 4 seconds, it is STILL ALIVE!
-                    if (Date.now() - lastChildMessageTime < 4000) {
-                        return; // Do NOT resume while child is actively playing!
+
+                let popoutClosedFlag = false;
+                if (window.safeStorage) {
+                    try {
+                        const popoutClosedTime = window.safeStorage.getItem('hsk4_popout_closed');
+                        if (popoutClosedTime && Date.now() - Number(popoutClosedTime) < 15000) {
+                            popoutClosedFlag = true;
+                        }
+                    } catch (e) {}
+                }
+
+                // Tự động khôi phục nếu child đã đóng, hoặc flag đóng được ghi nhận, hoặc mất heartbeat quá 2.5s (giống HSK 3)
+                const noHeartbeat = (Date.now() - lastChildMessageTime > 2500);
+
+                if (isClosed || popoutClosedFlag || noHeartbeat) {
+                    if (window.childCheckInterval) {
+                        clearInterval(window.childCheckInterval);
+                        window.childCheckInterval = null;
                     }
-                    clearInterval(window.childCheckInterval);
-                    window.childCheckInterval = null;
                     window.childGameWindow = null;
                     resumeInThisWindow(false);
                 }
-            }, 800);
-        }, 2000);
+            }, 600);
+        }, 1200);
     } else {
         if (typeof window.resumeTimer === 'function') window.resumeTimer();
         if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
@@ -1763,59 +1866,112 @@ function openGameInNewWindow(e) {
  * Handle Child Window Closure & Synchronize Back to LMS Parent
  */
 function closePopoutAndReturnToLMS() {
-    broadcastGameState(null, true);
+    let finalSnapshot = null;
+    try {
+        finalSnapshot = exportGameState();
+    } catch (e) {
+        finalSnapshot = { stage: 'playing', timestamp: Date.now() };
+    }
+    finalSnapshot.isPopoutClosing = true;
+
+    // 1. Direct call to opener if accessible (matches HSK 3)
+    if (window.opener && !window.opener.closed) {
+        try {
+            window.opener.__HSK4_LATEST_STATE__ = finalSnapshot;
+            if (typeof window.opener.resumeInThisWindow === 'function') {
+                window.opener.resumeInThisWindow(false);
+            } else if (typeof window.opener.resumeInLmsWindow === 'function') {
+                window.opener.resumeInLmsWindow(false);
+            }
+        } catch (e) {
+            console.warn("[Popout] Direct opener resume note:", e);
+        }
+        try {
+            window.opener.postMessage({ type: 'HSK4_POPOUT_CLOSED', state: finalSnapshot, timestamp: Date.now() }, '*');
+        } catch (e) {}
+    }
+
+    // 2. BroadcastChannel
+    if (window.gameSyncChannel) {
+        try {
+            window.gameSyncChannel.postMessage({ type: 'HSK4_POPOUT_CLOSED', state: finalSnapshot });
+        } catch (e) {}
+    }
+
+    // 3. Storage fallback
     if (window.safeStorage) {
         try {
+            const str = JSON.stringify(finalSnapshot);
+            window.safeStorage.setItem('hsk4_synced_state', str);
+            window.safeStorage.setItem('hsk4_game_sync_state', str);
             window.safeStorage.setItem('hsk4_popout_closed', Date.now().toString());
         } catch (e) {}
     }
+
+    // 4. Try to focus opener
     if (window.opener && !window.opener.closed) {
-        try {
-            window.opener.postMessage({ type: 'HSK4_POPOUT_CLOSED' }, '*');
-            window.opener.focus();
-        } catch (e) {}
+        try { window.opener.focus(); } catch (e) {}
     }
-    try {
-        window.close();
-    } catch (e) {}
+
+    // 5. Close window
     setTimeout(() => {
-        if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
-            window.LMSAdapter.showToast("✅ Đã đồng bộ dữ liệu về LMS! Bạn có thể chuyển sang tab LMS.");
-        }
-    }, 200);
+        try {
+            window.close();
+        } catch (e) {}
+    }, 100);
 }
 
 /**
- * Resume playing directly in the Parent LMS window (Matches HSK 2 Architecture)
+ * Resume playing directly in the Parent LMS window (Matches HSK 3 Architecture)
  * @param {boolean} forceCloseChild - whether user explicitly clicked to force close child window
  */
 function resumeInThisWindow(forceCloseChild = false) {
+    if (window.LMSAdapter && typeof window.LMSAdapter.playSynthesizedSound === 'function') {
+        window.LMSAdapter.playSynthesizedSound('tap');
+    }
+
     window.isWaitingForChild = false;
     isWaitingForChild = false;
+
     if (window.childCheckInterval) {
         clearInterval(window.childCheckInterval);
         window.childCheckInterval = null;
     }
 
-    if (forceCloseChild && window.childGameWindow) {
+    if (window.childGameWindow) {
         try {
             if (!window.childGameWindow.closed) {
-                window.childGameWindow.postMessage({ type: 'HSK4_PARENT_RESUMED' }, '*');
-                window.childGameWindow.close();
+                if (forceCloseChild) {
+                    window.childGameWindow.postMessage({ type: 'HSK4_PARENT_RESUMED' }, '*');
+                    window.childGameWindow.close();
+                }
             }
         } catch (e) {}
         window.childGameWindow = null;
-    } else if (window.childGameWindow && window.childGameWindow.closed) {
-        window.childGameWindow = null;
     }
 
+    if (window.gameSyncChannel) {
+        try {
+            window.gameSyncChannel.postMessage({ type: 'HSK4_PARENT_RESUMED' });
+        } catch (e) {}
+    }
+
+    // Hide the sync modal reliably (remove both show and active)
     const syncModal = document.getElementById('sync-active-modal');
     if (syncModal) {
         syncModal.classList.remove('show');
-        syncModal.style.display = 'none';
+        syncModal.classList.remove('active');
+        syncModal.style.setProperty('display', 'none', 'important');
     }
 
-    let stateToApply = latestSyncedState;
+    // Clean up popout closed marker
+    if (window.safeStorage) {
+        try {
+            window.safeStorage.removeItem('hsk4_popout_closed');
+        } catch (e) {}
+    }
+
+    let stateToApply = latestSyncedState || window.__HSK4_LATEST_STATE__;
     if (window.safeStorage) {
         try {
             const saved = window.safeStorage.getItem('hsk4_synced_state') || window.safeStorage.getItem('hsk4_game_sync_state');
@@ -1847,7 +2003,7 @@ function resumeInThisWindow(forceCloseChild = false) {
                 const round = Math.floor((stateToApply.currentSpinCount || 0) / ((stateToApply.players && stateToApply.players.length) || 1)) + 1;
                 window.LMSAdapter.showToast(`🎮 Đã đồng bộ tiến trình! Tiếp tục vòng ${round}/${stateToApply.currentMaxRounds || 7}`);
             } else {
-                window.LMSAdapter.showToast("🎮 Đã đồng bộ tiến trình từ cửa sổ mới!");
+                window.LMSAdapter.showToast("🎮 Đã đồng bộ tiến trình! Tiếp tục chơi trên màn hình LMS.");
             }
         }
     } else {
@@ -1862,11 +2018,14 @@ function resumeInThisWindow(forceCloseChild = false) {
  * Focus the active Child Window from Parent
  */
 function focusChildWindow() {
+    if (window.LMSAdapter && typeof window.LMSAdapter.playSynthesizedSound === 'function') {
+        window.LMSAdapter.playSynthesizedSound('tap');
+    }
     let isAlive = false;
     if (window.childGameWindow) {
         try { isAlive = !window.childGameWindow.closed; } catch (e) { isAlive = false; }
     }
-    if (isAlive) {
+    if (isAlive && (Date.now() - lastChildMessageTime < 3000)) {
         try { window.childGameWindow.focus(); return; } catch (e) {}
     }
     openGameInNewWindow();

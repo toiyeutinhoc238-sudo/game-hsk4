@@ -296,7 +296,7 @@
                 } catch (e) {}
                 const syncModal = document.getElementById('sync-active-modal');
                 if (syncModal) {
-                    syncModal.classList.add('show', 'active');
+                    syncModal.classList.add('show');
                     syncModal.style.display = 'flex';
                 }
                 if (window.LMSAdapter && window.LMSAdapter.showToast) {
@@ -308,6 +308,17 @@
                 }
             }
         };
+
+        // Early instant resume handler (guarantees modal closes immediately even if clicked early)
+        window.resumeInThisWindow = function (force) {
+            const syncModal = document.getElementById('sync-active-modal');
+            if (syncModal) {
+                syncModal.classList.remove('show', 'active');
+                syncModal.style.setProperty('display', 'none', 'important');
+            }
+            window.isWaitingForChild = false;
+        };
+        window.resumeInLmsWindow = window.resumeInThisWindow;
     </script>
     <script src="lms-adapter.js"></script>
     <script src="data.js"></script>

@@ -1252,12 +1252,19 @@ body.app-fullscreen-mode {
 }
 
 #sync-active-modal.show,
-#sync-active-modal.active,
-.sync-modal.show,
-.sync-modal.active {
+.sync-modal.show {
     display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+#sync-active-modal:not(.show),
+.sync-modal:not(.show) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
 .sync-modal-content {
