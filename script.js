@@ -64,6 +64,7 @@ let currentSessionVocab = [];
 let selectedTopic = "";
 let isSpinning = false;
 let activeSpinData = null; // { isSpinning: true, startTime, duration, targetRotation, startRotation, result }
+let currentWheelAnimationId = null;
 let spinTimeoutId = null;
 let spinIntervalId = null;
 let currentRotation = 0;
@@ -481,36 +482,97 @@ function drawWheel() {
     ctx.fill();
 }
 
-// Spin Logic
-spinBtn.addEventListener('click', () => spin());
-
-function spin(predefinedTarget = null, remainingMs = null, customResult = null) {
-    if (predefinedTarget !== null) {
-        if (spinTimeoutId) {
-            clearTimeout(spinTimeoutId);
-            spinTimeoutId = null;
-        }
-        if (spinIntervalId) {
-            clearInterval(spinIntervalId);
-            spinIntervalId = null;
-        }
-        isSpinning = false;
-    } else {
-        if (isSpinning) return;
+// Spin Logic & Frame-by-Frame Wheel Rotation Engine (Guarantees smooth animation across all window switches)
+function animateWheelRotation(fromAngle, toAngle, duration, onComplete) {
+    if (currentWheelAnimationId) {
+        cancelAnimationFrame(currentWheelAnimationId);
+        currentWheelAnimationId = null;
     }
-    isSpinning = true;
-    spinBtn.disabled = true;
+
+    if (canvas) {
+        canvas.style.transition = 'none';
+        canvas.style.transform = `rotate(${fromAngle}rad)`;
+    }
 
     const pointer = document.querySelector('.pointer');
     let lastSegment = -1;
     const step = (Math.PI * 2) / SEGMENTS.length;
+    const startTime = performance.now();
 
+    // Natural physical deceleration curve
+    function easeOutDecel(t) {
+        return 1 - Math.pow(1 - t, 3.8);
+    }
+
+    function frame(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, Math.max(0, elapsed / duration));
+        const currentAngle = fromAngle + (toAngle - fromAngle) * easeOutDecel(progress);
+
+        if (canvas) {
+            canvas.style.transform = `rotate(${currentAngle}rad)`;
+        }
+
+        // Pointer tick animation
+        const normAngle = (Math.PI * 1.5 - (currentAngle % (Math.PI * 2))) % (Math.PI * 2);
+        const seg = Math.floor((normAngle < 0 ? normAngle + Math.PI * 2 : normAngle) / step);
+        if (seg !== lastSegment) {
+            if (pointer) {
+                pointer.classList.remove('tick');
+                void pointer.offsetWidth;
+                pointer.classList.add('tick');
+            }
+            lastSegment = seg;
+        }
+
+        if (progress < 1) {
+            currentWheelAnimationId = requestAnimationFrame(frame);
+        } else {
+            currentWheelAnimationId = null;
+            if (canvas) {
+                canvas.style.transform = `rotate(${toAngle}rad)`;
+            }
+            if (typeof onComplete === 'function') {
+                onComplete();
+            }
+        }
+    }
+
+    currentWheelAnimationId = requestAnimationFrame(frame);
+}
+
+spinBtn.addEventListener('click', () => spin());
+
+function spin(predefinedTarget = null, remainingMs = null, customResult = null) {
+    if (currentWheelAnimationId) {
+        cancelAnimationFrame(currentWheelAnimationId);
+        currentWheelAnimationId = null;
+    }
+    if (spinTimeoutId) {
+        clearTimeout(spinTimeoutId);
+        spinTimeoutId = null;
+    }
+    if (spinIntervalId) {
+        clearInterval(spinIntervalId);
+        spinIntervalId = null;
+    }
+
+    if (predefinedTarget === null && isSpinning) return;
+
+    isSpinning = true;
+    spinBtn.disabled = true;
+
+    const step = (Math.PI * 2) / SEGMENTS.length;
     let spinDuration;
     let result;
+    let startRotation;
+    let targetRotation;
 
     if (predefinedTarget !== null) {
         // Resuming or synchronizing an ongoing spin from another window!
-        // Determine result segment from customResult or directly from target rotation
+        targetRotation = predefinedTarget;
+        currentRotation = predefinedTarget;
+
         result = customResult;
         if (!result) {
             const normalizedRotation = predefinedTarget % (Math.PI * 2);
@@ -520,25 +582,18 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
             result = SEGMENTS[segmentIndex];
         }
 
-        // Ensure visible, smooth deceleration (at least 2200ms) so the user clearly sees the wheel turn and land
-        spinDuration = Math.max(2200, Math.min(5000, typeof remainingMs === 'number' ? remainingMs : 3000));
-        currentRotation = predefinedTarget;
+        // Always guarantee a generous, visible deceleration so the user clearly sees the wheel turn and land smoothly
+        spinDuration = Math.max(2600, Math.min(5000, typeof remainingMs === 'number' ? remainingMs : 3200));
 
-        // Visual Handover: Start 2-3 full revolutions before predefinedTarget so the CSS transition visibly spins
-        const turns = spinDuration >= 3500 ? 3 : 2;
-        const startRot = predefinedTarget - (turns * Math.PI * 2);
-
-        if (canvas) {
-            canvas.style.transition = 'none';
-            canvas.style.transform = `rotate(${startRot}rad)`;
-            void canvas.offsetWidth; // Force synchronous layout reflow so the browser commits startRot
-        }
+        // Start 2.5 full circles back so the wheel makes multiple rotations before landing
+        startRotation = targetRotation - (2.5 * Math.PI * 2);
 
         activeSpinData = {
             isSpinning: true,
             startTime: Date.now() - (5000 - spinDuration),
             duration: 5000,
-            targetRotation: currentRotation,
+            targetRotation: targetRotation,
+            startRotation: startRotation,
             result: result
         };
 
@@ -563,10 +618,11 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
         const randomAngle = Math.random() * Math.PI * 2;
         const totalRotation = extraRounds * Math.PI * 2 + randomAngle;
 
-        const startRotation = currentRotation;
-        currentRotation += totalRotation;
+        startRotation = currentRotation;
+        targetRotation = currentRotation + totalRotation;
+        currentRotation = targetRotation;
 
-        const normalizedRotation = currentRotation % (Math.PI * 2);
+        const normalizedRotation = targetRotation % (Math.PI * 2);
         let targetAngle = (Math.PI * 1.5 - normalizedRotation) % (Math.PI * 2);
         if (targetAngle < 0) targetAngle += Math.PI * 2;
         const segmentIndex = Math.floor(targetAngle / step);
@@ -576,7 +632,7 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
             isSpinning: true,
             startTime: Date.now(),
             duration: spinDuration,
-            targetRotation: currentRotation,
+            targetRotation: targetRotation,
             startRotation: startRotation,
             result: result
         };
@@ -584,51 +640,14 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
         if (typeof broadcastGameState === 'function') broadcastGameState();
     }
 
-    if (spinDuration <= 150) {
-        if (canvas) {
-            canvas.style.transition = 'none';
-            canvas.style.transform = `rotate(${currentRotation}rad)`;
-        }
+    animateWheelRotation(startRotation, targetRotation, spinDuration, () => {
         isSpinning = false;
         activeSpinData = null;
-        handleResult(result);
-        return;
-    }
-
-    canvas.style.transition = `transform ${spinDuration}ms cubic-bezier(0.15, 0, 0.15, 1)`;
-    canvas.style.transform = `rotate(${currentRotation}rad)`;
-
-    if (spinIntervalId) clearInterval(spinIntervalId);
-    spinIntervalId = setInterval(() => {
-        const style = window.getComputedStyle(canvas);
-        const matrix = style.transform === 'none' ? null : new WebKitCSSMatrix(style.transform);
-        if (!matrix) return;
-        
-        const angle = Math.atan2(matrix.b, matrix.a);
-        const currentAngle = (Math.PI * 1.5 - angle) % (Math.PI * 2);
-        const seg = Math.floor((currentAngle < 0 ? currentAngle + Math.PI * 2 : currentAngle) / step);
-        
-        if (seg !== lastSegment) {
-            if (pointer) {
-                pointer.classList.remove('tick');
-                void pointer.offsetWidth; // Trigger reflow
-                pointer.classList.add('tick');
-            }
-            lastSegment = seg;
+        if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
+            try { audioSpin.pause(); audioSpin.currentTime = 0; } catch (e) {}
         }
-    }, 50);
-
-    if (spinTimeoutId) clearTimeout(spinTimeoutId);
-    spinTimeoutId = setTimeout(() => {
-        if (spinIntervalId) {
-            clearInterval(spinIntervalId);
-            spinIntervalId = null;
-        }
-        spinTimeoutId = null;
-        isSpinning = false;
-        activeSpinData = null;
         handleResult(result);
-    }, spinDuration);
+    });
 }
 
 // Result Handling
@@ -1987,6 +2006,10 @@ function openGameInNewWindow(e) {
 
     // Yield any ongoing spin to the child window
     if (isSpinning) {
+        if (currentWheelAnimationId) {
+            cancelAnimationFrame(currentWheelAnimationId);
+            currentWheelAnimationId = null;
+        }
         if (spinTimeoutId) {
             clearTimeout(spinTimeoutId);
             spinTimeoutId = null;
@@ -2191,6 +2214,10 @@ function closePopoutAndReturnToLMS() {
 
     // Clear local spin and countdown timers in child before closing
     if (isSpinning) {
+        if (currentWheelAnimationId) {
+            cancelAnimationFrame(currentWheelAnimationId);
+            currentWheelAnimationId = null;
+        }
         if (spinTimeoutId) {
             clearTimeout(spinTimeoutId);
             spinTimeoutId = null;
