@@ -63,19 +63,97 @@ let filteredVocab = [];
 let currentSessionVocab = [];
 let selectedTopic = "";
 let isSpinning = false;
+let activeSpinData = null; // { isSpinning: true, startTime, duration, targetRotation, startRotation, result }
+let spinTimeoutId = null;
+let spinIntervalId = null;
 let currentRotation = 0;
 let isMuted = false;
 let currentMaxRounds = 7;
 let currentSpinCount = 0;
 
-// Audio Management
+// Audio Management - Initialize mute state from URL parameter or localStorage
+(function initAudioStateOnInit() {
+    try {
+        const p = new URLSearchParams(window.location.search);
+        if (p.has('muted')) {
+            isMuted = p.get('muted') === '1';
+        } else {
+            const saved = (window.safeStorage ? window.safeStorage.getItem('hsk4_audio_mute') : null) || localStorage.getItem('hsk4_audio_mute');
+            if (saved !== null) {
+                isMuted = saved === 'true';
+            }
+        }
+    } catch (e) {}
+})();
+
 const audioIntro = new Audio('nhac_nen/modau.mp3');
 audioIntro.loop = true;
+audioIntro.muted = isMuted;
+
+// Seek audio to passed audioTime parameter if child window
+(function initAudioSeekOnInit() {
+    try {
+        const p = new URLSearchParams(window.location.search);
+        const initTime = parseFloat(p.get('audioTime')) || 0;
+        if (initTime > 0) {
+            const setSeek = () => {
+                try {
+                    if (audioIntro.duration && initTime >= audioIntro.duration) {
+                        audioIntro.currentTime = initTime % audioIntro.duration;
+                    } else {
+                        audioIntro.currentTime = initTime;
+                    }
+                } catch (e) {}
+            };
+            if (audioIntro.readyState >= 1) {
+                setSeek();
+            } else {
+                audioIntro.addEventListener('loadedmetadata', setSeek, { once: true });
+            }
+        }
+    } catch (e) {}
+})();
 
 const audioSpin = new Audio('nhac_nen/quayvongquay.mp3');
+audioSpin.muted = isMuted;
 const audioClap = new Audio('nhac_nen/votay.mp3');
+audioClap.muted = isMuted;
 const audioRight = new Audio('nhac_nen/dung.mp3');
+audioRight.muted = isMuted;
 const audioWrong = new Audio('nhac_nen/sai.mp3');
+audioWrong.muted = isMuted;
+
+function updateSoundToggleUI() {
+    const icon = document.querySelector('#sound-toggle .icon');
+    if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
+    const soundBtn = document.getElementById('sound-toggle');
+    if (soundBtn) soundBtn.classList.toggle('muted', isMuted);
+}
+
+function applyMuteState(muted) {
+    isMuted = muted;
+    updateSoundToggleUI();
+
+    if (typeof audioIntro !== 'undefined') {
+        audioIntro.muted = isMuted;
+        if (isMuted) {
+            try { audioIntro.pause(); } catch (err) {}
+        } else {
+            if (!(!isChildWindow && window.isWaitingForChild)) {
+                startIntro();
+            }
+        }
+    }
+    if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
+    if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
+    if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
+    if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
+
+    try {
+        if (window.safeStorage) window.safeStorage.setItem('hsk4_audio_mute', isMuted ? 'true' : 'false');
+        localStorage.setItem('hsk4_audio_mute', isMuted ? 'true' : 'false');
+    } catch (e) {}
+}
 
 let lastSoundToggleTime = 0;
 function toggleSound(e) {
@@ -84,36 +162,28 @@ function toggleSound(e) {
     if (now - lastSoundToggleTime < 200) return; // Debounce rapid clicks
     lastSoundToggleTime = now;
 
-    isMuted = !isMuted;
-    const icon = document.querySelector('#sound-toggle .icon');
-    if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
-    
-    if (typeof audioIntro !== 'undefined') {
-        audioIntro.muted = isMuted;
-        if (isMuted) {
-            try { audioIntro.pause(); } catch (err) {}
-        } else {
-            startIntro();
-        }
-    }
-    if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
-    if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
-    if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
-    if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
-
+    applyMuteState(!isMuted);
     broadcastAudioSync();
 }
 
-function broadcastAudioSync() {
-    const curTime = (typeof audioIntro !== 'undefined' && audioIntro && !isNaN(audioIntro.currentTime)) ? Number(audioIntro.currentTime.toFixed(2)) : 0;
+function broadcastAudioSync(customTime = null) {
+    const curTime = isFinite(customTime) && customTime !== null
+        ? Number(customTime.toFixed(2))
+        : ((typeof audioIntro !== 'undefined' && audioIntro && !isNaN(audioIntro.currentTime)) ? Number(audioIntro.currentTime.toFixed(2)) : 0);
     const msg = {
         type: 'HSK4_AUDIO_SYNC',
         isMuted: isMuted,
-        audioCurrentTime: curTime
+        audioCurrentTime: curTime,
+        timestamp: Date.now()
     };
-    if (window.safeStorage) {
-        try { window.safeStorage.setItem('hsk4_audio_mute', isMuted ? 'true' : 'false'); } catch (e) {}
-    }
+    try {
+        if (window.safeStorage) window.safeStorage.setItem('hsk4_audio_mute', isMuted ? 'true' : 'false');
+        localStorage.setItem('hsk4_audio_mute', isMuted ? 'true' : 'false');
+        const syncPayload = JSON.stringify(msg);
+        if (window.safeStorage) window.safeStorage.setItem('hsk4_audio_sync', syncPayload);
+        localStorage.setItem('hsk4_audio_sync', syncPayload);
+    } catch (e) {}
+
     if (window.gameSyncChannel) {
         try { window.gameSyncChannel.postMessage(msg); } catch (e) {}
     }
@@ -125,10 +195,15 @@ function broadcastAudioSync() {
 }
 
 function startIntro() {
+    if (typeof audioIntro === 'undefined' || !audioIntro) return;
     if (audioIntro.paused && !isMuted) {
-        audioIntro.play().catch(e => {
-            console.log("Auto-play blocked, waiting for next user interaction");
-        });
+        if (window.LMSAdapter && typeof window.LMSAdapter.safePlayAudio === 'function') {
+            window.LMSAdapter.safePlayAudio(audioIntro, 'bg');
+        } else {
+            audioIntro.play().catch(e => {
+                console.log("Auto-play blocked, waiting for next user interaction");
+            });
+        }
     }
 }
 
@@ -405,38 +480,83 @@ function drawWheel() {
 }
 
 // Spin Logic
-spinBtn.addEventListener('click', spin);
+spinBtn.addEventListener('click', () => spin());
 
-function spin() {
-    if (isSpinning) return;
+function spin(predefinedTarget = null, remainingMs = null, customResult = null) {
+    if (isSpinning && predefinedTarget === null) return;
     isSpinning = true;
     spinBtn.disabled = true;
 
-    // Play spin audio safely with LMS fallback
-    audioSpin.currentTime = 0;
-    if (window.LMSAdapter) {
-        window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
-    } else {
-        audioSpin.play().catch(e => console.log("Spin sound restricted:", e));
-    }
-
-    // Use audio duration for spin time (fallback to 5s if not loaded)
-    const spinDuration = audioSpin.duration ? audioSpin.duration * 1000 : 5000;
-
-    const extraRounds = 5 + Math.floor(Math.random() * 5);
-    const randomAngle = Math.random() * Math.PI * 2;
-    const totalRotation = extraRounds * Math.PI * 2 + randomAngle;
-    
-    currentRotation += totalRotation;
-    canvas.style.transition = `transform ${spinDuration}ms cubic-bezier(0.15, 0, 0.15, 1)`;
-    canvas.style.transform = `rotate(${currentRotation}rad)`;
-
-    // Simulate tick sounds/animations
     const pointer = document.querySelector('.pointer');
     let lastSegment = -1;
     const step = (Math.PI * 2) / SEGMENTS.length;
-    
-    const interval = setInterval(() => {
+
+    let spinDuration;
+    let result;
+
+    if (predefinedTarget !== null) {
+        // Resuming or synchronizing an ongoing spin from another window!
+        currentRotation = predefinedTarget;
+        spinDuration = typeof remainingMs === 'number' ? Math.max(0, remainingMs) : 3000;
+        result = customResult;
+        activeSpinData = {
+            isSpinning: true,
+            startTime: Date.now() - (5000 - spinDuration),
+            duration: 5000,
+            targetRotation: currentRotation,
+            result: result
+        };
+    } else {
+        // Fresh spin initiated by user
+        audioSpin.currentTime = 0;
+        if (window.LMSAdapter) {
+            window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
+        } else if (!isMuted) {
+            audioSpin.play().catch(e => console.log("Spin sound restricted:", e));
+        }
+
+        spinDuration = audioSpin.duration ? audioSpin.duration * 1000 : 5000;
+        const extraRounds = 5 + Math.floor(Math.random() * 5);
+        const randomAngle = Math.random() * Math.PI * 2;
+        const totalRotation = extraRounds * Math.PI * 2 + randomAngle;
+
+        const startRotation = currentRotation;
+        currentRotation += totalRotation;
+
+        const normalizedRotation = currentRotation % (Math.PI * 2);
+        let targetAngle = (Math.PI * 1.5 - normalizedRotation) % (Math.PI * 2);
+        if (targetAngle < 0) targetAngle += Math.PI * 2;
+        const segmentIndex = Math.floor(targetAngle / step);
+        result = SEGMENTS[segmentIndex];
+
+        activeSpinData = {
+            isSpinning: true,
+            startTime: Date.now(),
+            duration: spinDuration,
+            targetRotation: currentRotation,
+            startRotation: startRotation,
+            result: result
+        };
+
+        if (typeof broadcastGameState === 'function') broadcastGameState();
+    }
+
+    if (spinDuration <= 150) {
+        if (canvas) {
+            canvas.style.transition = 'none';
+            canvas.style.transform = `rotate(${currentRotation}rad)`;
+        }
+        isSpinning = false;
+        activeSpinData = null;
+        handleResult(result);
+        return;
+    }
+
+    canvas.style.transition = `transform ${spinDuration}ms cubic-bezier(0.15, 0, 0.15, 1)`;
+    canvas.style.transform = `rotate(${currentRotation}rad)`;
+
+    if (spinIntervalId) clearInterval(spinIntervalId);
+    spinIntervalId = setInterval(() => {
         const style = window.getComputedStyle(canvas);
         const matrix = style.transform === 'none' ? null : new WebKitCSSMatrix(style.transform);
         if (!matrix) return;
@@ -446,24 +566,24 @@ function spin() {
         const seg = Math.floor((currentAngle < 0 ? currentAngle + Math.PI * 2 : currentAngle) / step);
         
         if (seg !== lastSegment) {
-            pointer.classList.remove('tick');
-            void pointer.offsetWidth; // Trigger reflow
-            pointer.classList.add('tick');
+            if (pointer) {
+                pointer.classList.remove('tick');
+                void pointer.offsetWidth; // Trigger reflow
+                pointer.classList.add('tick');
+            }
             lastSegment = seg;
         }
     }, 50);
 
-    // Calculate result after animation (sync with audio duration)
-    setTimeout(() => {
-        clearInterval(interval);
+    if (spinTimeoutId) clearTimeout(spinTimeoutId);
+    spinTimeoutId = setTimeout(() => {
+        if (spinIntervalId) {
+            clearInterval(spinIntervalId);
+            spinIntervalId = null;
+        }
+        spinTimeoutId = null;
         isSpinning = false;
-        const normalizedRotation = currentRotation % (Math.PI * 2);
-        let targetAngle = (Math.PI * 1.5 - normalizedRotation) % (Math.PI * 2);
-        if (targetAngle < 0) targetAngle += Math.PI * 2;
-        
-        const segmentIndex = Math.floor(targetAngle / step);
-        const result = SEGMENTS[segmentIndex];
-        
+        activeSpinData = null;
         handleResult(result);
     }, spinDuration);
 }
@@ -623,14 +743,23 @@ let timerInterval;
 let currentTimerWidth = 100;
 
 function startTimer(correctAnswer, startWidth = 100) {
+    if (!isChildWindow && window.isWaitingForChild) {
+        return; // Do NOT run countdown timer in background LMS window while waiting for child!
+    }
     const progress = document.getElementById('timer-progress');
     currentTimerWidth = typeof startWidth === 'number' ? startWidth : 100;
     if (progress) progress.style.width = `${currentTimerWidth}%`;
+    if (window.currentActiveQuestionData) {
+        window.currentActiveQuestionData.remainingWidth = currentTimerWidth;
+    }
     
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
         currentTimerWidth -= 1;
         if (progress) progress.style.width = `${currentTimerWidth}%`;
+        if (window.currentActiveQuestionData) {
+            window.currentActiveQuestionData.remainingWidth = currentTimerWidth;
+        }
         if (currentTimerWidth <= 0) {
             clearInterval(timerInterval);
             timerInterval = null;
@@ -1064,18 +1193,18 @@ function initSyncEngine() {
 
     // 4. Setup Storage event listener for cross-tab sync fallback
     window.addEventListener('storage', (event) => {
-        if (event.key === 'hsk4_audio_mute') {
+        if (event.key === 'hsk4_audio_mute' && event.newValue) {
             const muted = event.newValue === 'true';
             if (isMuted !== muted) {
-                isMuted = muted;
-                const icon = document.querySelector('#sound-toggle .icon');
-                if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
-                if (typeof audioIntro !== 'undefined') audioIntro.muted = isMuted;
-                if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
-                if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
-                if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
-                if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
+                applyMuteState(muted);
             }
+            return;
+        }
+        if (event.key === 'hsk4_audio_sync' && event.newValue) {
+            try {
+                const parsed = JSON.parse(event.newValue);
+                handleIncomingSyncMessage(parsed);
+            } catch (e) {}
             return;
         }
 
@@ -1102,6 +1231,9 @@ function initSyncEngine() {
 
     // 5. If child window, restore state snapshot & setup periodic heartbeat
     if (isChildWindow) {
+        if (!isMuted) {
+            startIntro();
+        }
         let initialSyncedState = null;
         try {
             const raw = storage.getItem('hsk4_synced_state') || storage.getItem('hsk4_game_sync_state');
@@ -1210,8 +1342,7 @@ function handleIncomingSyncMessage(data) {
     if (type === 'HSK4_AUDIO_SYNC') {
         if (typeof data.isMuted === 'boolean') {
             isMuted = data.isMuted;
-            const icon = document.querySelector('#sound-toggle .icon');
-            if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
+            updateSoundToggleUI();
             if (typeof audioIntro !== 'undefined') {
                 audioIntro.muted = isMuted;
                 if (isMuted) {
@@ -1220,6 +1351,15 @@ function handleIncomingSyncMessage(data) {
                     // Keep parent intro paused while child is actively playing
                     try { audioIntro.pause(); } catch (e) {}
                 } else {
+                    if (isFinite(data.audioCurrentTime)) {
+                        try {
+                            if (audioIntro.duration && data.audioCurrentTime >= audioIntro.duration) {
+                                audioIntro.currentTime = data.audioCurrentTime % audioIntro.duration;
+                            } else {
+                                audioIntro.currentTime = data.audioCurrentTime;
+                            }
+                        } catch (e) {}
+                    }
                     startIntro();
                 }
             }
@@ -1431,6 +1571,23 @@ function exportGameState() {
         };
     }
 
+    let activeSpin = null;
+    if (isSpinning && activeSpinData) {
+        const elapsed = Date.now() - activeSpinData.startTime;
+        activeSpin = {
+            isSpinning: true,
+            startTime: activeSpinData.startTime,
+            duration: activeSpinData.duration,
+            targetRotation: activeSpinData.targetRotation,
+            result: activeSpinData.result,
+            remainingTime: Math.max(0, activeSpinData.duration - elapsed)
+        };
+    }
+
+    const curAudioTime = (typeof audioIntro !== 'undefined' && audioIntro && !isNaN(audioIntro.currentTime))
+        ? Number(audioIntro.currentTime.toFixed(2))
+        : 0;
+
     return {
         stage: stage,
         step: step,
@@ -1449,8 +1606,10 @@ function exportGameState() {
         remainingVocabWords: currentSessionVocab ? currentSessionVocab.map(v => v.vocab) : [],
         activeQuestion: activeQuestion,
         activeAction: activeAction,
+        activeSpin: activeSpin,
         isGameOver: stage === 'game_over',
         isMuted: isMuted,
+        audioCurrentTime: curAudioTime,
         timestamp: Date.now()
     };
 }
@@ -1461,15 +1620,35 @@ function exportGameState() {
 function importGameState(state, shouldBroadcast = false) {
     if (!state) return;
 
-    // Stop any ongoing question countdown
-    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
-
-    // 1. Audio Mute State
+    // 1. Audio Mute & Seek Synchronization
     if (typeof state.isMuted === 'boolean') {
         isMuted = state.isMuted;
-        const soundIcon = document.querySelector('#sound-toggle .icon');
-        if (soundIcon) soundIcon.textContent = isMuted ? '🔇' : '🔊';
+        updateSoundToggleUI();
         if (typeof audioIntro !== 'undefined') audioIntro.muted = isMuted;
+        if (typeof audioSpin !== 'undefined') audioSpin.muted = isMuted;
+        if (typeof audioClap !== 'undefined') audioClap.muted = isMuted;
+        if (typeof audioRight !== 'undefined') audioRight.muted = isMuted;
+        if (typeof audioWrong !== 'undefined') audioWrong.muted = isMuted;
+        if (isMuted && typeof audioIntro !== 'undefined') {
+            try { audioIntro.pause(); } catch (e) {}
+        }
+    }
+
+    if (isFinite(state.audioCurrentTime) && typeof audioIntro !== 'undefined' && audioIntro) {
+        try {
+            if (audioIntro.duration && state.audioCurrentTime >= audioIntro.duration) {
+                audioIntro.currentTime = state.audioCurrentTime % audioIntro.duration;
+            } else {
+                audioIntro.currentTime = state.audioCurrentTime;
+            }
+        } catch (e) {}
+    }
+
+    // Play intro music if unmuted and not waiting for child and not game over
+    if (!isMuted && !state.isGameOver) {
+        if (!(!isChildWindow && window.isWaitingForChild)) {
+            startIntro();
+        }
     }
 
     // 2. Setup Screen State
@@ -1553,11 +1732,6 @@ function importGameState(state, shouldBroadcast = false) {
     currentMaxRounds = typeof state.currentMaxRounds === 'number' ? state.currentMaxRounds : 7;
     currentRotation = typeof state.currentRotation === 'number' ? state.currentRotation : 0;
 
-    if (canvas) {
-        canvas.style.transition = 'none';
-        canvas.style.transform = `rotate(${currentRotation}rad)`;
-    }
-
     updateScoreboard();
     updateStatus();
 
@@ -1570,10 +1744,48 @@ function importGameState(state, shouldBroadcast = false) {
         lastResultDisplay.style.color = state.lastResult.color || 'var(--text)';
     }
 
-    isSpinning = false;
-    spinBtn.disabled = false;
+    // 4. Handle Active Spin Synchronization
+    if (state.activeSpin && state.activeSpin.isSpinning) {
+        // If this is the active window (child or resumed LMS host), animate the remaining spin
+        if (!(!isChildWindow && window.isWaitingForChild)) {
+            const elapsed = Date.now() - state.activeSpin.startTime;
+            const remainingMs = Math.max(0, state.activeSpin.duration - elapsed);
+            spin(state.activeSpin.targetRotation, remainingMs, state.activeSpin.result);
+            return; // Wheel will complete and trigger handleResult
+        } else {
+            // LMS background while waiting for child: position canvas silently
+            if (canvas) {
+                canvas.style.transition = 'none';
+                canvas.style.transform = `rotate(${state.activeSpin.targetRotation}rad)`;
+            }
+        }
+    } else {
+        if (!isSpinning) {
+            if (canvas) {
+                canvas.style.transition = 'none';
+                canvas.style.transform = `rotate(${currentRotation}rad)`;
+            }
+            spinBtn.disabled = false;
+        }
+    }
 
-    // Restore Question Modal
+    // 5. If LMS is waiting for child, do NOT run countdown timer or show question modal in background
+    if (!isChildWindow && window.isWaitingForChild) {
+        if (state.activeQuestion && state.activeQuestion.isOpen) {
+            window.currentActiveQuestionData = state.activeQuestion;
+        } else {
+            window.currentActiveQuestionData = null;
+        }
+        return;
+    }
+
+    // 6. Stop any ongoing countdown timer before restoring
+    if (typeof timerInterval !== 'undefined' && timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+
+    // 7. Restore Question Modal in active window
     if (state.activeQuestion && state.activeQuestion.isOpen) {
         const q = state.activeQuestion;
         window.currentActiveQuestionData = q;
@@ -1605,7 +1817,7 @@ function importGameState(state, shouldBroadcast = false) {
         window.currentActiveQuestionData = null;
     }
 
-    // Restore Targeting Action (Steal / Swap)
+    // 8. Restore Targeting Action (Steal / Swap)
     if (state.activeAction && state.activeAction.isTargeting) {
         if (state.activeAction.actionTitle === 'CƯỚP ĐIỂM') {
             showStealDialog();
@@ -1617,7 +1829,7 @@ function importGameState(state, shouldBroadcast = false) {
         window.currentActiveActionTitle = null;
     }
 
-    // Restore Game Over Modal
+    // 9. Restore Game Over Modal
     if (state.isGameOver) {
         showGameOver();
     } else {
@@ -1684,14 +1896,8 @@ function openGameInNewWindow(e) {
     if (typeof window.pauseTimer === 'function') {
         window.pauseTimer();
     }
-    if (typeof audioIntro !== 'undefined' && audioIntro && !audioIntro.paused) {
-        try { audioIntro.pause(); } catch (err) {}
-    }
-    if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
-        try { audioSpin.pause(); } catch (err) {}
-    }
 
-    // 2. Snapshot current state
+    // 2. Snapshot current state BEFORE clearing local spin
     let snapshot = null;
     try {
         snapshot = exportGameState();
@@ -1702,6 +1908,25 @@ function openGameInNewWindow(e) {
     snapshot.syncSessionId = 'sync_' + Date.now();
     snapshot.isLmsWaiting = true;
     window.__HSK4_LATEST_STATE__ = snapshot;
+
+    // Yield any ongoing spin to the child window
+    if (isSpinning) {
+        if (spinTimeoutId) {
+            clearTimeout(spinTimeoutId);
+            spinTimeoutId = null;
+        }
+        if (spinIntervalId) {
+            clearInterval(spinIntervalId);
+            spinIntervalId = null;
+        }
+        isSpinning = false;
+    }
+    if (typeof audioIntro !== 'undefined' && audioIntro && !audioIntro.paused) {
+        try { audioIntro.pause(); } catch (err) {}
+    }
+    if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
+        try { audioSpin.pause(); } catch (err) {}
+    }
 
     const stateStr = JSON.stringify(snapshot);
     if (window.safeStorage) {
@@ -1718,7 +1943,7 @@ function openGameInNewWindow(e) {
         } catch (err) {}
     }
 
-    // 3. Clean URL (Short & Safe, identical to HSK 2)
+    // 3. Clean URL with audio sync and topic parameters
     const targetUrl = new URL(window.location.href);
     targetUrl.searchParams.delete('state');
     targetUrl.hash = '';
@@ -1727,6 +1952,11 @@ function openGameInNewWindow(e) {
     if (selectedTopic && selectedTopic !== 'Tất cả') {
         targetUrl.searchParams.set('topic', selectedTopic);
     }
+    const curAudioTime = (typeof audioIntro !== 'undefined' && audioIntro && !isNaN(audioIntro.currentTime))
+        ? Number(audioIntro.currentTime.toFixed(2))
+        : 0;
+    targetUrl.searchParams.set('muted', isMuted ? '1' : '0');
+    targetUrl.searchParams.set('audioTime', curAudioTime);
 
     const scrWidth = (window.screen && window.screen.availWidth) || window.innerWidth || 1280;
     const scrHeight = (window.screen && window.screen.availHeight) || window.innerHeight || 800;
@@ -1873,6 +2103,29 @@ function closePopoutAndReturnToLMS() {
         finalSnapshot = { stage: 'playing', timestamp: Date.now() };
     }
     finalSnapshot.isPopoutClosing = true;
+
+    // Clear local spin and countdown timers in child before closing
+    if (isSpinning) {
+        if (spinTimeoutId) {
+            clearTimeout(spinTimeoutId);
+            spinTimeoutId = null;
+        }
+        if (spinIntervalId) {
+            clearInterval(spinIntervalId);
+            spinIntervalId = null;
+        }
+        isSpinning = false;
+    }
+    if (typeof timerInterval !== 'undefined' && timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+
+    // Broadcast audio sync
+    const curAudioTime = (typeof audioIntro !== 'undefined' && audioIntro && !isNaN(audioIntro.currentTime))
+        ? Number(audioIntro.currentTime.toFixed(2))
+        : 0;
+    broadcastAudioSync(curAudioTime);
 
     // 1. Direct call to opener if accessible (matches HSK 3)
     if (window.opener && !window.opener.closed) {
