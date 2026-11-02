@@ -67,23 +67,23 @@ let activeSpinData = null; // { isSpinning: true, startTime, duration, targetRot
 let spinTimeoutId = null;
 let spinIntervalId = null;
 let currentRotation = 0;
-let isMuted = false;
+let isMuted = true;
 let currentMaxRounds = 7;
 let currentSpinCount = 0;
 
-// Audio Management - Initialize mute state from URL parameter or localStorage
+// Audio Management - Initialize mute state (MUTED by default on initial entry)
 (function initAudioStateOnInit() {
     try {
         const p = new URLSearchParams(window.location.search);
         if (p.has('muted')) {
             isMuted = p.get('muted') === '1';
         } else {
-            const saved = (window.safeStorage ? window.safeStorage.getItem('hsk4_audio_mute') : null) || localStorage.getItem('hsk4_audio_mute');
-            if (saved !== null) {
-                isMuted = saved === 'true';
-            }
+            // Fresh entry: always default to MUTED (true) unless explicitly passed
+            isMuted = true;
         }
-    } catch (e) {}
+    } catch (e) {
+        isMuted = true;
+    }
 })();
 
 const audioIntro = new Audio('nhac_nen/modau.mp3');
@@ -420,6 +420,7 @@ function init() {
         window.tempSelectedTopic = determineInitialTopic();
         
         initSyncEngine();
+        updateSoundToggleUI();
     } else {
         console.error('Failed to load vocabulary data: VOCAB_DATA is not defined.');
     }
@@ -785,6 +786,13 @@ window.resumeTimer = function () {
 
 function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isTimeout = false) {
     window.pauseTimer();
+
+    // Mark answered immediately and clear active question data so exports never re-open this modal
+    if (window.currentActiveQuestionData) {
+        window.currentActiveQuestionData.isAnswered = true;
+    }
+    window.currentActiveQuestionData = null;
+
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach(btn => {
         btn.disabled = true;
@@ -809,8 +817,10 @@ function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isT
     const proceed = () => {
         if (proceeded) return;
         proceeded = true;
-        window.currentActiveQuestionData = null;
+        window.__HSK4_PENDING_ANSWER_PROCEED__ = null;
         
+        questionModal.classList.remove('show');
+
         if (isCorrect) {
             finishTurn(`Chính xác! Bạn nhận được ${isDouble ? 'gấp đôi' : points} điểm.`, true, 1000);
         } else if (isTimeout) {
@@ -818,11 +828,8 @@ function checkAnswer(isCorrect, points, isDouble, clickedBtn, correctAnswer, isT
         } else {
             finishTurn(`Sai rồi! Không nhận được điểm.`, false, 1000);
         }
-        
-        setTimeout(() => {
-            questionModal.classList.remove('show');
-        }, 500);
     };
+    window.__HSK4_PENDING_ANSWER_PROCEED__ = proceed;
 
     // Report progress to LMS / SCORM
     if (window.LMSAdapter) {
@@ -899,8 +906,16 @@ function startTargeting(actionTitle, callback) {
     });
 }
 
+let finishTurnTimeoutId = null;
+let pendingFinishTurnAction = null;
+
 // End Turn
 function finishTurn(message, success = null, delay = 3000) {
+    if (finishTurnTimeoutId) {
+        clearTimeout(finishTurnTimeoutId);
+        finishTurnTimeoutId = null;
+    }
+
     updateScoreboard();
     
     // Highlight the result
@@ -911,7 +926,12 @@ function finishTurn(message, success = null, delay = 3000) {
 
     if (typeof broadcastGameState === 'function') broadcastGameState();
 
-    setTimeout(() => {
+    const doFinish = () => {
+        pendingFinishTurnAction = null;
+        if (finishTurnTimeoutId) {
+            clearTimeout(finishTurnTimeoutId);
+            finishTurnTimeoutId = null;
+        }
         currentSpinCount++;
         if (currentSpinCount >= players.length * currentMaxRounds) {
             const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
@@ -928,7 +948,16 @@ function finishTurn(message, success = null, delay = 3000) {
         } else {
             nextTurn();
         }
-    }, delay);
+    };
+
+    pendingFinishTurnAction = doFinish;
+    window.__HSK4_EXECUTE_FINISH_TURN_IMMEDIATELY__ = () => {
+        if (pendingFinishTurnAction) {
+            pendingFinishTurnAction();
+        }
+    };
+
+    finishTurnTimeoutId = setTimeout(doFinish, delay);
 }
 
 function nextTurn() {
@@ -1123,6 +1152,12 @@ function initSyncEngine() {
         }
 
         const handleUnload = () => {
+            if (typeof window.__HSK4_PENDING_ANSWER_PROCEED__ === 'function') {
+                window.__HSK4_PENDING_ANSWER_PROCEED__();
+            }
+            if (typeof window.__HSK4_EXECUTE_FINISH_TURN_IMMEDIATELY__ === 'function') {
+                window.__HSK4_EXECUTE_FINISH_TURN_IMMEDIATELY__();
+            }
             let finalSnapshot = null;
             try {
                 finalSnapshot = exportGameState();
@@ -1551,7 +1586,7 @@ function exportGameState() {
     }
 
     let activeQuestion = null;
-    if (questionModal && questionModal.classList.contains('show') && window.currentActiveQuestionData) {
+    if (questionModal && questionModal.classList.contains('show') && window.currentActiveQuestionData && !window.currentActiveQuestionData.isAnswered) {
         activeQuestion = {
             isOpen: true,
             remainingWidth: typeof currentTimerWidth === 'number' ? currentTimerWidth : 100,
@@ -1781,7 +1816,7 @@ function importGameState(state, shouldBroadcast = false) {
     }
 
     // 7. Restore Question Modal in active window
-    if (state.activeQuestion && state.activeQuestion.isOpen) {
+    if (state.activeQuestion && state.activeQuestion.isOpen && !state.activeQuestion.isAnswered) {
         const q = state.activeQuestion;
         window.currentActiveQuestionData = q;
         const badgeEl = document.getElementById('question-points-badge');
@@ -1808,8 +1843,13 @@ function importGameState(state, shouldBroadcast = false) {
         const startW = typeof q.remainingWidth === 'number' ? q.remainingWidth : 100;
         startTimer(q.correctAnswer, startW);
     } else {
-        document.getElementById('question-modal').classList.remove('show');
+        const qModal = document.getElementById('question-modal');
+        if (qModal) qModal.classList.remove('show');
         window.currentActiveQuestionData = null;
+        if (typeof timerInterval !== 'undefined' && timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
     }
 
     // 8. Restore Targeting Action (Steal / Swap)
@@ -2091,6 +2131,14 @@ function openGameInNewWindow(e) {
  * Handle Child Window Closure & Synchronize Back to LMS Parent
  */
 function closePopoutAndReturnToLMS() {
+    // Finalize pending question answer and advance turn immediately if user answers and exits quickly
+    if (typeof window.__HSK4_PENDING_ANSWER_PROCEED__ === 'function') {
+        window.__HSK4_PENDING_ANSWER_PROCEED__();
+    }
+    if (typeof window.__HSK4_EXECUTE_FINISH_TURN_IMMEDIATELY__ === 'function') {
+        window.__HSK4_EXECUTE_FINISH_TURN_IMMEDIATELY__();
+    }
+
     let finalSnapshot = null;
     try {
         finalSnapshot = exportGameState();
