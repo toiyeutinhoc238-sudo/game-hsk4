@@ -50,6 +50,7 @@ var childCheckInterval = null;
 var gameSyncChannel = null;
 var latestSyncedState = null;
 var isWaitingForChild = false;
+var lastChildMessageTime = 0;
 window.isWaitingForChild = false;
 window.currentActiveQuestionData = null;
 window.currentActiveActionTitle = null;
@@ -1138,6 +1139,7 @@ function initSyncEngine() {
  */
 function handleIncomingSyncMessage(data) {
     if (!data) return;
+    lastChildMessageTime = Date.now();
     const type = data.type || data.action;
     const state = data.state;
 
@@ -1170,6 +1172,7 @@ function handleIncomingSyncMessage(data) {
         // Child window is ready, reply with full state snapshot immediately
         if (type === 'HSK4_CHILD_READY') {
             window.isWaitingForChild = true;
+            isWaitingForChild = true;
             const currentSnap = exportGameState();
             if (window.childGameWindow && !window.childGameWindow.closed) {
                 try { window.childGameWindow.postMessage({ type: 'HSK4_STATE_SYNC', state: currentSnap }, '*'); } catch (e) {}
@@ -1210,9 +1213,8 @@ function handleIncomingSyncMessage(data) {
             // Keep sync overlay updated with live state
             const syncModal = document.getElementById('sync-active-modal');
             if (syncModal && !state.isPopoutClosing && window.isWaitingForChild) {
-                if (state.stage !== 'setup') {
-                    syncModal.classList.add('show');
-                }
+                syncModal.classList.add('show');
+                syncModal.style.display = 'flex';
                 updateSyncOverlayInfo(state);
             }
         }
@@ -1269,20 +1271,27 @@ function checkAndApplyLatestState() {
         isClosed = false;
     }
 
+    let popoutClosedFlag = false;
     if (window.safeStorage) {
         try {
             const popoutClosedTime = window.safeStorage.getItem('hsk4_popout_closed');
             if (popoutClosedTime && Date.now() - Number(popoutClosedTime) < 15000) {
+                popoutClosedFlag = true;
                 isClosed = true;
             }
         } catch (e) {}
     }
 
-    if (isClosed) {
+    // Only consider closed if explicit close flag was set, or window is marked closed AND heartbeat expired
+    const isHeartbeatExpired = (Date.now() - lastChildMessageTime >= 4000);
+    if (popoutClosedFlag || (isClosed && isHeartbeatExpired)) {
         resumeInThisWindow(false);
-    } else if (stateToApply && stateToApply.stage !== 'setup' && window.isWaitingForChild) {
+    } else if (window.isWaitingForChild) {
         const syncModal = document.getElementById('sync-active-modal');
-        if (syncModal) syncModal.classList.add('show');
+        if (syncModal) {
+            syncModal.classList.add('show');
+            syncModal.style.display = 'flex';
+        }
     }
 }
 
@@ -1688,10 +1697,11 @@ function openGameInNewWindow(e) {
         window.isWaitingForChild = true;
         isWaitingForChild = true;
 
-        // 5. Show Parent LMS Sync Overlay ONLY when game is actively running (Matches HSK 2)
+        // 5. Show Parent LMS Sync Overlay Modal (Always pauses LMS and prevents user interaction)
         const syncModal = document.getElementById('sync-active-modal');
-        if (syncModal && snapshot.stage !== 'setup') {
+        if (syncModal) {
             syncModal.classList.add('show');
+            syncModal.style.display = 'flex';
             updateSyncOverlayInfo(snapshot);
         }
 
@@ -1702,11 +1712,13 @@ function openGameInNewWindow(e) {
             window.LMSAdapter.showToast(toastMsg);
         }
 
-        // 6. Safe poller to detect child window closure (Grace period + try-catch)
+        // 6. Safe poller to detect child window closure (Grace period + heartbeat check)
         if (window.childCheckInterval) {
             clearInterval(window.childCheckInterval);
             window.childCheckInterval = null;
         }
+
+        lastChildMessageTime = Date.now();
 
         setTimeout(() => {
             if (!window.childGameWindow || window.childGameWindow === true) return;
@@ -1718,13 +1730,18 @@ function openGameInNewWindow(e) {
                     isClosed = false;
                 }
                 if (isClosed) {
+                    // In LMS iframes, Chromium/Edge marks childGameWindow.closed = true prematurely.
+                    // If child sent a heartbeat/message within the last 4 seconds, it is STILL ALIVE!
+                    if (Date.now() - lastChildMessageTime < 4000) {
+                        return; // Do NOT resume while child is actively playing!
+                    }
                     clearInterval(window.childCheckInterval);
                     window.childCheckInterval = null;
                     window.childGameWindow = null;
                     resumeInThisWindow(false);
                 }
-            }, 600);
-        }, 1500);
+            }, 800);
+        }, 2000);
     } else {
         if (typeof window.resumeTimer === 'function') window.resumeTimer();
         if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
@@ -1784,7 +1801,10 @@ function resumeInThisWindow(forceCloseChild = false) {
     }
 
     const syncModal = document.getElementById('sync-active-modal');
-    if (syncModal) syncModal.classList.remove('show');
+    if (syncModal) {
+        syncModal.classList.remove('show');
+        syncModal.style.display = 'none';
+    }
 
     let stateToApply = latestSyncedState;
     if (window.safeStorage) {
@@ -1803,6 +1823,14 @@ function resumeInThisWindow(forceCloseChild = false) {
         latestSyncedState = stateToApply;
         window.__HSK4_LATEST_STATE__ = stateToApply;
         importGameState(stateToApply, false);
+
+        // Resume background audio if unmuted and not game over
+        if (!isMuted && !stateToApply.isGameOver) {
+            if (typeof audioIntro !== 'undefined' && audioIntro && audioIntro.paused) {
+                audioIntro.play().catch(() => {});
+            }
+        }
+
         if (window.LMSAdapter && typeof window.LMSAdapter.showToast === 'function') {
             if (stateToApply.isGameOver) {
                 window.LMSAdapter.showToast("🏆 Đã đồng bộ kết quả từ cửa sổ mới!");
@@ -1815,6 +1843,9 @@ function resumeInThisWindow(forceCloseChild = false) {
         }
     } else {
         if (typeof window.resumeTimer === 'function') window.resumeTimer();
+        if (!isMuted && typeof audioIntro !== 'undefined' && audioIntro && audioIntro.paused) {
+            audioIntro.play().catch(() => {});
+        }
     }
 }
 
@@ -1844,12 +1875,18 @@ function updateSyncOverlayInfo(state) {
 
     if (topicEl) topicEl.textContent = state.selectedTopic || state.tempSelectedTopic || "Chưa chọn";
     if (roundEl) {
-        const playersCount = state.players ? state.players.length : 1;
-        const roundNum = Math.floor((state.currentSpinCount || 0) / (playersCount || 1)) + 1;
-        roundEl.textContent = `${roundNum} / ${state.currentMaxRounds || 7}`;
+        if (state.stage === 'setup') {
+            roundEl.textContent = "Chuẩn bị bắt đầu";
+        } else {
+            const playersCount = state.players ? state.players.length : 1;
+            const roundNum = Math.floor((state.currentSpinCount || 0) / (playersCount || 1)) + 1;
+            roundEl.textContent = `${roundNum} / ${state.currentMaxRounds || 7}`;
+        }
     }
     if (turnEl) {
-        if (state.players && state.players.length > 0) {
+        if (state.stage === 'setup') {
+            turnEl.textContent = "Đang thiết lập tại cửa sổ mới";
+        } else if (state.players && state.players.length > 0) {
             const p = state.players[state.currentPlayerIndex || 0];
             turnEl.textContent = p ? p.name : "-";
         } else {
