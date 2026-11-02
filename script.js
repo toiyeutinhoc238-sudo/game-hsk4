@@ -485,7 +485,19 @@ function drawWheel() {
 spinBtn.addEventListener('click', () => spin());
 
 function spin(predefinedTarget = null, remainingMs = null, customResult = null) {
-    if (isSpinning && predefinedTarget === null) return;
+    if (predefinedTarget !== null) {
+        if (spinTimeoutId) {
+            clearTimeout(spinTimeoutId);
+            spinTimeoutId = null;
+        }
+        if (spinIntervalId) {
+            clearInterval(spinIntervalId);
+            spinIntervalId = null;
+        }
+        isSpinning = false;
+    } else {
+        if (isSpinning) return;
+    }
     isSpinning = true;
     spinBtn.disabled = true;
 
@@ -498,9 +510,30 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
 
     if (predefinedTarget !== null) {
         // Resuming or synchronizing an ongoing spin from another window!
-        currentRotation = predefinedTarget;
-        spinDuration = typeof remainingMs === 'number' ? Math.max(0, remainingMs) : 3000;
+        // Determine result segment from customResult or directly from target rotation
         result = customResult;
+        if (!result) {
+            const normalizedRotation = predefinedTarget % (Math.PI * 2);
+            let targetAngle = (Math.PI * 1.5 - normalizedRotation) % (Math.PI * 2);
+            if (targetAngle < 0) targetAngle += Math.PI * 2;
+            const segmentIndex = Math.floor(targetAngle / step);
+            result = SEGMENTS[segmentIndex];
+        }
+
+        // Ensure visible, smooth deceleration (at least 2200ms) so the user clearly sees the wheel turn and land
+        spinDuration = Math.max(2200, Math.min(5000, typeof remainingMs === 'number' ? remainingMs : 3000));
+        currentRotation = predefinedTarget;
+
+        // Visual Handover: Start 2-3 full revolutions before predefinedTarget so the CSS transition visibly spins
+        const turns = spinDuration >= 3500 ? 3 : 2;
+        const startRot = predefinedTarget - (turns * Math.PI * 2);
+
+        if (canvas) {
+            canvas.style.transition = 'none';
+            canvas.style.transform = `rotate(${startRot}rad)`;
+            void canvas.offsetWidth; // Force synchronous layout reflow so the browser commits startRot
+        }
+
         activeSpinData = {
             isSpinning: true,
             startTime: Date.now() - (5000 - spinDuration),
@@ -508,6 +541,14 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
             targetRotation: currentRotation,
             result: result
         };
+
+        // Resume spin audio on active window
+        audioSpin.currentTime = Math.max(0, audioSpin.duration ? (audioSpin.duration - (spinDuration / 1000)) : 0);
+        if (window.LMSAdapter) {
+            window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
+        } else {
+            audioSpin.play().catch(e => console.log("Spin sound restricted:", e));
+        }
     } else {
         // Fresh spin initiated by user (SFX plays regardless of background music mute)
         audioSpin.currentTime = 0;
@@ -1164,10 +1205,16 @@ function initSyncEngine() {
             } catch (e) {
                 finalSnapshot = { stage: 'playing', timestamp: Date.now() };
             }
+            finalSnapshot.timestamp = Date.now();
             finalSnapshot.isPopoutClosing = true;
+
+            if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
+                try { audioSpin.pause(); } catch (err) {}
+            }
 
             if (window.opener && !window.opener.closed) {
                 try {
+                    window.opener.latestSyncedState = finalSnapshot;
                     window.opener.__HSK4_LATEST_STATE__ = finalSnapshot;
                     if (typeof window.opener.resumeInThisWindow === 'function') {
                         window.opener.resumeInThisWindow(false);
@@ -1782,12 +1829,6 @@ function importGameState(state, shouldBroadcast = false) {
             const remainingMs = Math.max(0, state.activeSpin.duration - elapsed);
             spin(state.activeSpin.targetRotation, remainingMs, state.activeSpin.result);
             return; // Wheel will complete and trigger handleResult
-        } else {
-            // LMS background while waiting for child: position canvas silently
-            if (canvas) {
-                canvas.style.transition = 'none';
-                canvas.style.transform = `rotate(${state.activeSpin.targetRotation}rad)`;
-            }
         }
     } else {
         if (!isSpinning) {
@@ -2145,6 +2186,7 @@ function closePopoutAndReturnToLMS() {
     } catch (e) {
         finalSnapshot = { stage: 'playing', timestamp: Date.now() };
     }
+    finalSnapshot.timestamp = Date.now();
     finalSnapshot.isPopoutClosing = true;
 
     // Clear local spin and countdown timers in child before closing
@@ -2163,6 +2205,9 @@ function closePopoutAndReturnToLMS() {
         clearInterval(timerInterval);
         timerInterval = null;
     }
+    if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
+        try { audioSpin.pause(); } catch (err) {}
+    }
 
     // Broadcast audio sync
     const curAudioTime = (typeof audioIntro !== 'undefined' && audioIntro && !isNaN(audioIntro.currentTime))
@@ -2173,6 +2218,7 @@ function closePopoutAndReturnToLMS() {
     // 1. Direct call to opener if accessible (matches HSK 3)
     if (window.opener && !window.opener.closed) {
         try {
+            window.opener.latestSyncedState = finalSnapshot;
             window.opener.__HSK4_LATEST_STATE__ = finalSnapshot;
             if (typeof window.opener.resumeInThisWindow === 'function') {
                 window.opener.resumeInThisWindow(false);
