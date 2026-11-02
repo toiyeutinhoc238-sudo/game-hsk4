@@ -414,6 +414,19 @@ function init() {
     if (typeof VOCAB_DATA !== 'undefined') {
         vocabData = VOCAB_DATA;
         drawWheel();
+
+        // In child window during active spin handover, set initial angle before first paint to eliminate flicker
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('spinning') === '1' && urlParams.has('spinAngle')) {
+                const initAngle = parseFloat(urlParams.get('spinAngle'));
+                if (isFinite(initAngle) && canvas) {
+                    canvas.style.transition = 'none';
+                    canvas.style.transform = `rotate(${initAngle}rad)`;
+                }
+            }
+        } catch (e) {}
+
         updateScoreboard();
         populateTopics();
         
@@ -541,9 +554,44 @@ function animateWheelRotation(fromAngle, toAngle, duration, onComplete) {
     currentWheelAnimationId = requestAnimationFrame(frame);
 }
 
+function playSpinAudio(seekTime = 0) {
+    if (typeof audioSpin === 'undefined' || !audioSpin) return;
+
+    const doPlay = () => {
+        try {
+            const audioDur = audioSpin.duration || 5.0;
+            if (isFinite(seekTime) && seekTime > 0) {
+                audioSpin.currentTime = Math.min(seekTime, Math.max(0, audioDur - 0.5));
+            } else {
+                audioSpin.currentTime = 0;
+            }
+        } catch (err) {}
+
+        if (window.LMSAdapter && typeof window.LMSAdapter.safePlayAudio === 'function') {
+            window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
+        } else {
+            const p = audioSpin.play();
+            if (p && p.catch) {
+                p.catch(e => {
+                    console.log("[Audio] Spin sound waiting for user gesture:", e);
+                });
+            }
+        }
+    };
+
+    if (audioSpin.readyState >= 1) {
+        doPlay();
+    } else {
+        audioSpin.addEventListener('loadedmetadata', doPlay, { once: true });
+        setTimeout(() => {
+            if (audioSpin.paused && isSpinning) doPlay();
+        }, 200);
+    }
+}
+
 spinBtn.addEventListener('click', () => spin());
 
-function spin(predefinedTarget = null, remainingMs = null, customResult = null) {
+function spin(predefinedTarget = null, remainingMs = null, customResult = null, initialAngle = null) {
     if (currentWheelAnimationId) {
         cancelAnimationFrame(currentWheelAnimationId);
         currentWheelAnimationId = null;
@@ -585,8 +633,18 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
         // Always guarantee a generous, visible deceleration so the user clearly sees the wheel turn and land smoothly
         spinDuration = Math.max(2600, Math.min(5000, typeof remainingMs === 'number' ? remainingMs : 3200));
 
-        // Start 2.5 full circles back so the wheel makes multiple rotations before landing
-        startRotation = targetRotation - (2.5 * Math.PI * 2);
+        // Start angle: if initialAngle is specified, start precisely from where the other window was!
+        if (typeof initialAngle === 'number' && isFinite(initialAngle)) {
+            startRotation = initialAngle;
+            // Ensure targetRotation is ahead by at least 1.5 revolutions
+            while (targetRotation - startRotation < 1.5 * Math.PI * 2) {
+                targetRotation += 2 * Math.PI;
+            }
+            currentRotation = targetRotation;
+        } else {
+            // Default handover: 2.5 full circles back
+            startRotation = targetRotation - (2.5 * Math.PI * 2);
+        }
 
         activeSpinData = {
             isSpinning: true,
@@ -597,21 +655,12 @@ function spin(predefinedTarget = null, remainingMs = null, customResult = null) 
             result: result
         };
 
-        // Resume spin audio on active window
-        audioSpin.currentTime = Math.max(0, audioSpin.duration ? (audioSpin.duration - (spinDuration / 1000)) : 0);
-        if (window.LMSAdapter) {
-            window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
-        } else {
-            audioSpin.play().catch(e => console.log("Spin sound restricted:", e));
-        }
+        // Resume spin audio safely with metadata readiness check
+        const seekTime = Math.max(0, 5.0 - (spinDuration / 1000));
+        playSpinAudio(seekTime);
     } else {
         // Fresh spin initiated by user (SFX plays regardless of background music mute)
-        audioSpin.currentTime = 0;
-        if (window.LMSAdapter) {
-            window.LMSAdapter.safePlayAudio(audioSpin, 'tick');
-        } else {
-            audioSpin.play().catch(e => console.log("Spin sound restricted:", e));
-        }
+        playSpinAudio(0);
 
         spinDuration = audioSpin.duration ? audioSpin.duration * 1000 : 5000;
         const extraRounds = 5 + Math.floor(Math.random() * 5);
@@ -1498,6 +1547,9 @@ function handleIncomingSyncMessage(data) {
             if (typeof audioIntro !== 'undefined' && audioIntro && !audioIntro.paused) {
                 try { audioIntro.pause(); } catch (err) {}
             }
+            if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
+                try { audioSpin.pause(); audioSpin.currentTime = 0; } catch (err) {}
+            }
             const syncModal = document.getElementById('sync-active-modal');
             if (syncModal) {
                 syncModal.classList.add('show');
@@ -1672,13 +1724,23 @@ function exportGameState() {
     let activeSpin = null;
     if (isSpinning && activeSpinData) {
         const elapsed = Date.now() - activeSpinData.startTime;
+        let currentWheelAngle = null;
+        if (canvas && canvas.style.transform) {
+            const m = canvas.style.transform.match(/rotate\(([-0-9.]+)rad\)/);
+            if (m) {
+                currentWheelAngle = parseFloat(m[1]);
+            }
+        }
         activeSpin = {
             isSpinning: true,
             startTime: activeSpinData.startTime,
             duration: activeSpinData.duration,
             targetRotation: activeSpinData.targetRotation,
+            startRotation: activeSpinData.startRotation,
+            currentAngle: currentWheelAngle,
             result: activeSpinData.result,
-            remainingTime: Math.max(0, activeSpinData.duration - elapsed)
+            remainingTime: Math.max(0, activeSpinData.duration - elapsed),
+            audioCurrentTime: (typeof audioSpin !== 'undefined' && audioSpin && !isNaN(audioSpin.currentTime)) ? Number(audioSpin.currentTime.toFixed(2)) : 0
         };
     }
 
@@ -1846,7 +1908,8 @@ function importGameState(state, shouldBroadcast = false) {
         if (!(!isChildWindow && window.isWaitingForChild)) {
             const elapsed = Date.now() - state.activeSpin.startTime;
             const remainingMs = Math.max(0, state.activeSpin.duration - elapsed);
-            spin(state.activeSpin.targetRotation, remainingMs, state.activeSpin.result);
+            const initAngle = typeof state.activeSpin.currentAngle === 'number' ? state.activeSpin.currentAngle : null;
+            spin(state.activeSpin.targetRotation, remainingMs, state.activeSpin.result, initAngle);
             return; // Wheel will complete and trigger handleResult
         }
     } else {
@@ -2024,7 +2087,9 @@ function openGameInNewWindow(e) {
         try { audioIntro.pause(); } catch (err) {}
     }
     if (typeof audioSpin !== 'undefined' && audioSpin && !audioSpin.paused) {
-        try { audioSpin.pause(); } catch (err) {}
+        setTimeout(() => {
+            try { audioSpin.pause(); audioSpin.currentTime = 0; } catch (err) {}
+        }, 500);
     }
 
     const stateStr = JSON.stringify(snapshot);
@@ -2042,7 +2107,7 @@ function openGameInNewWindow(e) {
         } catch (err) {}
     }
 
-    // 3. Clean URL with audio sync and topic parameters
+    // 3. Clean URL with audio sync, spin handover, and topic parameters
     const targetUrl = new URL(window.location.href);
     targetUrl.searchParams.delete('state');
     targetUrl.hash = '';
@@ -2056,6 +2121,17 @@ function openGameInNewWindow(e) {
         : 0;
     targetUrl.searchParams.set('muted', isMuted ? '1' : '0');
     targetUrl.searchParams.set('audioTime', curAudioTime);
+
+    if (snapshot.activeSpin && snapshot.activeSpin.isSpinning) {
+        targetUrl.searchParams.set('spinning', '1');
+        targetUrl.searchParams.set('spinTarget', snapshot.activeSpin.targetRotation);
+        if (snapshot.activeSpin.audioCurrentTime) {
+            targetUrl.searchParams.set('spinTime', snapshot.activeSpin.audioCurrentTime);
+        }
+        if (typeof snapshot.activeSpin.currentAngle === 'number') {
+            targetUrl.searchParams.set('spinAngle', snapshot.activeSpin.currentAngle);
+        }
+    }
 
     const scrWidth = (window.screen && window.screen.availWidth) || window.innerWidth || 1280;
     const scrHeight = (window.screen && window.screen.availHeight) || window.innerHeight || 800;
