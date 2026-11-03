@@ -1524,6 +1524,12 @@ function handleIncomingSyncMessage(data) {
         return;
     }
 
+    // Real-time game restart across windows
+    if (type === 'HSK4_GAME_RESTART') {
+        restartGame(null, false);
+        return;
+    }
+
     // Child is closing or has closed
     if (type === 'HSK4_CHILD_CLOSING' || type === 'HSK4_POPOUT_CLOSED' || (state && state.isPopoutClosing)) {
         if (!isChildWindow) {
@@ -1813,9 +1819,38 @@ function importGameState(state, shouldBroadcast = false) {
     if (state.stage === 'setup') {
         const setupScreen = document.getElementById('setup-screen');
         if (setupScreen) setupScreen.classList.add('show');
-        document.getElementById('question-modal').classList.remove('show');
-        document.getElementById('game-over-modal').classList.remove('show');
+        const qModal = document.getElementById('question-modal');
+        if (qModal) qModal.classList.remove('show');
+        const goModal = document.getElementById('game-over-modal');
+        if (goModal) goModal.classList.remove('show');
+        const actModal = document.getElementById('action-modal');
+        if (actModal) actModal.classList.remove('show');
         document.body.classList.remove('targeting-mode');
+
+        if (typeof timerInterval !== 'undefined' && timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        if (currentWheelAnimationId) {
+            cancelAnimationFrame(currentWheelAnimationId);
+            currentWheelAnimationId = null;
+        }
+        isSpinning = false;
+        activeSpinData = null;
+        window.currentActiveQuestionData = null;
+        window.currentActiveActionTitle = null;
+
+        if (canvas) {
+            canvas.style.transition = 'none';
+            canvas.style.transform = 'rotate(0rad)';
+        }
+
+        const roundDisplay = document.getElementById('round-display');
+        if (roundDisplay) roundDisplay.textContent = '1 / 7';
+        if (lastResultDisplay) {
+            lastResultDisplay.textContent = '-';
+            lastResultDisplay.style.color = 'var(--text)';
+        }
 
         document.getElementById('topic-selection-step').style.display = 'none';
         document.getElementById('player-count-step').style.display = 'none';
@@ -2547,24 +2582,177 @@ function updateSyncOverlayInfo(state) {
 }
 
 /**
- * Cleanly restart game without stale sync data
+ * Cleanly restart game without stale sync data or page reload
  */
-function restartGame() {
+function restartGame(e, shouldBroadcast = true) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    // 1. Stop audio effects
+    if (typeof audioClap !== 'undefined' && audioClap) {
+        try { audioClap.pause(); audioClap.currentTime = 0; } catch (err) {}
+    }
+    if (typeof audioSpin !== 'undefined' && audioSpin) {
+        try { audioSpin.pause(); audioSpin.currentTime = 0; } catch (err) {}
+    }
+    if (typeof audioRight !== 'undefined' && audioRight) {
+        try { audioRight.pause(); audioRight.currentTime = 0; } catch (err) {}
+    }
+    if (typeof audioWrong !== 'undefined' && audioWrong) {
+        try { audioWrong.pause(); audioWrong.currentTime = 0; } catch (err) {}
+    }
+
+    // 2. Stop running timers & animation frames
+    if (currentWheelAnimationId) {
+        try { cancelAnimationFrame(currentWheelAnimationId); } catch (err) {}
+        currentWheelAnimationId = null;
+    }
+    if (spinTimeoutId) {
+        clearTimeout(spinTimeoutId);
+        spinTimeoutId = null;
+    }
+    if (spinIntervalId) {
+        clearInterval(spinIntervalId);
+        spinIntervalId = null;
+    }
+    if (typeof timerInterval !== 'undefined' && timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+
+    // 3. Reset internal game variables
+    isSpinning = false;
+    activeSpinData = null;
+    window.currentActiveQuestionData = null;
+    window.currentActiveActionTitle = null;
+    currentSpinCount = 0;
+    currentMaxRounds = 7;
+    currentPlayerIndex = 0;
+    currentRotation = 0;
+    window.tempPlayerCount = null;
+
+    if (players && players.length > 0) {
+        players.forEach(p => { p.score = 0; });
+    }
+
+    window.tempSelectedTopic = determineInitialTopic();
+    selectedTopic = window.tempSelectedTopic;
+
+    if (typeof vocabData !== 'undefined' && vocabData.length > 0) {
+        if (selectedTopic === "Tất cả") {
+            filteredVocab = vocabData;
+        } else {
+            filteredVocab = vocabData.filter(v => v.topic.split(',').map(t => t.trim()).includes(selectedTopic));
+        }
+        currentSessionVocab = [...filteredVocab].sort(() => Math.random() - 0.5);
+    }
+
+    // 4. Reset UI / DOM elements
+    const gameOverModal = document.getElementById('game-over-modal');
+    if (gameOverModal) gameOverModal.classList.remove('show');
+
+    const questionModal = document.getElementById('question-modal');
+    if (questionModal) questionModal.classList.remove('show');
+
+    const actionModal = document.getElementById('action-modal');
+    if (actionModal) actionModal.classList.remove('show');
+
+    document.body.classList.remove('targeting-mode');
+
+    const celeb = document.getElementById('celebration-container');
+    if (celeb) {
+        celeb.innerHTML = '';
+        celeb.style.display = 'none';
+    }
+
+    const winnerMessage = document.getElementById('winner-message');
+    if (winnerMessage) winnerMessage.textContent = '';
+    const finalScores = document.getElementById('final-scores');
+    if (finalScores) finalScores.innerHTML = '';
+    const vocabBody = document.getElementById('vocab-summary-body');
+    if (vocabBody) vocabBody.innerHTML = '';
+    const vocabContainer = document.getElementById('vocab-summary-container');
+    if (vocabContainer) vocabContainer.style.display = 'none';
+
+    if (canvas) {
+        canvas.style.transition = 'none';
+        canvas.style.transform = 'rotate(0rad)';
+    }
+    if (typeof drawWheel === 'function') drawWheel();
+
+    if (spinBtn) spinBtn.disabled = false;
+
+    if (lastResultDisplay) {
+        lastResultDisplay.textContent = '-';
+        lastResultDisplay.style.color = 'var(--text)';
+    }
+
+    const roundEl = document.getElementById('round-display');
+    if (roundEl) roundEl.textContent = '1 / 7';
+
+    updateScoreboard();
+
+    if (currentPlayerDisplay) {
+        currentPlayerDisplay.textContent = (players && players.length > 0) ? players[0].name : 'Đang tải...';
+    }
+
+    const currentStatusEl = document.querySelector('.current-status');
+    if (currentStatusEl) currentStatusEl.textContent = 'Tiếng Trung HSK 4';
+
+    // 5. Show Setup Screen with Player Count Selection
+    const setupScreen = document.getElementById('setup-screen');
+    if (setupScreen) setupScreen.classList.add('show');
+
+    const topicStep = document.getElementById('topic-selection-step');
+    if (topicStep) topicStep.style.display = 'none';
+
+    const playerStep = document.getElementById('player-count-step');
+    if (playerStep) playerStep.style.display = 'block';
+
+    const rulesStep = document.getElementById('rules-step');
+    if (rulesStep) rulesStep.style.display = 'none';
+
+    const countdownStep = document.getElementById('countdown-step');
+    if (countdownStep) countdownStep.style.display = 'none';
+
+    // 6. Reset audio intro
+    if (typeof audioIntro !== 'undefined' && audioIntro) {
+        try {
+            audioIntro.pause();
+            audioIntro.currentTime = 0;
+        } catch (err) {}
+        if (!isMuted && !(!isChildWindow && window.isWaitingForChild)) {
+            startIntro();
+        }
+    }
+
+    // 7. Clean stored sync state & broadcast restart across windows
     if (window.safeStorage) {
         window.safeStorage.removeItem('hsk4_synced_state');
         window.safeStorage.removeItem('hsk4_game_sync_state');
     }
-    const targetUrl = new URL(window.location.href);
-    targetUrl.searchParams.delete('state');
-    targetUrl.hash = '';
-    if (window.isChildWindow) {
-        targetUrl.searchParams.set('popout', '1');
-    } else {
-        targetUrl.searchParams.delete('popout');
-        targetUrl.searchParams.delete('mode');
-        targetUrl.searchParams.delete('session');
+    try {
+        localStorage.removeItem('hsk4_synced_state');
+        localStorage.removeItem('hsk4_game_sync_state');
+    } catch (err) {}
+
+    if (shouldBroadcast) {
+        const restartMsg = {
+            type: 'HSK4_GAME_RESTART',
+            timestamp: Date.now()
+        };
+
+        if (window.gameSyncChannel) {
+            try { window.gameSyncChannel.postMessage(restartMsg); } catch (e) {}
+        }
+        if (window.childGameWindow && !window.childGameWindow.closed) {
+            try { window.childGameWindow.postMessage(restartMsg, '*'); } catch (e) {}
+        }
+        if (window.opener && !window.opener.closed) {
+            try { window.opener.postMessage(restartMsg, '*'); } catch (e) {}
+        }
+
+        broadcastGameState();
     }
-    window.location.href = targetUrl.toString();
 }
 
 // Global functions exposed to window (supporting both naming standards)
